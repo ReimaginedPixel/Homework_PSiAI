@@ -1,21 +1,21 @@
 # Homework_PSiAI
 
-## Pracownia Stron i Aplikacji Internetowych
+## Web Pages and Web Applications Laboratory
 
-To repozytorium zawiera wszystkie strony internetowe i aplikacje, które stworzyłem na zajęcia z "Pracowni Stron i Aplikacji Internetowych". a ten zbiór pokazuje moje postępy oraz eksperymenty w tym obszarze. Zachęcam do zapoznania się z moimi projektami, a także do wykorzystania kodu i czerpania inspiracji w swoich własnych projektach.
+This repository contains all the websites and applications I have created for the "Web Pages and Web Applications Laboratory" class. This collection showcases my progress and experiments in this field. Feel free to explore my projects, as well as use the code and draw inspiration for your own projects.
 
-### Zawartość
-Każdy folder w tym repozytorium zawiera odrębny projekt lub stronę internetową, którą stworzyłem w ramach zajęć. Projekty mogą obejmować różne aspekty tworzenia stron i aplikacji internetowych, takie jak:
-- **HTML, CSS, JavaScript**: Podstawy i zaawansowane techniki tworzenia responsywnych stron internetowych.
+### Contents
+Each folder in this repository contains a separate project or website I created for the class. The projects cover various aspects of web page and web application development, such as:
+- **HTML, CSS, JavaScript**: Basic and advanced techniques for creating responsive websites.
 
-### Technologie & Języki:
-- **HTML**: Podstawowy język do tworzenia stron internetowych, używany do strukturyzacji treści.
-- **CSS**: Stylowanie stron, zapewniające atrakcyjny wygląd i responsywność.
-- **JavaScript**: Język skryptowy wykorzystywany do tworzenia interaktywnych elementów na stronach.
+### Technologies & Languages:
+- **HTML**: The foundational language for creating websites, used for structuring content.
+- **CSS**: Styling websites, ensuring an attractive appearance and responsiveness.
+- **JavaScript**: A scripting language used to create interactive elements on websites.
 
-### Cele w Nauki:
-- Poznanie i opanowanie podstawowych oraz zaawansowanych technik w tworzeniu stron internetowych i aplikacji webowych.
-- mam nadzieje więcej w niedalekiej przyszłości...
+### Learning Goals:
+- Learn and master basic and advanced techniques for creating websites and web applications.
+- I hope to achieve more in the near future...
 
-### Wkład & Open Source:
-- Możesz forknąć repozytorium, zgłaszać błędy, proponować zmiany lub wysyłać pull requesty. Chętnie przyjmę wszelkie sugestie i uwagi, aby moje projekty stały się lepsze.
+### Contribution & Open Source:
+- Feel free to fork the repository, report issues, suggest changes, or submit pull requests. I am happy to accept any suggestions and feedback to make my projects better.

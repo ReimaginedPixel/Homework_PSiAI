@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podstawy - Minecraft Server Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="loader" id="loader">
+        <div class="square" id="sq1"></div>
+        <div class="square" id="sq2"></div>
+        <div class="square" id="sq3"></div>
+        <div class="square" id="sq4"></div>
+        <div class="square" id="sq5"></div>
+        <div class="square" id="sq6"></div>
+        <div class="square" id="sq7"></div>
+        <div class="square" id="sq8"></div>
+        <div class="square" id="sq9"></div>
+    </div>
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../img/logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Szukaj..." id="search-input">
+            <button type="button" id="search-button">🔍</button>
+        </div>
+        <h1>Podstawy</h1>
+        <button id="theme-toggle">🌙 Przełącz Tryb</button>
+        <nav>
+            <ul>
+                <li><a href="podstawy.html" id="basics-link">Podstawy</a></li>
+                <li><a href="pluginy.html" id="plugins-link">Pluginy</a></li>
+                <li><a href="administracja.html" id="administration-link">Administracja</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Podstawy tworzenia serwera Minecraft</h2>
+        <p>W tym rozdziale dowiesz się, jak stworzyć swój własny serwer Minecraft od podstaw.</p>
+        
+        <section>
+            <h3>Wymagania systemowe</h3>
+            <p>Aby uruchomić serwer Minecraft, potrzebujesz odpowiedniego sprzętu i oprogramowania. Oto minimalne wymagania:</p>
+            <ul>
+                <li>Procesor: Intel Core i3 lub równoważny</li>
+                <li>Pamięć RAM: 4 GB (zalecane 8 GB dla większej liczby graczy)</li>
+                <li>Dysk twardy: 10 GB wolnego miejsca</li>
+                <li>System operacyjny: Windows, macOS, Linux</li>
+                <li>Java: Zainstalowana najnowsza wersja Javy</li>
+                <li>Połączenie internetowe: Stabilne łącze o wysokiej przepustowości</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>Wybór wersji serwera</h3>
+            <p>Istnieją różne wersje serwera Minecraft. Oto najpopularniejsze:</p>
+            <ul>
+                <li><strong>Vanilla:</strong> Oficjalna wersja od Mojang, bez modyfikacji.</li>
+                <li><strong>Spigot:</strong> Popularna wersja pozwalająca na instalację pluginów.</li>
+                <li><strong>Paper:</strong> Optymalizowana wersja Spigot, oferująca lepszą wydajność.</li>
+                <li><strong>Forge:</strong> Umożliwia instalację modów.</li>
+                <li><strong>Fabric:</strong> Alternatywa dla Forge, bardziej wydajna.</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>Pobieranie i instalacja serwera</h3>
+            <p>Aby pobrać serwer Minecraft, odwiedź oficjalną stronę Minecraft lub stronę wybranej wersji serwera. Następnie wykonaj poniższe kroki:</p>
+            <ol>
+                <li>Utwórz nowy folder na swoim komputerze, w którym będziesz przechowywać pliki serwera.</li>
+                <li>Przenieś pobrany plik serwera do utworzonego folderu.</li>
+                <li>Otwórz terminal lub wiersz polecenia i przejdź do folderu z plikiem serwera.</li>
+                <li>Uruchom serwer, wpisując polecenie: <code>java -jar nazwapliku.jar</code></li>
+                <li>Zaakceptuj warunki licencji, edytując plik <code>eula.txt</code> i zmieniając wartość <code>false</code> na <code>true</code>.</li>
+                <li>Ponownie uruchom serwer.</li>
+            </ol>
+        </section>
+        
+        <section>
+            <h3>Podstawowa konfiguracja serwera</h3>
+            <p>Po pierwszym uruchomieniu serwera wygenerują się pliki konfiguracyjne. Najważniejsze pliki to:</p>
+            <ul>
+                <li><code>server.properties</code> – Główne ustawienia serwera, takie jak tryb gry, liczba graczy, port itp.</li>
+                <li><code>ops.json</code> – Lista operatorów serwera.</li>
+                <li><code>whitelist.json</code> – Lista dozwolonych graczy (jeśli whitelist jest włączony).</li>
+                <li><code>banned-players.json</code> – Lista zbanowanych graczy.</li>
+            </ul>
+            <p>Aby edytować <code>server.properties</code>, otwórz go w edytorze tekstu i zmień wybrane wartości.</p>
+        </section>
+        
+        <section>
+            <h3>Otwieranie portów</h3>
+            <p>Aby gracze spoza twojej sieci mogli dołączyć do serwera, musisz otworzyć port <strong>25565</strong> w ustawieniach routera.</p>
+        </section>
+        
+        <section>
+            <h3>Podstawowe komendy administracyjne</h3>
+            <p>Oto kilka podstawowych komend, które ułatwią zarządzanie serwerem:</p>
+            <ul>
+                <li><code>/op [nick]</code> – Nadanie graczowi uprawnień operatora.</li>
+                <li><code>/deop [nick]</code> – Odebranie uprawnień operatora.</li>
+                <li><code>/ban [nick]</code> – Zbanowanie gracza.</li>
+                <li><code>/pardon [nick]</code> – Odbanowanie gracza.</li>
+                <li><code>/kick [nick]</code> – Wyrzucenie gracza z serwera.</li>
+                <li><code>/whitelist add [nick]</code> – Dodanie gracza do whitelisty.</li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Minecraft Server Guide</p>
+    </footer>
+    
+    <script src="../js/skrypty.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

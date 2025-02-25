@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<title>🌍 Server Minecraft</title>
+<meta charset="UTF-8" /> <!-- Kod z (ccs) internetu  -->
+
+</head>
+<body style="background-image: url('ima(1).png'); background-size: 100% 100%;">
+
+
+<!-- Sekcja nawigacyjna -->
+<hr>
+<center><h1>🛠️ Jak stworzyć serwer Minecraft: Przewodnik krok po kroku</h1></center>
+<hr>
+
+<!-- Wyśrodkowane Linki Nawigacji -->
+<div class="nav-links">
+  <center><a href="#wprowadzenie">📖 Wprowadzenie</a></center>
+  <center><a href="#przygotowanie">⚙️ Przygotowanie do stworzenia serwera</a></center>
+  <center><a href="#java-edition">💻 Tworzenie serwera Minecraft Java Edition</a></center>
+  <center><a href="#bedrock-edition">📱 Tworzenie serwera Minecraft Bedrock Edition</a></center>
+  <center><a href="#zarzadzanie">🔧 Zarządzanie serwerem</a></center>
+</div>
+
+<hr>
+
+<!-- Rozdziały i wyrównany text -->
+<center><a name="wprowadzenie"></a><h2>📖 Wprowadzenie</h2></center>
+<center><p>Minecraft to jedna z najpopularniejszych gier komputerowych, która pozwala graczom na nieskrępowaną eksplorację, budowanie i przetrwanie w wirtualnym świecie. Jednym z najciekawszych aspektów gry jest możliwość stworzenia własnego serwera, na którym możesz grać z przyjaciółmi lub stworzyć własną społeczność. W tym przewodniku przedstawimy, jak stworzyć serwer Minecraft od podstaw, zarówno dla wersji Java Edition, jak i Bedrock Edition.</p></center>
+<center><img src="block.png" alt="Przykładowa konfiguracja serwera Minecraft" style="width:20%;max-width:600px;"></center>
+
+<center><a name="przygotowanie"></a><h2>⚙️ Przygotowanie do stworzenia serwera</h2></center>
+<center><p>Zanim przystąpisz do tworzenia serwera, musisz upewnić się, że masz odpowiednie zasoby i narzędzia:</p></center>
+
+<center><h3>🖥️ Wymagania sprzętowe:</h3></center>
+<center><p>Twoje urządzenie, na którym chcesz uruchomić serwer, powinno mieć co najmniej 2 GB pamięci RAM oraz stabilne połączenie internetowe. W przypadku większych serwerów i liczniejszych graczy, zaleca się więcej pamięci RAM oraz szybszy procesor.</p></center>
+
+<center><h3>🎮 Wersja gry:</h3></center>
+<center><p>Sprawdź, czy masz najnowszą wersję gry Minecraft. W przypadku wersji Java Edition lub Bedrock Edition upewnij się, że wersja serwera jest zgodna z wersją gry, którą posiadasz.</p></center>
+
+<center><a name="java-edition"></a><h2>💻 Tworzenie serwera Minecraft Java Edition</h2></center>
+<center><p>Pobierz oprogramowanie serwera:</p></center>
+
+<center><h3>🌐 Odwiedź oficjalną stronę Minecraft: minecraft.net.</h3></center>
+<center><p>Pobierz plik serwera Minecraft Java Edition (.jar). Zazwyczaj jest to plik o nazwie server.jar.</p></center>
+
+<center><h3>📂 Przygotuj folder serwera:</h3></center>
+<center><p>Utwórz nowy folder na swoim komputerze, na przykład MinecraftServer.</p></center>
+<center><p>Umieść pobrany plik server.jar w tym folderze.</p></center>
+
+<center><h3>🚀 Uruchom serwer:</h3></center>
+<center><p>W folderze serwera kliknij prawym przyciskiem myszy i wybierz „Nowy dokument tekstowy”.</p></center>
+<center><p>Otwórz dokument i wpisz następujące polecenie: java -Xmx2G -Xms1G -jar server.jar nogui</p></center>
+<center><p>-Xmx2G oznacza przydzielenie 2 GB pamięci RAM dla serwera.</p></center>
+<center><p>-Xms1G oznacza przydzielenie 1 GB pamięci RAM jako minimalna ilość.</p></center>
+<center><p>Zapisz plik jako start.bat (w przypadku systemu Windows) lub start.sh (w przypadku systemu macOS/Linux).</p></center>
+<center><p>Uruchom plik start.bat lub start.sh. Serwer powinien zacząć działać, a w folderze serwera pojawi się kilka nowych plików, w tym eula.txt.</p></center>
+
+<center><h3>✅ Akceptacja umowy licencyjnej:</h3></center>
+<center><p>Otwórz plik eula.txt i zmień eula=false na eula=true, aby zaakceptować warunki licencyjne.</p></center>
+<center><p>Zapisz zmiany i zamknij plik.</p></center>
+
+<center><h3>⚙️ Konfiguracja serwera:</h3></center>
+<center><p>Uruchom ponownie plik start.bat lub start.sh. Serwer wygeneruje plik konfiguracyjny server.properties, w którym możesz dostosować ustawienia takie jak port serwera, tryb gry, i inne.</p></center>
+
+<center><h3>🔒 Konfiguracja portu i zapory:</h3></center>
+<center><p>Aby inni gracze mogli połączyć się z Twoim serwerem, musisz skonfigurować przekierowanie portów w routerze. Standardowy port dla Minecrafta to 25565.</p></center>
+<center><p>Sprawdź dokumentację swojego routera, aby dowiedzieć się, jak skonfigurować przekierowanie portów.</p></center>
+<center><p>Upewnij się, że zapora sieciowa na komputerze nie blokuje portu 25565.</p></center>
+
+<center><h3>🕹️ Dołączanie do serwera:</h3></center>
+<center><p>W grze Minecraft, przejdź do sekcji „Multiplayer” i kliknij „Dodaj serwer”.</p></center>
+<center><p>Wprowadź nazwę serwera i adres IP (lub lokalny adres IP, jeśli grasz w sieci lokalnej).</p></center>
+<center><p>Kliknij „Gotowe” i wybierz swój serwer z listy, aby dołączyć do gry.</p></center>
+
+<center><a name="bedrock-edition"></a><h2>📱 Tworzenie serwera Minecraft Bedrock Edition</h2></center>
+<center><p>Pobierz oprogramowanie serwera:</p></center>
+
+<center><h3>🌐 Odwiedź stronę Microsoft: minecraft.net.</h3></center>
+<center><p>Pobierz plik serwera Minecraft Bedrock Edition dla swojego systemu operacyjnego.</p></center>
+
+<center><h3>📂 Przygotuj folder serwera:</h3></center>
+<center><p>Utwórz nowy folder na komputerze, na przykład MinecraftBedrockServer.</p></center>
+<center><p>Umieść pobrany plik serwera w tym folderze.</p></center>
+
+<center><h3>🚀 Uruchom serwer:</h3></center>
+<center><p>Otwórz plik bedrock_server.exe (Windows) lub odpowiedni plik dla innych systemów operacyjnych.</p></center>
+<center><p>Serwer utworzy niezbędne pliki konfiguracyjne i zacznie działać.</p></center>
+
+<center><h3>⚙️ Konfiguracja serwera:</h3></center>
+<center><p>Edytuj plik server.properties, aby dostosować ustawienia takie jak port serwera, tryb gry i inne.</p></center>
+
+<center><h3>🔒 Konfiguracja portu i zapory:</h3></center>
+<center><p>Tak jak w przypadku wersji Java Edition, skonfiguruj przekierowanie portów w routerze (domyślny port to 19132) i upewnij się, że zapora nie blokuje portu 19132.</p></center>
+
+<center><h3>🌍 Dołączanie do serwera: </h3></center>
+<center><p>W grze Minecraft Bedrock Edition przejdź do sekcji „Graj” i wybierz „Serwery”. 🎮</p></center>
+<center><p>Kliknij „Dodaj serwer” i wprowadź nazwę serwera oraz adres IP. ➕</p></center>
+<center><p>Kliknij „Gotowe” i wybierz swój serwer z listy, aby dołączyć do gry. ✅</p></center>
+
+<center><a name="zarzadzanie"></a><h2>🛠️ Zarządzanie serwerem </h2></center>
+<center><h3>🔌 Instalacja pluginów i modów: </h3></center>
+<center><p>Wersja Java Edition umożliwia instalację pluginów (np. poprzez Spigot lub Bukkit) oraz modów (np. Forge). 🛠️</p></center>
+<center><p>Wersja Bedrock Edition wspiera dodatki (addons), które możesz znaleźć w sklepach z dodatkami Minecrafta. 🛍️</p></center>
+
+<center><h3>👥 Zarządzanie graczami: </h3></center>
+<center><p>Wersja Java Edition pozwala na zarządzanie graczami za pomocą komend lub wtyczek. 📜</p></center>
+<center><p>Wersja Bedrock Edition pozwala na zarządzanie graczami w pliku whitelist.json oraz za pomocą komend. 📝</p></center>
+
+<center> <!-- Przycisk do następnej strony -->
+  <a href="2test1.html">
+    <button><h1>📖 Czytaj Więcej 📖</h1></button>
+  </a>
+</center>
+<p> </p>
+<center><h3>Potrzebujesz Pomocy?</h2></center>
+<center><p>Napisz Tutaj!</p></center>
+<center><form action="mailto:konradkukula7@gmail.com" method="post">
+  Imię: <input type="text" id="imie"> 
+  Nazwisko: <input type="text" id="nazwisko"><br>
+  <textarea name="opinia" rows="4" cols="25"></textarea><br>
+  <input type="submit" value="📩 wyślij formularz 📩">
+  </form>
+  </center>
+
+</body>
+</html>

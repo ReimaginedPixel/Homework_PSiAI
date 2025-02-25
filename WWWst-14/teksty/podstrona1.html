@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rozdział 1: Konfiguracja Serwera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            background: url('../obrazy/background3.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .box2 {
+            border-radius: 40px;
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7); 
+        }
+
+        .box {
+            border: 7px solid rgb(255, 222, 89);
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); 
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 10px 10px rgb(255, 222, 89)
+        }
+
+        h1, h2 {
+            color: #FFDE59;
+        }
+
+        h1 {
+            font-size: 40;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #ffde59;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            font-size: 17;
+            color: #B3B3B3;
+        }
+    </style>
+</head>
+<body>
+    <br></br>
+<div class="box2">
+    <center><a href="index.html"><img src="../obrazy/logo2.png" width="507.5" height="160"></a></center>
+</div>
+<div class="box">
+    <h1>🌍 Rozdział 1: Konfiguracja Serwera</h1>
+    <p>W tym rozdziale dowiesz się, jak skonfigurować serwer Minecraft od podstaw, aby stworzyć stabilną i wydajną przestrzeń do gry online.</p>
+
+    <h2 id="podrozdzial1.1">🛠️  1.1: Wybór Typu Serwera</h2>
+    <p>Przed rozpoczęciem konfiguracji musisz wybrać typ serwera: <strong>Vanilla</strong> (czysty Minecraft), <strong>Spigot</strong> (dla wsparcia wtyczek) lub <strong>Forge</strong> (dla obsługi modów). Każdy z nich oferuje różne funkcje. Wersja Vanilla jest najprostsza, podczas gdy Spigot i Forge wymagają dodatkowej konfiguracji, ale pozwalają na więcej możliwości dostosowania rozgrywki.</p>
+
+    <h2 id="podrozdzial1.2">⚙️  1.2: Pobieranie Plików Serwera</h2>
+    <p>Przejdź na <a href="https://www.minecraft.net" target="_blank">oficjalną stronę Minecraft</a> i pobierz plik serwera. Wybierz najnowszą stabilną wersję lub wersję zgodną z Twoimi pluginami lub modami. Zapisz ją w folderze, który będzie służył jako główny katalog serwera.</p>
+
+    <h2 id="podrozdzial1.3">💾  1.3: Uruchamianie Serwera Po Raz Pierwszy</h2>
+    <p>Po pobraniu pliku serwera otwórz terminal lub wiersz poleceń, przejdź do folderu serwera i uruchom serwer za pomocą poniższego polecenia:</p>
+    <code>java -Xmx1024M -Xms1024M -jar minecraft_server.jar nogui</code>
+    <p>To polecenie inicjuje pliki konfiguracyjne oraz tworzy podstawowy świat serwera. Ustaw odpowiednie uprawnienia w systemie, aby serwer działał stabilnie.</p>
+
+    <h2 id="podrozdzial1.4">🚀  1.4: Optymalizacja Ustawień JVM</h2>
+    <p>Parametry JVM (Java Virtual Machine) mają znaczący wpływ na wydajność serwera Minecraft. Oto niektóre kluczowe ustawienia:</p>
+    <ul>
+        <li><code>-Xmx</code> – maksymalna ilość pamięci RAM dostępna dla serwera. Dostosuj ją do zasobów swojego serwera, np. <code>-Xmx2048M</code> dla 2 GB.</li>
+        <li><code>-Xms</code> – minimalna ilość pamięci RAM. Zaleca się ustawienie jej na ten sam poziom co <code>-Xmx</code> dla stabilności.</li>
+        <li><code>-XX:+UseG1GC</code> – zalecane ustawienie dla Minecrafta, gdyż algorytm G1GC lepiej radzi sobie z alokacją pamięci.</li>
+    </ul>
+    <p>Przykładowe polecenie uruchamiające z optymalizacjami JVM wygląda następująco:</p>
+    <code>java -Xmx2048M -Xms2048M -XX:+UseG1GC -jar minecraft_server.jar nogui</code>
+
+    <h2 id="podrozdzial1.5">📂  1.5: Tworzenie Skryptu Startowego</h2>
+    <p>Aby uprościć uruchamianie serwera, możesz utworzyć skrypt startowy. Skrypt pozwala szybko uruchomić serwer i zastosować optymalne ustawienia bez ręcznego wpisywania polecenia za każdym razem.</p>
+    <p>Oto przykładowy skrypt dla systemu Windows:</p>
+    <code>@echo off
+    java -Xmx2048M -Xms2048M -jar minecraft_server.jar nogui
+    pause</code>
+    <p>A w systemach Linux lub macOS możesz utworzyć skrypt <code>start.sh</code> z poniższym kodem:</p>
+    <code>#!/bin/bash
+    java -Xmx2048M -Xms2048M -jar minecraft_server.jar nogui</code>
+    <p>Pamiętaj, aby nadać uprawnienia do uruchomienia skryptu w systemie Linux/Mac za pomocą <code>chmod +x start.sh</code>.</p>
+
+    <h2 id="podrozdzial1.6">🌐  1.6: Dostosowywanie Środowiska Uruchomieniowego</h2>
+    <p>Jeśli planujesz uruchamiać serwer przez dłuższy czas lub udostępniać go większej liczbie graczy, warto skonfigurować środowisko uruchomieniowe. W szczególności:</p>
+    <ul>
+        <li>Ustaw ograniczenia dostępu do plików serwera, aby tylko administratorzy mieli możliwość ich edycji.</li>
+        <li>Rozważ użycie narzędzi takich jak <code>screen</code> lub <code>tmux</code> na systemach Linux, aby zarządzać sesjami serwera w tle.</li>
+        <li>Ustaw regularne kopie zapasowe plików serwera, aby zapobiec utracie danych. Możesz skonfigurować automatyczny system backupu, np. przy użyciu <code>cron</code> na Linuxie.</li>
+    </ul>
+
+    <h2 id="podrozdzial1.7">📑  1.7: Konfiguracja Plików Pomocniczych</h2>
+    <p>Serwer Minecraft generuje kilka plików konfiguracyjnych, które umożliwiają dostosowanie świata i zachowań serwera:</p>
+    <ul>
+        <li><code>eula.txt</code> – wymaga zaakceptowania warunków licencji EULA, zmieniając <code>eula=false</code> na <code>eula=true</code>.</li>
+        <li><code>banned-players.json</code> – lista zbanowanych graczy, którą można edytować, aby ręcznie dodawać lub usuwać osoby.</li>
+        <li><code>whitelist.json</code> – jeśli serwer działa w trybie whitelist, tylko gracze z tej listy będą mieli dostęp.</li>
+    </ul>
+    <p>Zmieniając odpowiednie wartości w tych plikach, możesz dostosować serwer do własnych potrzeb i zapewnić większą kontrolę nad rozgrywką.</p>
+
+        <center><a href="index.html">⬅️ Powrót do Menu Głównego</a> | <a href="podstrona2.html">➡️ Następny Rozdział</a></center>
+</div>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+</body>
+</html>

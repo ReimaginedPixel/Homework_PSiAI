@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rozdział 3: Dodawanie Pluginów lub Modów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            background: url('../obrazy/background3.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .box2 {
+            border-radius: 40px;
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7); 
+        }
+
+        .box {
+            border: 7px solid rgb(255, 222, 89);
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); 
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 10px 10px rgb(255, 222, 89)
+        }
+
+        h1, h2 {
+            color: #FFDE59;
+        }
+
+        h1 {
+            font-size: 40;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #ffde59;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            font-size: 17;
+            color: #B3B3B3;
+        }
+    </style>
+</head>
+<body>
+    <br></br>
+<div class="box2">
+    <center><a href="index.html"><img src="../obrazy/logo2.png" width="507.5" height="160"></a></center>
+</div>
+<div class="box">
+    <h1>🧩 Rozdział 3: Dodawanie Pluginów lub Modów</h1>
+    <p>Dowiedz się, jak wzbogacić rozgrywkę, dodając pluginy i mody do swojego serwera. To pozwoli na dostosowanie serwera do własnych potrzeb i preferencji graczy.</p>
+
+    <h2 id="podrozdzial3.1">🔌  3.1: Instalowanie Pluginów</h2>
+    <p>Dla serwerów Spigot, pluginy można dodawać, kopiując pliki do folderu `plugins`. Aby aktywować nowy plugin, zrestartuj serwer. Pluginy mogą dodawać nowe funkcje i usprawnienia do rozgrywki, takie jak komendy administracyjne, nowe tryby gry czy narzędzia dla graczy.</p>
+
+    <h2 id="podrozdzial3.2">🚀  3.2: Instalowanie Modów</h2>
+    <p>Jeżeli używasz serwera Forge, mody są dodawane do folderu `mods`. Upewnij się, że wszystkie mody są kompatybilne z wersją serwera oraz że gracze mają te same mody zainstalowane na swoich urządzeniach.</p>
+
+    <h2 id="podrozdzial3.3">⚙️  3.3: Sprawdzanie Zgodności Pluginów i Modów</h2>
+    <p>Przed instalacją pluginów i modów zawsze upewnij się, że są kompatybilne z wersją serwera. Niektóre pluginy i mody działają tylko na konkretnych wersjach Minecrafta lub wymagają określonych silników serwera, takich jak <strong>Spigot</strong>, <strong>Paper</strong>, lub <strong>Forge</strong>.</p>
+    <p>Dla serwera Spigot/Paper zalecane jest korzystanie z pluginów pobranych z <a href="https://www.spigotmc.org/resources/" target="_blank">SpigotMC</a>, a dla serwera Forge – z modów dostępnych na <a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank">CurseForge</a>.</p>
+
+    <h2 id="podrozdzial3.4">📦  3.4: Zarządzanie Wersjami i Aktualizacjami</h2>
+    <p>Przy dużej liczbie pluginów i modów ważne jest regularne aktualizowanie plików, aby zachować kompatybilność i zapewnić bezpieczeństwo. Stare wersje pluginów mogą być podatne na błędy, które mogą wpływać na stabilność serwera.</p>
+    <p>Zaleca się tworzenie kopii zapasowych przed każdą aktualizacją oraz przetestowanie nowych wersji na serwerze testowym, jeśli jest to możliwe.</p>
+
+    <h2 id="podrozdzial3.5">🛠️  3.5: Narzędzia do Zarządzania Pluginami i Modami</h2>
+    <p>Istnieją różne narzędzia, które mogą pomóc w zarządzaniu pluginami i modami:</p>
+    <ul>
+        <li><strong>Plugin Manager</strong> – dla serwerów opartych na Spigot lub Paper, narzędzie to umożliwia łatwą instalację i zarządzanie pluginami bez konieczności ręcznego kopiowania plików.</li>
+        <li><strong>ModPack Launchers</strong> – narzędzia takie jak <a href="https://www.feed-the-beast.com/" target="_blank">Feed The Beast</a> i <a href="https://www.technicpack.net/" target="_blank">Technic Launcher</a> pomagają w instalacji i konfiguracji modów na serwerach Forge.</li>
+    </ul>
+
+    <h2 id="podrozdzial3.6">🔧  3.6: Rozwiązywanie Problemów z Pluginami i Modami</h2>
+    <p>Jeśli wystąpią problemy z działaniem pluginów lub modów, sprawdź następujące kwestie:</p>
+    <ul>
+        <li>Upewnij się, że wersje pluginów/modów są zgodne z wersją serwera.</li>
+        <li>Przejrzyj pliki dzienników serwera (np. <code>latest.log</code>) pod kątem błędów lub ostrzeżeń.</li>
+        <li>Sprawdź dokumentację każdego pluginu lub moda, aby poznać dodatkowe wymagania lub konflikty z innymi rozszerzeniami.</li>
+    </ul>
+    <p>W przypadku trudniejszych problemów skonsultuj się ze społecznością użytkowników Minecrafta lub odwiedź fora dedykowane pluginom i modom.</p>
+
+    <h2 id="podrozdzial3.7">🔍  3.7: Testowanie Pluginów i Modów</h2>
+    <p>Przed dodaniem nowych pluginów lub modów na główny serwer, warto przetestować je na serwerze testowym. Dzięki temu unikniesz problemów technicznych i przestojów na głównym serwerze.</p>
+    <p>Dodatkowo, regularne testowanie i monitorowanie działania serwera pomoże zidentyfikować konflikty lub problemy z wydajnością, które mogą być spowodowane przez specyficzne mody lub pluginy.</p>
+
+    <center><a href="index.html">⬅️ Powrót do Menu Głównego</a></center>
+
+
+
+</div>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+</body>
+</html>

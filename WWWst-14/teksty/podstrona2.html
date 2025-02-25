@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rozdział 2: Konfiguracja Serwera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            background: url('../obrazy/background3.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .box2 {
+            border-radius: 40px;
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7); 
+        }
+
+        .box {
+            border: 7px solid rgb(255, 222, 89);
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); 
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 10px 10px rgb(255, 222, 89)
+        }
+
+        h1, h2 {
+            color: #FFDE59;
+        }
+
+        h1 {
+            font-size: 40;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #ffde59;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            font-size: 17;
+            color: #B3B3B3;
+        }
+    </style>
+</head>
+<body>
+    <br></br>
+<div class="box2">
+    <center><a href="index.html"><img src="../obrazy/logo2.png" width="507.5" height="160"></a></center>
+</div>
+<div class="box">
+    <h1>⚙️ Rozdział 2: Konfiguracja Plików Serwera</h1>
+    <p>Ten rozdział przeprowadzi Cię przez konfigurację podstawowych ustawień serwera Minecraft, takich jak trudność, maksymalna liczba graczy i uprawnienia.</p>
+
+    <h2 id="podrozdzial2.1">📜  2.1: Edytowanie Pliku `server.properties`</h2>
+    <p>Plik `server.properties` umożliwia dostosowanie wielu aspektów rozgrywki. Znajdziesz tam opcje dotyczące trybu gry, maksymalnej liczby graczy, trudności świata oraz innych ustawień. Zmieniaj wartości zgodnie z własnymi preferencjami i pamiętaj, aby zapisać zmiany przed uruchomieniem serwera.</p>
+
+    <h2 id="podrozdzial2.2">🔐  2.2: Ustawienie Uprawnień i Administratorów (OP)</h2>
+    <p>Dodanie użytkowników z uprawnieniami administracyjnymi odbywa się poprzez edycję pliku `ops.json`. Możesz również skorzystać z wtyczek do zarządzania uprawnieniami, co zapewnia dodatkową kontrolę nad dostępem do serwera oraz jego funkcji.</p>
+
+   
+
+    <h2 id="podrozdzial2.3">🌐  2.3: Konfiguracja Sieci i Portu Serwera</h2>
+    <p>Domyślnie serwer Minecraft działa na porcie 25565. Możesz zmienić numer portu w pliku <code>server.properties</code>, zmieniając wartość parametru <code>server-port</code>. Upewnij się, że otworzyłeś odpowiedni port na firewallu i routerze, aby gracze mogli się połączyć z serwerem zewnętrznie.</p>
+
+    <h2 id="podrozdzial2.4">🔒  2.4: Zabezpieczenia Serwera</h2>
+    <p>Bezpieczeństwo serwera jest kluczowe, zwłaszcza gdy jest on dostępny publicznie. Ustawienia takie jak <code>online-mode=true</code> pozwalają na sprawdzanie tożsamości graczy przez serwery Minecraft, co zmniejsza ryzyko dostępu osób nieautoryzowanych.</p>
+    <p>Rozważ instalację wtyczek zabezpieczających, które pomogą w zapobieganiu oszustwom oraz w utrzymaniu porządku na serwerze.</p>
+
+    <h2 id="podrozdzial2.5">🛠️  2.5: Podstawowe Komendy Administracyjne</h2>
+    <p>Podczas zarządzania serwerem przydatne będą różne komendy konsoli:</p>
+    <ul>
+        <li><code>/op [nazwa_gracza]</code> – nadaje graczowi uprawnienia administratora.</li>
+      <li><code>/ban [nazwa_gracza]</code> – banuje gracza na serwerze.</li>
+      <li><code>/whitelist add [nazwa_gracza]</code> – dodaje gracza do listy dozwolonych użytkowników, jeśli serwer jest ustawiony na tryb whitelisty.</li>
+      <li><code>/save-all</code> – zapisuje wszystkie postępy na serwerze.</li>
+      <li><code>/stop</code> – zatrzymuje serwer w sposób bezpieczny.</li>
+    </ul>
+
+    <h2 id="podrozdzial2.6">⚙️  2.6: Optymalizacja Serwera</h2>
+    <p>Aby zapewnić płynność rozgrywki, dostosuj wartości takich parametrów, jak:</p>
+    <ul>
+       <li><code>view-distance</code> – zmniejszenie tej wartości ogranicza zasięg renderowania świata, co zmniejsza obciążenie serwera.</li>
+       <li><code>max-tick-time</code> – kontroluje czas, w którym serwer próbuje nadążyć z przetwarzaniem, co może zapobiegać opóźnieniom.</li>
+    </ul>
+    <p>Optymalizacja ustawień może poprawić wydajność, zwłaszcza na serwerach o ograniczonych zasobach.</p>
+
+    <center><a href="index.html">⬅️ Powrót do Menu Głównego</a> | <a href="podstrona3.html">➡️ Następny Rozdział</a></center>
+    
+</div>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+</body>
+</html>

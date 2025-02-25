@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figury Geometryczne</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Figury Geometryczne 🖋️</h1>
+            <nav>
+                <ul>
+                    <li><a href="#kwadrat">Kwadrat</a></li>
+                    <li><a href="#trojkat">Trójkąt</a></li>
+                    <li><a href="#prostokat">Prostokąt</a></li>
+                    <li><a href="#romb">Romb</a></li>
+                    <li><a href="#rownoleglobok">Równoległobok</a></li>
+                    <li><a href="#trapez">Trapez</a></li>
+                    <li><a href="#kolo">Koło</a></li>
+                    <li><a href="#owal">Owal</a></li>
+                    <li><a href="#szesciokat">Sześciokąt</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Wpisz nazwę figury...">
+            <button onclick="filterFigures()">Szukaj</button>
+        </div>
+        <hr>
+        <section id="figures">
+            <article id="kwadrat">
+                <h2>Kwadrat 🟦</h2>
+                <p>Cztero kątna figura której boki mają tą samą długość, a kąty mają 90°</p>
+                <img src="../images/kwadrat.png" alt="Kwadrat">
+                <p><b>Jak obliczyć pole:</b> Pole = bok × bok</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = 4 × bok</p>
+                <button onclick="redirectToFigurePage('kwadrat')">Oblicz</button>
+            </article>
+            <article id="trojkat">
+                <h2>Trójkąt 🔺</h2>
+                <p>Ma trzy boki</p>
+                <img src="../images/trojkat.png" alt="Trójkąt">
+                <p><b>Jak obliczyć pole:</b> Pole = 0.5 × podstawa × wysokość</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = suma długości boków</p>
+                <button onclick="redirectToFigurePage('trojkat')">Oblicz</button>
+            </article>
+            <article id="prostokat">
+                <h2>Prostokąt ⬛</h2>
+                <p>Czworokąt którego wszystkie kąty proste (90°)</p>
+                <img src="../images/prostokat.png" alt="Prostokąt">
+                <p><b>Jak obliczyć pole:</b> Pole = szerokość × wysokość</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = 2 × (szerokość + wysokość)</p>
+                <button onclick="redirectToFigurePage('prostokat')">Oblicz</button>
+            </article>
+            <article id="romb">
+                <h2>Romb 🔷</h2>
+                <p>Czworokąt mający wszystkie boki równej długości</p>
+                <img src="../images/romb.png" alt="Romb">
+                <p><b>Jak obliczyć pole:</b> Pole = (przekątna1 × przekątna2) ÷ 2</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = 4 × bok</p>
+                <p><b>Twierdzenie:</b> Przekątne rombu przecinają się pod kątem prostym i dzielą go na cztery przystające trójkąty.</p>
+                <p><b>Powiązane:</b> Zobacz <a href="#trapez">trapez</a>, który jest blisko spokrewniony z rombem.</p>
+                <button onclick="redirectToFigurePage('romb')">Oblicz</button>
+            </article>
+            <article id="rownoleglobok">
+                <h2>Równoległobok 🔶</h2>
+                <p>Czworokąt mający 2 pary boków równoległych</p>
+                <img src="../images/rownoleglobok.png" alt="Równoległobok">
+                <p><b>Jak obliczyć pole:</b> Pole = podstawa × wysokość</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = 2 × (podstawa + bok)</p>
+                <button onclick="redirectToFigurePage('rownoleglobok')">Oblicz</button>
+            </article>
+            <article id="trapez">
+                <h2>Trapez 🔻</h2>
+                <p>Czworokąt mający co najmniej jedną pare boków równoległych</p>
+                <img src="../images/trapez.png" alt="Trapez">
+                <p><b>Jak obliczyć pole:</b> Pole = ((podstawa1 + podstawa2) × wysokość) ÷ 2</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = suma długości boków</p>
+                <p><b>Twierdzenie:</b> W trapezie wpisanym w okrąg suma długości przeciwległych boków jest równa.</p>
+                <p><b>Powiązane:</b> Trapez równoramienny z równymi podstawami to <a href="#rownoleglobok">równoległobok</a>.</p>
+                <button onclick="redirectToFigurePage('trapez')">Oblicz</button>
+            </article>
+            <article id="kolo">
+                <h2>Koło ⚪</h2>
+                <p>Zbiór wszystkich punktów na płaszczyźnie, których odległość od punktu O zwanego środkiem okręgu, jest równa promieniowi okręgu (r)</p>
+                <img src="../images/kolo.png" alt="Koło">
+                <p><b>Jak obliczyć pole:</b> Pole = π × promień²</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = 2 × π × promień</p>
+                <p><b>Twierdzenie:</b> Każdy trójkąt prostokątny jest wpisany w okrąg, którego średnicą jest przeciwprostokątna.</p>
+                <p><b>Powiązane:</b> Dowiedz się więcej o <a href="#trapez">trapezie</a>, którego przekątna może być średnicą koła.</p>
+                <button onclick="redirectToFigurePage('kolo')">Oblicz</button>
+            </article>
+            <article id="owal">
+                <h2>Owal 🟠</h2>
+                <p>Figura posiadająca dwie osie symetrii, wykreślona przez odpowiednie połączenie czterech wycinków łuków o dwóch promieniach</p>
+                <img src="../images/owal.png" alt="Owal">
+                <p><b>Jak obliczyć pole:</b> Pole = π × długa oś × krótka oś ÷ 4</p>
+                <p><b>Jak obliczyć obwód:</b> Przybliżony Obwód = π × [3 × (a + b) − √((3a + b) × (a + 3b))]</p>
+                <button onclick="redirectToFigurePage('owal')">Oblicz</button>
+            </article>
+            <article id="szesciokat">
+                <h2>Sześciokąt ⬡</h2>
+                <p>Wielokąt mający sześć boków i sześć kątów</p>
+                <img src="../images/szesciokat.png" alt="Sześciokąt">
+                <p><b>Jak obliczyć pole:</b> Pole = (3 × √3 × bok²) ÷ 2</p>
+                <p><b>Jak obliczyć obwód:</b> Obwód = 6 × bok</p>
+                <button onclick="redirectToFigurePage('szesciokat')">Oblicz</button>
+            </article>
+        </section>
+    </div>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/script2.js"></script>
+</body>
+</html>

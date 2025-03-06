@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optymalizacja i bezpieczeństwo</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header id="header">
+        <a href="../index.html"><img src="../images/logo.png" alt="Logo" class="logo"></a>
+        <div class="search-container">
+            <input type="text" placeholder="Szukaj...">
+            <div class="search-icon">🔍</div>
+        </div>
+        <div class="clock" id="clock">🕒</div>
+    </header>
+    <main>
+        <div class="intro-section">
+            <h2>3️⃣ Optymalizacja i bezpieczeństwo</h2>
+            <div class="content-section">
+                <img src="../images/optimization.png" alt="Optimization">
+                <div>
+                    <p>Twój serwer Minecraft powinien działać płynnie i być odporny na ataki. W tym rozdziale dowiesz się, jak poprawić wydajność, zabezpieczyć serwer przed atakami oraz jak tworzyć automatyczne kopie zapasowe.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/performance.png" alt="Performance">
+            <div>
+                <h3>Jak poprawić wydajność serwera</h3>
+                <p>Wydajność serwera Minecraft zależy głównie od procesora, ilości RAM i szybkości dysku. Oto kilka sposobów na poprawienie jego działania:</p>
+                <h4>✅ 1. Wybierz odpowiedni silnik serwera</h4>
+                <p>Nie wszystkie silniki działają równie dobrze. Oto najpopularniejsze opcje:</p>
+                <ul>
+                    <li>Vanilla – oficjalny serwer Mojang, ale słabo zoptymalizowany.</li>
+                    <li>Spigot – lepsza wydajność, wsparcie dla pluginów.</li>
+                    <li>Paper – jeszcze lepsza optymalizacja i dodatkowe opcje konfiguracji.</li>
+                    <li>Purpur – Paper z jeszcze większą ilością ustawień optymalizacyjnych.</li>
+                </ul>
+                <p>Rekomendowany wybór: Paper lub Purpur. Pobierzesz je z:</p>
+                <ul>
+                    <li><a href="https://papermc.io/downloads" target="_blank">https://papermc.io/downloads</a></li>
+                    <li><a href="https://purpurmc.org/" target="_blank">https://purpurmc.org/</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/settings.png" alt="Settings">
+            <div>
+                <h4>✅ 2. Dostosuj ustawienia serwera</h4>
+                <p>W plikach server.properties, spigot.yml i paper.yml można poprawić wydajność.</p>
+                <h5>🔧 Najważniejsze ustawienia w server.properties</h5>
+                <div class="command-box">
+                    <pre><code>view-distance=6  # Zmniejsza obciążenie serwera (zalecane: 4-6)
+simulation-distance=6  # Zmniejsza ilość obliczeń w grze
+max-tick-time=1000  # Zapobiega zawieszaniu się serwera
+spawn-protection=0  # Wyłącza ochronę spawnu, co zmniejsza lag</code></pre>
+                </div>
+                <h5>🔧 Optymalizacja spigot.yml</h5>
+                <div class="command-box">
+                    <pre><code>entity-tracking-range:
+  players: 32
+  animals: 24
+  monsters: 24
+  misc: 16
+  other: 48</code></pre>
+                </div>
+                <p>Zmniejszenie wartości oznacza mniejsze zużycie procesora.</p>
+                <h5>🔧 Optymalizacja paper.yml</h5>
+                <div class="command-box">
+                    <pre><code>max-entity-collisions: 2  # Zmniejsza obciążenie spowodowane kolizjami
+anti-xray:
+  enabled: true
+  engine-mode: 2</code></pre>
+                </div>
+                <p>Włączenie Anti-Xray zabezpiecza przed oszustwami, ale może wpływać na wydajność.</p>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/mobs.webp" alt="Mobs">
+            <div>
+                <h4>✅ 3. Ogranicz liczbę zwierząt i potworów</h4>
+                <p>W pliku bukkit.yml znajdziesz ustawienia dotyczące spawnowania mobów:</p>
+                <div class="command-box">
+                    <pre><code>spawn-limits:
+  monsters: 50
+  animals: 30
+  water-animals: 10
+  ambient: 5</code></pre>
+                </div>
+                <p>Zmniejszenie tych wartości znacznie poprawi wydajność serwera.</p>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/monitoring.jpg" alt="Monitoring">
+            <div>
+                <h4>✅ 4. Używaj narzędzi do monitorowania lagów</h4>
+                <p>Spark – pozwala sprawdzić, co powoduje lagi (/spark profiler).</p>
+                <p>Timings (/timings paste) – analiza wydajności serwera.</p>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/players.png" alt="Players">
+            <div>
+                <h3>Najlepsze ustawienia dla dużej ilości graczy</h3>
+                <p>Jeśli na serwerze gra 50+ osób, warto:</p>
+                <ul>
+                    <li>Ograniczyć liczbę chunków renderowanych przez graczy</li>
+                    <li>Używać async chunk loading w Paper</li>
+                    <li>Wyłączyć tickowanie rzadko odwiedzanych chunków</li>
+                    <li>Ustawić niższą liczbę maksymalnych graczy (np. 80 zamiast 100)</li>
+                </ul>
+                <p>Dodatkowo warto używać pluginów optymalizacyjnych:</p>
+                <ul>
+                    <li>ClearLag – usuwa niepotrzebne entity</li>
+                    <li>FarmLimiter – ogranicza liczbę zwierząt na chunk</li>
+                    <li>VillagerOptimiser – poprawia wydajność wiosek</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/security.webp" alt="Security">
+            <div>
+                <h3>Ochrona przed atakami DDoS i botami</h3>
+                <p>Każdy serwer Minecraft może stać się celem ataku. Oto sposoby ochrony:</p>
+                <h4>✅ 1. Użyj firewalla i zabezpiecz porty</h4>
+                <p>Jeśli masz VPS, użyj UFW:</p>
+                <div class="command-box">
+                    <pre><code>sudo ufw allow 25565/tcp
+sudo ufw enable</code></pre>
+                </div>
+                <p>Możesz też ograniczyć połączenia do określonych krajów za pomocą iptables.</p>
+                <h4>✅ 2. Włącz tryb online-mode</h4>
+                <p>W pliku server.properties ustaw:</p>
+                <div class="command-box">
+                    <pre><code>online-mode=true</code></pre>
+                </div>
+                <p>To zabezpiecza przed cheaterami na pirackich kontach.</p>
+                <h4>✅ 3. Użyj pluginów zabezpieczających</h4>
+                <ul>
+                    <li>BotSentry – blokuje boty atakujące serwer.</li>
+                    <li>AuthMe – jeśli serwer działa w trybie offline (pirackim), wymaga hasła.</li>
+                    <li>AntiVPN – blokuje graczy z VPN i proxy.</li>
+                </ul>
+                <h4>✅ 4. Użyj proxy, np. BungeeCord lub Velocity</h4>
+                <p>Dzięki temu serwer główny nie będzie narażony na ataki bezpośrednie.</p>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/backup.jpg" alt="Backup">
+            <div>
+                <h3>Backupy serwera i przywracanie danych</h3>
+                <p>Regularne kopie zapasowe mogą uratować serwer po awarii.</p>
+                <h4>✅ 1. Automatyczne backupy</h4>
+                <p>Jeśli masz dostęp do VPS, użyj skryptu Bash:</p>
+                <div class="command-box">
+                    <pre><code>#!/bin/bash
+tar -czf backup-$(date +%F).tar.gz /path/to/minecraft</code></pre>
+                </div>
+                <p>Uruchamiaj go co kilka godzin w crontab:</p>
+                <div class="command-box">
+                    <pre><code>0 */6 * * * /path/to/backup.sh</code></pre>
+                </div>
+                <h4>✅ 2. Pluginy do backupów</h4>
+                <ul>
+                    <li>EasyBackup – tworzy kopie zapasowe automatycznie.</li>
+                    <li>WorldEdit snapshots – pozwala cofnąć zmiany w świecie.</li>
+                </ul>
+                <h4>✅ 3. Przechowywanie backupów w chmurze</h4>
+                <ul>
+                    <li>Google Drive (rclone)</li>
+                    <li>Dropbox</li>
+                    <li>FTP/SFTP na inny serwer</li>
+                </ul>
+                <p>Dzięki tym poradom Twój serwer będzie szybszy i bezpieczniejszy. 🔒🚀</p>
+            </div>
+        </div>
+        <div class="navigation-arrows">
+            <a href="instalacja-serwera.html" class="arrow-left button">← Wróć</a>
+            <a href="pluginy-i-modyfikacje.html" class="arrow-right button">Następny →</a>
+        </div>
+    </main>
+    <footer id="footer">
+        Dziękujemy za odwiedzenie naszej strony! 😊 Kliknij logo, aby wrócić do indexu! 🏠
+    </footer>
+    <script src="../js/clock.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/content.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administracja i konfiguracja serwera</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header id="header">
+        <a href="../index.html"><img src="../images/logo.png" alt="Logo" class="logo"></a>
+        <div class="search-container">
+            <input type="text" placeholder="Szukaj...">
+            <div class="search-icon">🔍</div>
+        </div>
+        <div class="clock" id="clock">🕒</div>
+    </header>
+    <main>
+        <div class="intro-section">
+            <h2>4️⃣ Administracja i konfiguracja serwera</h2>
+            <div class="content-section">
+                <img src="../images/admin.png" alt="Admin">
+                <div>
+                    <p>Zarządzanie serwerem Minecraft to nie tylko instalacja pluginów, ale również dbanie o porządek, zabezpieczenia oraz wygodę graczy. W tym rozdziale dowiesz się, jak skutecznie administrować serwerem, nadawać uprawnienia, zarządzać rangami oraz zabezpieczać świat przed griefem.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/permissions.png" alt="Permissions">
+            <div>
+                <h3>Uprawnienia i role graczy (OP, Admin, Moderator)</h3>
+                <p>Na serwerze gracze mogą mieć różne uprawnienia. Aby nimi zarządzać, można używać komend lub pluginów do systemu rang, np. LuckPerms.</p>
+                <h4>✅ 1. Nadawanie rangi operatora (OP)</h4>
+                <p>Gracze z rangą OP mają pełny dostęp do wszystkich komend serwera. Komenda w konsoli:</p>
+                <div class="command-box">
+                    <pre><code>op NazwaGracza</code></pre>
+                </div>
+                <p>Aby cofnąć uprawnienia OP:</p>
+                <div class="command-box">
+                    <pre><code>deop NazwaGracza</code></pre>
+                </div>
+                <h4>✅ 2. Role i rangi</h4>
+                <p>Podstawowy podział ról na serwerze:</p>
+                <ul>
+                    <li>Gracz – standardowe uprawnienia, brak dostępu do komend administracyjnych</li>
+                    <li>Moderator – możliwość zarządzania graczami (/kick, /mute, /ban)</li>
+                    <li>Admin – pełna kontrola nad serwerem</li>
+                    <li>Właściciel – najwyższy poziom uprawnień</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/luckperms.png" alt="LuckPerms">
+            <div>
+                <h3>Tworzenie rang w LuckPerms</h3>
+                <h4>📌 Instalacja LuckPerms</h4>
+                <ol>
+                    <li>Pobierz plugin LuckPerms</li>
+                    <li>Wrzuć plik .jar do folderu plugins</li>
+                    <li>Uruchom serwer</li>
+                </ol>
+                <h4>📌 Podstawowe komendy LuckPerms</h4>
+                <h5>✅ Tworzenie nowej rangi:</h5>
+                <div class="command-box">
+                    <pre><code>/lp group VIP create</code></pre>
+                </div>
+                <h5>✅ Nadawanie rangi graczowi:</h5>
+                <div class="command-box">
+                    <pre><code>/lp user NazwaGracza parent set VIP</code></pre>
+                </div>
+                <h5>✅ Dodawanie uprawnień do rangi:</h5>
+                <div class="command-box">
+                    <pre><code>/lp group VIP permission set essentials.fly true</code></pre>
+                </div>
+                <h5>✅ Lista wszystkich grup:</h5>
+                <div class="command-box">
+                    <pre><code>/lp listgroups</code></pre>
+                </div>
+                <h4>📌 Przykładowe rangi i ich uprawnienia</h4>
+                <ul>
+                    <li>Gracz – podstawowe komendy (/spawn, /home)</li>
+                    <li>VIP – dostęp do /fly, /workbench, /hat</li>
+                    <li>Moderator – /kick, /mute, /warn</li>
+                    <li>Admin – pełny dostęp do wszystkich komend</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/worldguard.png" alt="WorldGuard">
+            <div>
+                <h3>Zarządzanie światem i zabezpieczenie terenu</h3>
+                <h4>📌 WorldGuard – ochrona terenu</h4>
+                <p>Zaznacz obszar drewnianym siekierą (//wand). Ustaw region:</p>
+                <div class="command-box">
+                    <pre><code>/rg define nazwa_regionu</code></pre>
+                </div>
+                <p>Nadawanie uprawnień:</p>
+                <div class="command-box">
+                    <pre><code>/rg addmember nazwa_regionu NazwaGracza</code></pre>
+                </div>
+                <p>Blokowanie niszczenia:</p>
+                <div class="command-box">
+                    <pre><code>/rg flag nazwa_regionu build deny</code></pre>
+                </div>
+                <h4>📌 GriefPrevention – automatyczna ochrona działek</h4>
+                <p>Gracze mogą chronić swój teren poprzez zaznaczenie obszaru złotą łopatą. Komendy:</p>
+                <ul>
+                    <li>/claim – tworzy działkę</li>
+                    <li>/trust NazwaGracza – dodaje gracza do działki</li>
+                    <li>/abandonclaim – usuwa działkę</li>
+                </ul>
+                <h4>📌 CoreProtect – sprawdzanie zmian na mapie</h4>
+                <ul>
+                    <li>/co inspect – sprawdzanie, kto coś zniszczył/postawił</li>
+                    <li>/co rollback – cofnięcie zmian</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/automessage.png" alt="AutoMessage">
+            <div>
+                <h3>Automatyczne wiadomości i tablice informacyjne</h3>
+                <h4>📌 Automatyczne wiadomości (AutoBroadcast)</h4>
+                <p>Plugin AutoMessage pozwala wysyłać wiadomości co X minut. Konfiguracja w automessage.yml:</p>
+                <div class="command-box">
+                    <pre><code>messages:
+  - "&aWitaj na serwerze! Sprawdź /pomoc, aby dowiedzieć się więcej!"
+  - "&bZostań VIPem i zyskaj dostęp do /fly! Sprawdź /sklep."
+interval: 300 # Wiadomości co 5 minut</code></pre>
+                </div>
+                <h4>📌 Tablice informacyjne (Hologramy)</h4>
+                <p>Plugin HolographicDisplays pozwala na dodawanie tekstowych hologramów. Tworzenie hologramu:</p>
+                <div class="command-box">
+                    <pre><code>/hd create Witaj &aWitaj na serwerze!</code></pre>
+                </div>
+                <p>Usuwanie hologramu:</p>
+                <div class="command-box">
+                    <pre><code>/hd remove Witaj</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="navigation-arrows">
+            <a href="pluginy-i-modyfikacje.html" class="arrow-left button">← Wróć</a>
+            <a href="ekonomia-i-mechaniki-gry.html" class="arrow-right button">Następny →</a>
+        </div>
+    </main>
+    <footer id="footer">
+        Dziękujemy za odwiedzenie naszej strony! 😊 Kliknij logo, aby wrócić do indexu! 🏠
+    </footer>
+    <script src="../js/clock.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

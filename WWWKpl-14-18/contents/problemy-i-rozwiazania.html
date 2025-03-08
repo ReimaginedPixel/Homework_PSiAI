@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problemy i rozwiązania</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header id="header">
+        <a href="../index.html"><img src="../images/logo.png" alt="Logo" class="logo"></a>
+        <div class="search-container">
+            <input type="text" placeholder="Szukaj...">
+            <div class="search-icon">🔍</div>
+        </div>
+        <div class="clock" id="clock">🕒</div>
+    </header>
+    <main>
+        <div class="intro-section">
+            <h2>9️⃣ Problemy i rozwiązania</h2>
+            <div class="content-section">
+                <img src="../images/problems.png" alt="Problems">
+                <div>
+                    <p>Każdy administrator serwera Minecraft prędzej czy później napotka różne problemy – od błędów w konfiguracji, przez lagi, aż po ataki DDoS. W tym rozdziale omówimy najczęstsze problemy oraz sposoby ich rozwiązania, aby Twój serwer działał sprawnie i bez zakłóceń.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/errors.svg" alt="Errors">
+            <div>
+                <h3>Najczęstsze błędy serwera i jak je naprawić</h3>
+                <h4>✅ 1. Serwer się nie uruchamia</h4>
+                <p>🔹 Błąd: „Invalid eula.txt”</p>
+                <p>✔ Rozwiązanie: Otwórz plik eula.txt i zmień eula=false na eula=true.</p>
+                <p>🔹 Błąd: „Could not reserve enough space for object heap”</p>
+                <p>✔ Rozwiązanie: Zmniejsz przydzieloną pamięć RAM w pliku startowym:</p>
+                <div class="command-box">
+                    <pre><code>java -Xms1G -Xmx2G -jar server.jar nogui</code></pre>
+                </div>
+                <p>🔹 Błąd: „Failed to bind to port”</p>
+                <p>✔ Rozwiązanie: Port 25565 jest już zajęty. Sprawdź, czy serwer nie działa w tle:</p>
+                <div class="command-box">
+                    <pre><code>netstat -tulnp | grep 25565</code></pre>
+                </div>
+                <p>Jeśli działa, zamknij go:</p>
+                <div class="command-box">
+                    <pre><code>kill -9 &lt;PID&gt;</code></pre>
+                </div>
+                <p>Lub zmień port w server.properties:</p>
+                <div class="command-box">
+                    <pre><code>server-port=25566</code></pre>
+                </div>
+                <h4>✅ 2. Gracze nie mogą dołączyć do serwera</h4>
+                <p>🔹 Błąd: „io.netty.channel.AbstractChannel$AnnotatedConnectException”</p>
+                <p>✔ Rozwiązanie: Sprawdź, czy serwer działa i czy port jest otwarty w firewallu:</p>
+                <div class="command-box">
+                    <pre><code>ufw allow 25565</code></pre>
+                </div>
+                <p>🔹 Błąd: „Not authenticated with Minecraft.net”</p>
+                <p>✔ Rozwiązanie: Jeśli serwer jest offline-mode, gracze muszą używać crackowanych launchera (zalecane: online-mode=true).</p>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/lag.png" alt="Lag">
+            <div>
+                <h3>Problemy z lagami i jak je zmniejszyć</h3>
+                <p>Lagi mogą być spowodowane przez słaby serwer, złą konfigurację lub przeciążenie procesów. Oto sposoby na ich eliminację:</p>
+                <h4>✅ 1. Zmniejszenie obciążenia procesora</h4>
+                <p>W spigot.yml zmniejsz odległość renderowania:</p>
+                <div class="command-box">
+                    <pre><code>view-distance: 6</code></pre>
+                </div>
+                <p>W bukkit.yml zmniejsz ticks-per dla zwierząt:</p>
+                <div class="command-box">
+                    <pre><code>ticks-per:
+  animal-spawns: 400
+  monster-spawns: 8</code></pre>
+                </div>
+                <h4>✅ 2. Optymalizacja zużycia RAM</h4>
+                <p>Użyj Aikar's Flags w skrypcie startowym:</p>
+                <div class="command-box">
+                    <pre><code>java -Xms1G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -jar server.jar nogui</code></pre>
+                </div>
+                <p>Usuń niepotrzebne pluginy:</p>
+                <div class="command-box">
+                    <pre><code>/timings paste</code></pre>
+                </div>
+                <p>Sprawdź, które pluginy zjadają najwięcej zasobów.</p>
+                <h4>✅ 3. Ograniczenie ilości hopperów i redstone</h4>
+                <p>W paper.yml zmień:</p>
+                <div class="command-box">
+                    <pre><code>hopper:
+  disable-move-event: true
+  cooldown: 20</code></pre>
+                </div>
+                <p>W spigot.yml ogranicz ticki redstone:</p>
+                <div class="command-box">
+                    <pre><code>redstone-tick: 2</code></pre>
+                </div>
+                <h4>✅ 4. Usuwanie zbędnych obiektów</h4>
+                <p>Instalacja pluginu ClearLag:</p>
+                <div class="command-box">
+                    <pre><code>/lagg clear
+/lagg gc</code></pre>
+                </div>
+                <p>Możesz też ograniczyć ilość potworów w spigot.yml:</p>
+                <div class="command-box">
+                    <pre><code>spawn-limits:
+  monsters: 30
+  animals: 10</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/viaversion.png" alt="ViaVersion">
+            <div>
+                <h3>Jak dodać wersje 1.8 – 1.20 na jednym serwerze (ViaVersion)</h3>
+                <p>Jeśli chcesz, aby gracze mogli dołączyć na serwer z różnych wersji Minecrafta, użyj ViaVersion.</p>
+                <h4>✅ 1. Instalacja</h4>
+                <ol>
+                    <li>Pobierz ViaVersion</li>
+                    <li>Wrzuć .jar do plugins/</li>
+                    <li>Restartuj serwer</li>
+                </ol>
+                <h4>✅ 2. Obsługa starszych wersji</h4>
+                <p>Aby pozwolić graczom na 1.8, zainstaluj ViaBackwards i ViaRewind.</p>
+                <p>W config.yml możesz dostosować kompatybilność bloków i mechanik:</p>
+                <div class="command-box">
+                    <pre><code>block-conversions: true
+auto-team: false</code></pre>
+                </div>
+                <h4>✅ 3. Obsługa nowego PvP i starego PvP</h4>
+                <p>Jeśli chcesz, by gracze na 1.8 mieli stare PvP, a reszta nowe, użyj OldCombatMechanics.</p>
+            </div>
+        </div>
+        <div class="navigation-arrows">
+            <a href="hosting-i-domena.html" class="arrow-left button">← Wróć</a>
+            <a href="bonus-poradniki-i-spolecznosc.html" class="arrow-right button">Następny →</a>
+        </div>
+    </main>
+    <footer id="footer">
+        Dziękujemy za odwiedzenie naszej strony! 😊 Kliknij logo, aby wrócić do indexu! 🏠
+    </footer>
+    <script src="../js/clock.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

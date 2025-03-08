@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tworzenie unikalnego serwera</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header id="header">
+        <a href="../index.html"><img src="../images/logo.png" alt="Logo" class="logo"></a>
+        <div class="search-container">
+            <input type="text" placeholder="Szukaj...">
+            <div class="search-icon">🔍</div>
+        </div>
+        <div class="clock" id="clock">🕒</div>
+    </header>
+    <main>
+        <div class="intro-section">
+            <h2>6️⃣ Tworzenie unikalnego serwera</h2>
+            <div class="content-section">
+                <img src="../images/unique-server.jpg" alt="Unique Server">
+                <div>
+                    <p>Serwer Minecraft wyróżniający się na tle innych to klucz do sukcesu. W tym rozdziale poznasz sposoby na personalizację rozgrywki – od własnych przedmiotów i bloków, przez NPC i zadania, po efekty dźwiękowe i animacje.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/itemsadder.jpg" alt="ItemsAdder">
+            <div>
+                <h3>Tworzenie własnych przedmiotów i bloków (ItemsAdder, Oraxen)</h3>
+                <h4>✅ 1. Instalacja ItemsAdder</h4>
+                <ol>
+                    <li>Pobierz plugin ItemsAdder</li>
+                    <li>Wrzuć plik .jar do folderu plugins</li>
+                    <li>Uruchom serwer, aby wygenerować pliki</li>
+                    <li>Edytuj plik config.yml i dostosuj ustawienia</li>
+                </ol>
+                <h4>✅ 2. Tworzenie nowego przedmiotu</h4>
+                <p>Przejdź do plugins/ItemsAdder/content/yourpack/items/ i stwórz plik np. custom_items.yml:</p>
+                <div class="command-box">
+                    <pre><code>info:
+  namespace: reimaginedcraftaddon
+items:
+  custom_sword:
+    display_name: "§6Miecz Feniksa"
+    resource:
+      material: DIAMOND_SWORD
+      model_path: "items/custom_sword"
+    lore:
+      - "§7Legenda mówi, że został wykuty z ognia Feniksa."
+    durability: 1500
+    attributes:
+      mainhand:
+        attack_damage: 10
+        attack_speed: 1.2</code></pre>
+                </div>
+                <p>Załaduj nowe przedmioty:</p>
+                <div class="command-box">
+                    <pre><code>/iazip
+/reload</code></pre>
+                </div>
+                <p>Odbierz przedmiot komendą:</p>
+                <div class="command-box">
+                    <pre><code>/iaget reimaginedcraftaddon:custom_sword</code></pre>
+                </div>
+                <h4>✅ 3. Tworzenie nowego bloku</h4>
+                <p>Przejdź do plugins/ItemsAdder/content/yourpack/blocks/ i stwórz plik custom_blocks.yml:</p>
+                <div class="command-box">
+                    <pre><code>info:
+  namespace: reimaginedcraftaddon
+blocks:
+  glowing_stone:
+    display_name: "§eŚwiecący Kamień"
+    resource:
+      material: STONE
+      model_path: "blocks/glowing_stone"
+    light_level: 15</code></pre>
+                </div>
+                <p>Załaduj zmiany i odbierz blok:</p>
+                <div class="command-box">
+                    <pre><code>/iaget reimaginedcraftaddon:glowing_stone</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/npc.png" alt="NPC">
+            <div>
+                <h3>Dodawanie NPC i zadań (Citizens, BetonQuest)</h3>
+                <h4>✅ 1. Instalacja Citizens</h4>
+                <ol>
+                    <li>Pobierz plugin Citizens</li>
+                    <li>Wrzuć plik .jar do folderu plugins</li>
+                    <li>Uruchom serwer</li>
+                </ol>
+                <h4>✅ 2. Tworzenie NPC</h4>
+                <div class="command-box">
+                    <pre><code>/npc create Kowal
+/npc skin Steve
+/npc text add "Witaj, podróżniku! Mam dla Ciebie zadanie."</code></pre>
+                </div>
+                <h4>✅ 3. Instalacja BetonQuest</h4>
+                <ol>
+                    <li>Pobierz plugin BetonQuest</li>
+                    <li>Wrzuć plik .jar do plugins/</li>
+                    <li>Uruchom serwer</li>
+                </ol>
+                <h4>✅ 4. Tworzenie prostego zadania</h4>
+                <p>W folderze BetonQuest/quests/ utwórz plik kowal.yml:</p>
+                <div class="command-box">
+                    <pre><code>npc: 1
+conditions:
+  not_started: "!kowal_started"
+events:
+  start_quest: "tag add kowal_started"
+  give_sword: "item give custom_sword:1"
+  complete_quest: "tag add kowal_completed"
+dialogs:
+  1:
+    text: "Hej, przynieś mi 10 żelaza, a dam Ci nagrodę!"
+    event: start_quest
+  2:
+    text: "Dziękuję! Masz tu Miecz Feniksa."
+    condition: not_started
+    event: give_sword complete_quest</code></pre>
+                </div>
+                <p>Połącz NPC z zadaniem:</p>
+                <div class="command-box">
+                    <pre><code>/npc select 1
+/quest assign kowal</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/deluxemenus.jpg" alt="DeluxeMenus">
+            <div>
+                <h3>Personalizacja menu i GUI (DeluxeMenus, CustomGUI)</h3>
+                <h4>✅ 1. Instalacja DeluxeMenus</h4>
+                <ol>
+                    <li>Pobierz DeluxeMenus</li>
+                    <li>Wrzuć plik .jar do plugins/</li>
+                    <li>Uruchom serwer</li>
+                </ol>
+                <h4>✅ 2. Tworzenie menu</h4>
+                <p>W folderze DeluxeMenus/menus/ utwórz plik sklep.yml:</p>
+                <div class="command-box">
+                    <pre><code>menu_title: "&aSklep"
+size: 27
+items:
+  "slot_13":
+    material: DIAMOND
+    display_name: "&bDiament"
+    lore:
+      - "&7Cena: 100$"
+    left_click_commands:
+      - "[console] eco take %player% 100"
+      - "[console] give %player% diamond 1"</code></pre>
+                </div>
+                <p>Otwieranie menu:</p>
+                <div class="command-box">
+                    <pre><code>/dm open sklep</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/effects.webp" alt="Effects">
+            <div>
+                <h3>Dźwięki, efekty i animacje</h3>
+                <h4>📌 Dodawanie efektów dźwiękowych</h4>
+                <div class="command-box">
+                    <pre><code>/playsound minecraft:entity.wither.spawn master @a</code></pre>
+                </div>
+                <h4>📌 Dodawanie efektów wizualnych (MythicMobs, EffectLib)</h4>
+                <h5>✅ Tworzenie pierścienia cząsteczek wokół gracza:</h5>
+                <div class="command-box">
+                    <pre><code>Effects:
+  FireRing:
+    Type: circle
+    Particle: flame
+    Radius: 3
+    Duration: 5</code></pre>
+                </div>
+                <h5>✅ Uruchomienie efektu:</h5>
+                <div class="command-box">
+                    <pre><code>/mm effect FireRing @self</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="navigation-arrows">
+            <a href="ekonomia-i-mechaniki-gry.html" class="arrow-left button">← Wróć</a>
+            <a href="minigry-i-tryby-gry.html" class="arrow-right button">Następny →</a>
+        </div>
+    </main>
+    <footer id="footer">
+        Dziękujemy za odwiedzenie naszej strony! 😊 Kliknij logo, aby wrócić do indexu! 🏠
+    </footer>
+    <script src="../js/clock.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

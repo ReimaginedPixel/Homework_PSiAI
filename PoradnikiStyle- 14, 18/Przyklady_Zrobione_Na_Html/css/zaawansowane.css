@@ -1,0 +1,43 @@
+.header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.main {
+    padding: 20px;
+    text-align: center;
+}
+
+.animated-button {
+    background-color: #56ab2f;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.animated-button:hover {
+    background-color: #3e8e41;
+    transform: scale(1.1);
+}
+
+.animated-button:active {
+    animation: pop-up 0.3s ease-in-out;
+}
+
+@keyframes pop-up {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

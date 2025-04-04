@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluginy i modyfikacje</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header id="header">
+        <a href="../index.html"><img src="../images/logo.png" alt="Logo" class="logo"></a>
+        <div class="search-container">
+            <input type="text" placeholder="Szukaj...">
+            <div class="search-icon">🔍</div>
+        </div>
+        <div class="clock" id="clock">🕒</div>
+    </header>
+    <main>
+        <div class="intro-section">
+            <h2>3️⃣ Pluginy i modyfikacje</h2>
+            <div class="content-section">
+                <img src="../images/plugins.png" alt="Plugins">
+                <div>
+                    <p>Pluginy i mody to fundament nowoczesnych serwerów Minecraft. Dzięki nim możesz dodać nowe funkcje, poprawić rozgrywkę i wyróżnić swój serwer. W tym rozdziale dowiesz się, jak instalować pluginy i modyfikacje oraz jak stworzyć własny plugin w języku Java.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/install-plugins.png" alt="Install Plugins">
+            <div>
+                <h3>Jak zainstalować pluginy na serwerze Spigot/Paper</h3>
+                <h4>✅ 1. Pobierz silnik serwera obsługujący pluginy</h4>
+                <p>Aby korzystać z pluginów, musisz używać Spigot, Paper lub Purpur. Możesz je pobrać tutaj:</p>
+                <ul>
+                    <li><a href="https://papermc.io/downloads" target="_blank">https://papermc.io/downloads</a></li>
+                    <li><a href="https://purpurmc.org/" target="_blank">https://purpurmc.org/</a></li>
+                </ul>
+                <h4>✅ 2. Pobierz pluginy</h4>
+                <p>Dobre źródła pluginów to:</p>
+                <ul>
+                    <li><a href="https://www.spigotmc.org/resources/" target="_blank">SpigotMC</a></li>
+                    <li><a href="https://craftsite.pl/" target="_blank">Polskie pluginy na CraftSite</a></li>
+                    <li><a href="https://modrinth.com/" target="_blank">Modrinth</a></li>
+                </ul>
+                <h4>✅ 3. Zainstaluj plugin</h4>
+                <ol>
+                    <li>Pobierz plik .jar z pluginem.</li>
+                    <li>Przenieś go do folderu plugins w katalogu serwera.</li>
+                    <li>Uruchom serwer – plugin automatycznie się załaduje.</li>
+                </ol>
+                <h4>✅ 4. Sprawdź, czy plugin działa</h4>
+                <p>Po uruchomieniu serwera wpisz w konsoli:</p>
+                <div class="command-box">
+                    <pre><code>/plugins</code></pre>
+                </div>
+                <p>Zobaczysz listę zainstalowanych pluginów. Jeśli któryś jest na czerwono, sprawdź plik latest.log, aby znaleźć błędy.</p>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/must-have-plugins.png" alt="Must-Have Plugins">
+            <div>
+                <h3>Lista must-have pluginów dla każdego serwera</h3>
+                <h4>📌 Podstawowe pluginy</h4>
+                <ul>
+                    <li>✅ EssentialsX – podstawowe komendy (/home, /spawn, /tp)</li>
+                    <li>✅ LuckPerms – system rang i uprawnień</li>
+                    <li>✅ Vault – baza dla pluginów ekonomicznych</li>
+                    <li>✅ WorldEdit – narzędzie do edycji świata</li>
+                    <li>✅ WorldGuard – ochrona terenu przed griefem</li>
+                    <li>✅ CoreProtect – logowanie zmian na mapie</li>
+                </ul>
+                <h4>📌 Optymalizacja i bezpieczeństwo</h4>
+                <ul>
+                    <li>✅ ClearLag – usuwa zbędne entity i przedmioty</li>
+                    <li>✅ NoCheatPlus – zapobiega cheatom</li>
+                    <li>✅ GeyserMC – pozwala graczom z Bedrocka dołączyć do serwera</li>
+                </ul>
+                <h4>📌 Ekonomia i handel</h4>
+                <ul>
+                    <li>✅ ShopGUI+ – sklepy GUI dla graczy</li>
+                    <li>✅ Jobs Reborn – system prac i zarobków</li>
+                    <li>✅ AuctionHouse – dom aukcyjny</li>
+                </ul>
+                <h4>📌 Minigry i rozgrywka</h4>
+                <ul>
+                    <li>✅ BedWars – tryb BedWars</li>
+                    <li>✅ SkyWars – SkyWars na serwerze</li>
+                    <li>✅ McMMO – system umiejętności RPG</li>
+                </ul>
+                <h4>📌 Personalizacja serwera</h4>
+                <ul>
+                    <li>✅ Citizens – tworzenie NPC</li>
+                    <li>✅ CustomGUI – personalizowane menu</li>
+                    <li>✅ ItemsAdder – dodawanie własnych przedmiotów i bloków</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/create-plugin.png" alt="Create Plugin">
+            <div>
+                <h3>Jak tworzyć własne pluginy w Javie</h3>
+                <p>Jeśli chcesz stworzyć własny plugin, będziesz potrzebować:</p>
+                <ul>
+                    <li>Java 17 lub nowsza – do pisania kodu</li>
+                    <li>Maven lub Gradle – do zarządzania zależnościami</li>
+                    <li>Spigot API – biblioteka do tworzenia pluginów</li>
+                    <li>IDE (IntelliJ IDEA, Eclipse) – do programowania</li>
+                </ul>
+                <h4>✅ 1. Tworzenie pierwszego pluginu</h4>
+                <p>Plik plugin.yml (konfiguracja pluginu):</p>
+                <div class="command-box">
+                    <pre><code>name: MojPlugin
+version: 1.0
+main: pl.twojserwer.MojPlugin
+api-version: 1.20
+commands:
+  test:
+    description: Komenda testowa
+    usage: /test</code></pre>
+                </div>
+                <p>Kod Java (MojPlugin.java):</p>
+                <div class="command-box">
+                    <pre><code>package pl.twojserwer;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class MojPlugin extends JavaPlugin {
+    @Override
+    public void onEnable() {
+        getLogger().info("Plugin został włączony!");
+    }
+
+    @Override
+    public void onDisable() {
+        getLogger().info("Plugin został wyłączony!");
+    }
+}</code></pre>
+                </div>
+                <p>Po skompilowaniu wrzucasz plik .jar do folderu plugins i uruchamiasz serwer. 🎉</p>
+            </div>
+        </div>
+        <div class="content-section">
+            <img src="../images/install-mods.png" alt="Install Mods">
+            <div>
+                <h3>Jak zainstalować mody na Forge/Fabric</h3>
+                <p>Mody to inny rodzaj modyfikacji – działają na Forge lub Fabric.</p>
+                <h4>✅ 1. Pobierz i zainstaluj Forge lub Fabric</h4>
+                <ul>
+                    <li><a href="https://files.minecraftforge.net/" target="_blank">Forge</a></li>
+                    <li><a href="https://fabricmc.net/" target="_blank">Fabric</a></li>
+                </ul>
+                <h4>✅ 2. Pobierz mody</h4>
+                <p>Dobre źródła modów:</p>
+                <ul>
+                    <li><a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank">CurseForge</a></li>
+                    <li><a href="https://modrinth.com/" target="_blank">Modrinth</a></li>
+                </ul>
+                <h4>✅ 3. Wrzuć mody do folderu mods</h4>
+                <p>Każdy mod musi być zgodny z wersją Forge/Fabric – w przeciwnym razie nie zadziała.</p>
+                <h4>✅ 4. Uruchom serwer i sprawdź logi</h4>
+                <p>Jeśli jakiś mod powoduje błąd, sprawdź plik latest.log.</p>
+                <p>Dzięki temu rozdziałowi wiesz już, jak instalować i tworzyć pluginy oraz jak dodawać mody. 🚀</p>
+            </div>
+        </div>
+        <div class="navigation-arrows">
+            <a href="optymalizacja-i-bezpieczenstwo.html" class="arrow-left button">← Wróć</a>
+            <a href="administracja-i-konfiguracja-serwera.html" class="arrow-right button">Następny →</a>
+        </div>
+    </main>
+    <footer id="footer">
+        Dziękujemy za odwiedzenie naszej strony! 😊 Kliknij logo, aby wrócić do indexu! 🏠
+    </footer>
+    <script src="../js/clock.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

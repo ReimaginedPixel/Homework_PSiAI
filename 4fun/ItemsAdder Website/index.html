@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ItemsAdder Minecraft Plugin Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>✨ ItemsAdder Minecraft Plugin Guide ✨</h1>
+        <nav>
+            <ul>
+                <li><a href="#intro">🌟 Welcome</a></li>
+                <li><a href="#chapter1">🔧 Chapter 1: Setup</a></li>
+                <li><a href="#chapter2">🛠️ Chapter 2: Custom Items</a></li>
+                <li><a href="#chapter3">📜 Chapter 3: Code Snippets</a></li>
+                <li><a href="#chapter4">💡 Chapter 4: Tips & Tricks</a></li>
+                <li><a href="#faq">❓ FAQ</a></li>
+                <li><a href="#troubleshooting">🚨 Troubleshooting</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h2>Welcome to the Ultimate Guide! 🎉</h2>
+        <p>This guide is your one-stop resource for learning how to use the ItemsAdder plugin on your Minecraft server. Whether you're a beginner or an advanced user, you'll find step-by-step instructions, tips, and code snippets to create the ultimate custom Minecraft experience.</p>
+    </section>
+
+    <section id="chapters">
+        <!-- Chapter 1 -->
+        <div class="chapter" id="chapter1">
+            <h2 onclick="toggleDetails('details1')">🔧 Chapter 1: Setting up ItemsAdder</h2>
+            <div class="details" id="details1">
+                <p>Learn how to install and set up ItemsAdder:</p>
+                <ol>
+                    <li>Download the plugin from the <a href="https://itemsadder.plugin" target="_blank">official ItemsAdder page</a>.</li>
+                    <li>Install dependencies such as ProtocolLib and LoneLibs.</li>
+                    <li>Place the plugin in your 'plugins' folder and start your server.</li>
+                    <li>Enable resource pack generation or host your custom resource pack externally.</li>
+                    <li>Use the <code>/iareload</code> command to apply changes and test.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="chapter" id="chapter2">
+            <h2 onclick="toggleDetails('details2')">🛠️ Chapter 2: Adding Custom Items</h2>
+            <div class="details" id="details2">
+                <p>Steps to create and add custom items:</p>
+                <ol>
+                    <li>Design custom textures and models using tools like Blockbench.</li>
+                    <li>Create a YAML configuration file for your item and specify attributes like name, material, durability, and texture.</li>
+                    <li>Test the item by using <code>/iagive</code> commands in-game.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="chapter" id="chapter3">
+            <h2 onclick="toggleDetails('details3')">📜 Chapter 3: Useful Code Snippets</h2>
+            <div class="details" id="details3">
+                <p>Examples of custom YAML configurations:</p>
+                <h3>Custom Tool Example:</h3>
+                <pre><code>
+tool:
+  namespace: custom_pickaxe
+  display_name: "&bLegendary Pickaxe"
+  material: DIAMOND_PICKAXE
+  durability: 2000
+  abilities:
+    - efficiency: 5
+    - unbreaking: 3
+                </code></pre>
+            </div>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="chapter" id="chapter4">
+            <h2 onclick="toggleDetails('details4')">💡 Chapter 4: Tips & Tricks</h2>
+            <div class="details" id="details4">
+                <ul>
+                    <li>Organize items into categories for better management.</li>
+                    <li>Test changes frequently to catch errors early.</li>
+                    <li>Use a version control system like Git to track configuration changes.</li>
+                    <li>Experiment with custom textures and animations for a unique experience.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2 onclick="toggleDetails('faqDetails')">❓ FAQ</h2>
+        <div class="details" id="faqDetails">
+            <h3>How do I fix a missing texture?</h3>
+            <p>Ensure your texture file is in the correct folder and referenced properly in your YAML file.</p>
+            <h3>Can I add animations to items?</h3>
+            <p>Yes! Use Minecraft's built-in animation system or refer to the ItemsAdder documentation for detailed instructions.</p>
+        </div>
+    </section>
+
+    <section id="troubleshooting">
+        <h2 onclick="toggleDetails('troubleshootingDetails')">🚨 Troubleshooting</h2>
+        <div class="details" id="troubleshootingDetails">
+            <ul>
+                <li><strong>Server Crashes:</strong> Check console logs and ensure all dependencies are installed.</li>
+                <li><strong>Items Not Loading:</strong> Validate your YAML files for syntax errors using an online YAML validator.</li>
+                <li><strong>Resource Pack Issues:</strong> Confirm your resource pack is properly hosted and accessible.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Minecraft Plugin Guide | Designed by [Your Name]</p>
+    </footer>
+</body>
+</html>

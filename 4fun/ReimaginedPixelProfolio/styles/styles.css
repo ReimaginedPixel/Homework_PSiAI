@@ -1,0 +1,26 @@
+a 
+{
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    
+}
+
+.karta-cień-zaokrąglona
+{
+    color: red;
+    scroll-behavior: smooth;
+    cursor: pointer;
+
+}
+
+button
+{
+    padding: 10px 20px;
+    background-color: #4CAF50; /* green */
+    color: white;
+    border: none;
+    border-radius: 10px; /* <== Curved edges */
+    font-size: 16px;
+    cursor: pointer;
+}

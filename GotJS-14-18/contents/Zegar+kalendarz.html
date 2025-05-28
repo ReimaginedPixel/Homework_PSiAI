@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zegar i kalendarz</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body onload="startTime()">
+    <header id="header">
+        <a href="../index.html"><img src="../images/logo.png" alt="Logo" class="logo"></a>
+        <div class="clocklink" id="clock">
+            <a href="zegar.html">⌚</a>
+        </div>
+    </header>
+    <main>
+        <h1>Zegar i Kalendarz</h1>
+	<div class="clock_case">
+		<h2>Czas, data</h2>
+    
+		<div class="dial_small left">
+			<p class="time red">00</p>
+		</div>
+		<div class="dial_small">
+			<p class="time red">00</p>
+		</div>
+		<div class="dial_small">
+			<p class="time blue" id="secs">00</p>
+		</div>
+
+		<div class="dial_large">
+			<p class="date">00</p>
+		</div>
+		<div class="dial_large right">
+			<p class="date">00</p>
+		</div>
+
+	</div>
+    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+    </main>
+    <footer id="footer">
+        Dziękujemy za odwiedzenie naszej strony! 😊 Kliknij logo, aby wrócić do indexu! 🏠
+    </footer>
+    <script src="../js/clock.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/Zegar+kalendarz.js"></script>
+</body>
+</html>

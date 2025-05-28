@@ -63,6 +63,8 @@
             max-width: 500px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.3);
             border: 1px solid #30363d;
+            position: relative;
+            overflow: hidden;
         }
 
         .intro-box h2 {
@@ -101,6 +103,8 @@
             max-width: 500px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.3);
             border: 1px solid #30363d;
+            position: relative;
+            overflow: hidden;
         }
 
         .username {
@@ -159,12 +163,13 @@
             white-space: nowrap;
             cursor: pointer;
             box-shadow: 0 1px 6px 0 rgba(40,40,60,0.13);
-            transition: box-shadow 0.18s, transform 0.18s, filter 0.18s, background 0.3s;
+            transition: box-shadow 0.12s, transform 0.12s, filter 0.12s, background 0.22s;
             outline: none;
             position: relative;
             z-index: 1;
             background-size: 220% 220%;
             background-position: left center;
+            transform: scale(1); /* Ensure default scale is 1 */
         }
         .tag:focus {
             box-shadow: 0 0 0 2px #58a6ff;
@@ -202,6 +207,24 @@
                 width: 98vw;
             }
         }
+
+        .custom-cursor {
+            position: absolute;
+            pointer-events: none;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 0 18px 6px rgba(255,255,255,0.09);
+            filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.18s;
+            mix-blend-mode: lighten;
+            left: 0;
+            top: 0;
+            will-change: transform, opacity;
+        }
     </style>
 </head>
 <body>
@@ -220,18 +243,19 @@
     </div>
 
     <div class="main-flex">
-        <div class="intro-box">
+        <div class="intro-box" id="intro-box">
             <h2>
                 <span id="typed-text"></span><span class="typed-cursor" id="typed-cursor">_</span>
             </h2>
             <p>This is my <b>homework_psiai</b> repo with all my websites.</p>
             <p>This website will lead you to all of them! Have fun and thanks for visiting.</p>
+            <div class="custom-cursor" id="custom-cursor-intro"></div>
         </div>
         <main>
-            <div class="project-box">
+            <div class="project-box" id="project-box">
                 <div class="button-list">
                     <!-- For Fun Category -->
-                    <div style="margin-bottom: 10px; font-weight: bold; color: #2d3e50;">
+                    <div class="category-title" style="margin-bottom: 10px; font-weight: bold; color: #2d3e50;">
                         For Fun Projects
                     </div>
                     <a href="4fun/ItemsAdder Website/index.html" class="button-link">
@@ -263,7 +287,7 @@
                     </a>
 
                     <!-- School Projects Category -->
-                    <div style="margin: 24px 0 10px 0; font-weight: bold; color: #2d3e50;">
+                    <div class="category-title" style="margin: 24px 0 10px 0; font-weight: bold; color: #2d3e50;">
                         School Projects
                     </div>
                     <a href="Geometria - 5, 14, 18 folder/pages/index.html" class="button-link">
@@ -314,9 +338,11 @@
                         </span>
                     </a>
                 </div>
+                <div class="custom-cursor" id="custom-cursor-project"></div>
             </div>
         </main>
     </div>
+    <div class="custom-cursor" id="custom-cursor"></div>
     <footer style="width:100%;text-align:center;padding:18px 0 14px 0;color:#8b949e;font-size:1em;background:rgba(22,27,34,0.85);border-top:1px solid #30363d;margin-top:32px;">
         &copy; 2025 reimaginedpixel &mdash; Homework_PSiAI. All rights reserved.
     </footer>
@@ -328,42 +354,183 @@
             gsap.to("#logo-img", { y: 0, opacity: 1, duration: 0.9, ease: "power2.out" });
             gsap.to("#repo-link", { y: 0, opacity: 1, duration: 0.9, delay: 0.18, ease: "power2.out" });
 
-            // Typing effect for intro-box h2
-            const text = "Hi, my name is ReimaginedPixel!";
+            // Typing effect for intro-box h2 (EN/PL loop)
+            const texts = [
+                "Hi, my name is ReimaginedPixel!",
+                "Cześć, my name is ReimaginedPixel!"
+            ];
             const typedText = document.getElementById("typed-text");
             const cursor = document.getElementById("typed-cursor");
-            let i = 0;
+            let textIndex = 0;
 
-            function type() {
-                if (i <= text.length) {
-                    typedText.textContent = text.slice(0, i);
-                    i++;
-                    setTimeout(type, 38);
+            function typeLoop() {
+                let i = 0;
+                function type() {
+                    if (i <= texts[textIndex].length) {
+                        typedText.textContent = texts[textIndex].slice(0, i);
+                        i++;
+                        setTimeout(type, 62); // slower typing
+                    } else {
+                        setTimeout(erase, 3600); // stay longer before erasing
+                    }
                 }
+                function erase() {
+                    if (i > 0) {
+                        typedText.textContent = texts[textIndex].slice(0, i);
+                        i--;
+                        setTimeout(erase, 28); // slower erasing
+                    } else {
+                        // Ensure text is fully cleared before switching
+                        typedText.textContent = "";
+                        textIndex = (textIndex + 1) % texts.length;
+                        setTimeout(type, 800); // stay a bit longer before typing next
+                    }
+                }
+                type();
             }
-            type();
+            typeLoop();
 
-            // GSAP tag hover animation with animated gradient
+            // GSAP tag hover animation: slide left and zoom in
             document.querySelectorAll('.tag').forEach(tag => {
+                let tagTween;
                 tag.addEventListener('mouseenter', () => {
-                    gsap.to(tag, {
-                        scale: 1.15,
-                        boxShadow: "0 6px 22px 0 rgba(88,166,255,0.25)",
-                        filter: "brightness(1.13) saturate(1.15)",
-                        backgroundPosition: "right center",
-                        duration: 0.33,
+                    if (tagTween) tagTween.kill();
+                    tagTween = gsap.to(tag, {
+                        x: -8,
+                        scale: 1.13,
+                        duration: 0.18,
                         ease: "power2.out"
                     });
                 });
                 tag.addEventListener('mouseleave', () => {
+                    if (tagTween) tagTween.kill();
                     gsap.to(tag, {
+                        x: 0,
                         scale: 1,
-                        boxShadow: "0 1px 6px 0 rgba(40,40,60,0.13)",
-                        filter: "brightness(1) saturate(1)",
-                        backgroundPosition: "left center",
+                        duration: 0.16,
+                        ease: "power2.inOut"
+                    });
+                });
+            });
+        });
+
+        // Custom cursor for intro-box and project-box with latency and clipped shadow
+        function setupCustomCursor(boxId, cursorId) {
+            const box = document.getElementById(boxId);
+            const cursor = document.getElementById(cursorId);
+            let cursorActive = false;
+            let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+            let rafId;
+
+            function animateCursor() {
+                // More latency: move 18% per frame
+                cursorX += (mouseX - cursorX) * 0.18;
+                cursorY += (mouseY - cursorY) * 0.18;
+                cursor.style.transform = `translate(${cursorX - 22}px, ${cursorY - 22}px)`;
+                if (cursorActive) rafId = requestAnimationFrame(animateCursor);
+            }
+
+            box.addEventListener('mouseenter', e => {
+                cursor.style.opacity = '1';
+                cursorActive = true;
+                // Start at mouse position
+                const rect = box.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+                cursorX = mouseX;
+                cursorY = mouseY;
+                animateCursor();
+            });
+            box.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+                cursorActive = false;
+                cancelAnimationFrame(rafId);
+            });
+            box.addEventListener('mousemove', e => {
+                const rect = box.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+        }
+
+        setupCustomCursor('intro-box', 'custom-cursor-intro');
+        setupCustomCursor('project-box', 'custom-cursor-project');
+
+        // GSAP animation for category titles and related projects
+        document.querySelectorAll('.category-title').forEach(title => {
+            let tween;
+            title.addEventListener('mouseenter', () => {
+                if (tween) tween.kill();
+                tween = gsap.to(title, {
+                    fontWeight: 700,
+                    x: 12,
+                    duration: 0.22,
+                    ease: "power2.out"
+                });
+            });
+            title.addEventListener('mouseleave', () => {
+                if (tween) tween.kill();
+                tween = gsap.to(title, {
+                    fontWeight: 700, // keep bold after hover out for consistency
+                    x: 0,
+                    duration: 0.22,
+                    ease: "power2.inOut"
+                });
+            });
+        });
+
+        // Animate project links in For Fun Projects section
+        document.querySelectorAll('.button-link').forEach(link => {
+            // Only animate links under the first category (For Fun Projects)
+            const prev = link.previousElementSibling;
+            // Remove effect from ItemsAdder Website
+            const isItemsAdder = link.getAttribute('href') && link.getAttribute('href').includes('ItemsAdder Website');
+            if (
+                prev && prev.classList.contains('category-title') &&
+                prev.textContent.includes('For Fun Projects') &&
+                !isItemsAdder
+            ) {
+                let tween;
+                link.addEventListener('mouseenter', () => {
+                    if (tween) tween.kill();
+                    tween = gsap.to(link, {
+                        fontWeight: 700,
+                        x: 10,
+                        scale: 1.045,
+                        duration: 0.28,
+                        ease: "power2.out"
+                    });
+                });
+                link.addEventListener('mouseleave', () => {
+                    if (tween) tween.kill();
+                    tween = gsap.to(link, {
+                        fontWeight: 600,
+                        x: 0,
+                        scale: 1,
                         duration: 0.28,
                         ease: "power2.inOut"
                     });
+                });
+            }
+        });
+
+        // Super smooth zoom for all project buttons (not just For Fun)
+        document.querySelectorAll('.button-link').forEach(link => {
+            let zoomTween;
+            link.addEventListener('mouseenter', () => {
+                if (zoomTween) zoomTween.kill();
+                zoomTween = gsap.to(link, {
+                    scale: 1.035,
+                    duration: 0.32,
+                    ease: "power1.out"
+                });
+            });
+            link.addEventListener('mouseleave', () => {
+                if (zoomTween) zoomTween.kill();
+                zoomTween = gsap.to(link, {
+                    scale: 1,
+                    duration: 0.32,
+                    ease: "power1.inOut"
                 });
             });
         });

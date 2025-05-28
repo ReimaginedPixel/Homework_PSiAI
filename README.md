@@ -4,6 +4,10 @@
 
 This repository contains all the websites and applications I have created for the "Web Pages and Web Applications Laboratory" class. This collection showcases my progress and experiments in this field. Feel free to explore my projects, as well as use the code and draw inspiration for your own projects.
 
+📌 **Live Preview:**  
+You can view all the websites and applications from this repository live at the following link:  
+🔗 **[https://reimaginedpixel.github.io/Homework_PSiAI/](https://reimaginedpixel.github.io/Homework_PSiAI/)**
+
 ### Contents
 Each folder in this repository contains a separate project or website I created for the class. The projects cover various aspects of web page and web application development, such as:
 - **HTML, CSS, JavaScript**: Basic and advanced techniques for creating responsive websites.

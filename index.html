@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework_PSiAI - Project Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0d1117;
+            margin: 0;
+            padding: 0;
+            color: #c9d1d9;
+        }
+        header {
+            background: #161b22;
+            color: #c9d1d9;
+            padding: 32px 0 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #21262d;
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #58a6ff;
+        }
+        p {
+            margin: 0 0 20px 0;
+            color: #8b949e;
+        }
+        main {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #161b22;
+            border-radius: 10px;
+            box-shadow: 0 4px 24px rgba(1,4,9,0.18);
+            padding: 40px 30px;
+            border: 1px solid #21262d;
+        }
+        .button-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .button-link {
+            background: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            padding: 16px 24px;
+            border-radius: 6px;
+            font-size: 1.08em;
+            cursor: pointer;
+            text-align: left;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.15s, border 0.15s;
+        }
+        .button-link:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+            color: #58a6ff;
+        }
+        .desc {
+            font-size: 0.97em;
+            color: #8b949e;
+            margin-left: 10px;
+        }
+        .tags {
+            display: flex;
+            gap: 6px;
+            margin-left: 18px;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.93em;
+            font-weight: 500;
+            border-radius: 4px;
+            padding: 2px 8px 2px 6px;
+            margin-left: 0;
+            margin-right: 0;
+            background: #30363d;
+            color: #c9d1d9;
+            border: none;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        .tag-discontinued {
+            background: #ff4d4f;
+            color: #fff;
+        }
+        .tag-archived {
+            background: #ff4d4f;
+            color: #fff;
+        }
+        .tag-deleted {
+            background: #a4262c;
+            color: #fff;
+        }
+        .tag-finished {
+            background: #238636;
+            color: #fff;
+        }
+        .tag-first {
+            background: #8b949e;
+            color: #fff;
+        }
+        .tag-helped {
+            background: #218bff;
+            color: #fff;
+        }
+        /* Category headings */
+        .button-list > div {
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #79c0ff;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 20px 8px;
+            }
+            h1 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Homework_PSiAI Project Index</h1>
+        <p>Quick access to all project websites in this repository</p>
+    </header>
+    <main>
+        <div class="button-list">
+            <!-- For Fun Category -->
+            <div style="margin-bottom: 10px; font-weight: bold; color: #2d3e50;">
+                For Fun Projects
+            </div>
+            <a href="4fun/ItemsAdder Website/index.html" class="button-link">
+                <span>
+                    ItemsAdder Website
+                    <span class="desc">– Minecraft Plugin Guide</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-discontinued">🛑 discontinued</span>
+                </span>
+            </a>
+            <a href="4fun/ReimaginedPixelProfolio/index.html" class="button-link">
+                <span>
+                    ReimaginedPixelProfolio
+                    <span class="desc">– Pixel Portfolio</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-deleted">🗑️ deleted</span>
+                </span>
+            </a>
+            <a href="4fun/strona test/index.html" class="button-link">
+                <span>
+                    Strona test
+                    <span class="desc">– Minecraft Server Guide (EN)</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-archived">📦 archived</span>
+                </span>
+            </a>
+
+            <!-- School Projects Category -->
+            <div style="margin: 24px 0 10px 0; font-weight: bold; color: #2d3e50;">
+                School Projects
+            </div>
+            <a href="Geometria - 5, 14, 18 folder/pages/index.html" class="button-link">
+                <span>
+                    Geometria
+                    <span class="desc">– Figury Geometryczne</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-finished">✔️ finished</span>
+                </span>
+            </a>
+            <a href="GotJS-14-18/index.html" class="button-link">
+                <span>
+                    GotJS-14-18
+                    <span class="desc">– Gotowe Skrypty JS</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-finished">✔️ finished</span>
+                    <span class="tag tag-helped">💙 helped on</span>
+                </span>
+            </a>
+            <a href="PoradnikiStyle- 14, 18/Przyklady_Zrobione_Na_Html/index.html" class="button-link">
+                <span>
+                    PoradnikiStyle
+                    <span class="desc">– Poradnik: Co nam dają style?</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-finished">✔️ finished</span>
+                </span>
+            </a>
+            <a href="Strona/2test1.html" class="button-link">
+                <span>
+                    Strona
+                    <span class="desc">– Najlepsze pluginy do serwera Minecraft</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-finished">✔️ finished</span>
+                    <span class="tag tag-first">🌟 first project</span>
+                </span>
+            </a>
+            <a href="WWWKpl-14-18/index.html" class="button-link">
+                <span>
+                    WWWKpl-14-18
+                    <span class="desc">– Twój Własny Serwer Minecraft – Kompletny Poradnik!</span>
+                </span>
+                <span class="tags">
+                    <span class="tag tag-finished">✔️ finished</span>
+                </span>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

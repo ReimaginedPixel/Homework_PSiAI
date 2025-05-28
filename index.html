@@ -2,54 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Homework_PSiAI - Project Index</title>
+    <title>My Projects</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #0d1117;
+            background-image: url('4fun/assets/bacground.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             margin: 0;
             padding: 0;
             color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
-        header {
-            background: #161b22;
-            color: #c9d1d9;
-            padding: 32px 0 20px 0;
+
+        .header {
             text-align: center;
-            border-bottom: 1px solid #21262d;
+            margin-bottom: 30px;
         }
-        h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.2em;
+
+        .header img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 10px;
+            margin-top: 24px; /* Add space from the top */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
             font-weight: 600;
+            color: #f0f6fc;
+        }
+
+        .main-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 32px;
+        }
+
+        .intro-box {
+           background: rgba(22, 27, 34, 0.85);
+            border-radius: 12px;
+            padding: 30px 20px;
+            width: 40%;
+            max-width: 500px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+            border: 1px solid #30363d;
+        }
+
+        .intro-box h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
             color: #58a6ff;
+            font-weight: 600;
         }
-        p {
-            margin: 0 0 20px 0;
+
+        .intro-box p {
+            margin: 0 0 10px 0;
             color: #8b949e;
+            font-size: 1em;
         }
-        main {
-            max-width: 700px;
-            margin: 40px auto;
-            background: #161b22;
-            border-radius: 10px;
-            box-shadow: 0 4px 24px rgba(1,4,9,0.18);
-            padding: 40px 30px;
-            border: 1px solid #21262d;
+
+        .project-box {
+            background: rgba(22, 27, 34, 0.85);
+            border-radius: 12px;
+            padding: 30px 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+            border: 1px solid #30363d;
         }
+
+        .username {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: 20px;
+        }
+
         .button-list {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
         }
+
         .button-link {
             background: #21262d;
             color: #c9d1d9;
             border: 1px solid #30363d;
-            padding: 16px 24px;
+            padding: 14px 20px;
             border-radius: 6px;
-            font-size: 1.08em;
+            font-size: 1em;
             cursor: pointer;
             text-align: left;
             text-decoration: none;
@@ -58,167 +114,185 @@
             justify-content: space-between;
             transition: background 0.15s, border 0.15s;
         }
+
         .button-link:hover {
             background: #30363d;
             border-color: #58a6ff;
             color: #58a6ff;
         }
+
         .desc {
-            font-size: 0.97em;
+            font-size: 0.95em;
             color: #8b949e;
             margin-left: 10px;
         }
+
         .tags {
             display: flex;
             gap: 6px;
             margin-left: 18px;
         }
+
         .tag {
-            display: inline-flex;
-            align-items: center;
             font-size: 0.93em;
             font-weight: 500;
             border-radius: 4px;
-            padding: 2px 8px 2px 6px;
-            margin-left: 0;
-            margin-right: 0;
+            padding: 2px 8px;
             color: #fff;
-            border: none;
-            line-height: 1.2;
             white-space: nowrap;
         }
+
         .tag-discontinued {
             background: linear-gradient(to top, #ff4d4f 70%, #ff6a6c 100%);
-            color: #fff;
         }
+
         .tag-archived {
             background: linear-gradient(to top, #ff4d4f 70%, #ffb86b 100%);
-            color: #fff;
         }
+
         .tag-deleted {
             background: linear-gradient(to top, #a4262c 70%, #c43a3f 100%);
-            color: #fff;
         }
+
         .tag-finished {
             background: linear-gradient(to top, #238636 70%, #2ea043 100%);
-            color: #fff;
         }
+
         .tag-first {
             background: linear-gradient(to top, #8b949e 70%, #b1bac4 100%);
-            color: #fff;
         }
+
         .tag-helped {
             background: linear-gradient(to top, #218bff 70%, #4ea1ff 100%);
-            color: #fff;
         }
-        /* Category headings */
-        .button-list > div {
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #79c0ff;
-            letter-spacing: 0.5px;
-        }
-        @media (max-width: 600px) {
-            main {
-                padding: 20px 8px;
+
+        @media (max-width: 900px) {
+            .main-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
             }
-            h1 {
-                font-size: 1.3em;
+            .intro-box, .project-box {
+                max-width: 98vw;
+                width: 98vw;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Homework_PSiAI Project Index</h1>
-        <p>Quick access to all project websites in this repository</p>
-    </header>
-    <main>
-        <div class="button-list">
-            <!-- For Fun Category -->
-            <div style="margin-bottom: 10px; font-weight: bold; color: #2d3e50;">
-                For Fun Projects
-            </div>
-            <a href="4fun/ItemsAdder Website/index.html" class="button-link">
-                <span>
-                    ItemsAdder Website
-                    <span class="desc">– Minecraft Plugin Guide</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-discontinued">🛑 discontinued</span>
-                </span>
+    <div style="height: 180px; width: 100%;"></div>
+    <div class="header">
+        <img src="4fun/assets/github.png" alt="GitHub Logo">
+        <h1>
+            <a href="https://github.com/reimaginedpixel/Homework_PSiAI" 
+               style="color: #f0f6fc; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; transition: font-weight 0.15s;"
+               onmouseover="this.style.fontWeight='bold'; this.style.cursor='pointer';"
+               onmouseout="this.style.fontWeight='600'; this.style.cursor='default';">
+                Homework_PSiAI
+                <img src="4fun/assets/link.png" alt="link" style="width: 0.5em; height: 0.5em; margin-left: 8px; vertical-align: text-top; position: relative; top: -10px;">
             </a>
-            <a href="4fun/ReimaginedPixelProfolio/index.html" class="button-link">
-                <span>
-                    ReimaginedPixelProfolio
-                    <span class="desc">– Pixel Portfolio</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-deleted">🗑️ deleted</span>
-                </span>
-            </a>
-            <a href="4fun/strona test/index.html" class="button-link">
-                <span>
-                    Strona test
-                    <span class="desc">– Minecraft Server Guide (EN)</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-archived">📦 archived</span>
-                </span>
-            </a>
+        </h1>
+    </div>
 
-            <!-- School Projects Category -->
-            <div style="margin: 24px 0 10px 0; font-weight: bold; color: #2d3e50;">
-                School Projects
-            </div>
-            <a href="Geometria - 5, 14, 18 folder/pages/index.html" class="button-link">
-                <span>
-                    Geometria
-                    <span class="desc">– Figury Geometryczne</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-finished">✔️ finished</span>
-                </span>
-            </a>
-            <a href="GotJS-14-18/index.html" class="button-link">
-                <span>
-                    GotJS-14-18
-                    <span class="desc">– Gotowe Skrypty JS</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-finished">✔️ finished</span>
-                    <span class="tag tag-helped">💙 helped on</span>
-                </span>
-            </a>
-            <a href="PoradnikiStyle- 14, 18/Przyklady_Zrobione_Na_Html/index.html" class="button-link">
-                <span>
-                    PoradnikiStyle
-                    <span class="desc">– Poradnik: Co nam dają style?</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-finished">✔️ finished</span>
-                </span>
-            </a>
-            <a href="Strona/2test1.html" class="button-link">
-                <span>
-                    Strona
-                    <span class="desc">– Najlepsze pluginy do serwera Minecraft</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-finished">✔️ finished</span>
-                    <span class="tag tag-first">🌟 first project</span>
-                </span>
-            </a>
-            <a href="WWWKpl-14-18/index.html" class="button-link">
-                <span>
-                    WWWKpl-14-18
-                    <span class="desc">– Twój Własny Serwer Minecraft – Kompletny Poradnik!</span>
-                </span>
-                <span class="tags">
-                    <span class="tag tag-finished">✔️ finished</span>
-                </span>
-            </a>
+    <div class="main-flex">
+        <div class="intro-box">
+            <h2>Hi, my name is reimaginedpixel!</h2>
+            <p>This is my <b>homework_psiai</b> repo with all my websites.</p>
+            <p>This website will lead you to all of them! Have fun and thanks for visiting.</p>
         </div>
-    </main>
+        <main>
+            <div class="project-box">
+                <div class="button-list">
+                    <!-- For Fun Category -->
+                    <div style="margin-bottom: 10px; font-weight: bold; color: #2d3e50;">
+                        For Fun Projects
+                    </div>
+                    <a href="4fun/ItemsAdder Website/index.html" class="button-link">
+                        <span>
+                            ItemsAdder Website
+                            <span class="desc">– Minecraft Plugin Guide</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-discontinued">🛑 discontinued</span>
+                        </span>
+                    </a>
+                    <a href="4fun/ReimaginedPixelProfolio/index.html" class="button-link">
+                        <span>
+                            ReimaginedPixelProfolio
+                            <span class="desc">– Pixel Portfolio</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-deleted">🗑️ deleted</span>
+                        </span>
+                    </a>
+                    <a href="4fun/strona test/index.html" class="button-link">
+                        <span>
+                            Strona test
+                            <span class="desc">– Minecraft Server Guide (EN)</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-archived">📦 archived</span>
+                        </span>
+                    </a>
+
+                    <!-- School Projects Category -->
+                    <div style="margin: 24px 0 10px 0; font-weight: bold; color: #2d3e50;">
+                        School Projects
+                    </div>
+                    <a href="Geometria - 5, 14, 18 folder/pages/index.html" class="button-link">
+                        <span>
+                            Geometria
+                            <span class="desc">– Figury Geometryczne</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-finished">✔️ finished</span>
+                        </span>
+                    </a>
+                    <a href="GotJS-14-18/index.html" class="button-link">
+                        <span>
+                            GotJS-14-18
+                            <span class="desc">– Gotowe Skrypty JS</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-finished">✔️ finished</span>
+                            <span class="tag tag-helped">💙 helped on</span>
+                        </span>
+                    </a>
+                    <a href="PoradnikiStyle- 14, 18/Przyklady_Zrobione_Na_Html/index.html" class="button-link">
+                        <span>
+                            PoradnikiStyle
+                            <span class="desc">– Poradnik: Co nam dają style?</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-finished">✔️ finished</span>
+                        </span>
+                    </a>
+                    <a href="Strona/2test1.html" class="button-link">
+                        <span>
+                            Strona
+                            <span class="desc">– Najlepsze pluginy do serwera Minecraft</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-finished">✔️ finished</span>
+                            <span class="tag tag-first">🌟 first project</span>
+                        </span>
+                    </a>
+                    <a href="WWWKpl-14-18/index.html" class="button-link">
+                        <span>
+                            WWWKpl-14-18
+                            <span class="desc">– Twój Własny Serwer Minecraft – Kompletny Poradnik!</span>
+                        </span>
+                        <span class="tags">
+                            <span class="tag tag-finished">✔️ finished</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
+
+<footer style="width:100%;text-align:center;padding:18px 0 14px 0;color:#8b949e;font-size:1em;background:rgba(22,27,34,0.85);border-top:1px solid #30363d;margin-top:32px;">
+    &copy; 2025 reimaginedpixel &mdash; Homework_PSiAI. All rights reserved.
+</footer>
 </html>

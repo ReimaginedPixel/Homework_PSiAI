@@ -247,8 +247,12 @@
             <h2>
                 <span id="typed-text"></span><span class="typed-cursor" id="typed-cursor">_</span>
             </h2>
-            <p>This is my <b>homework_psiai</b> repo with all my websites.</p>
-            <p>This website will lead you to all of them! Have fun and thanks for visiting.</p>
+            <p class="intro-anim">Welcome to my <b>Homework_PSiAI</b> repository, where I showcase all my web projects in one place.</p>
+            <p class="intro-anim">Browse through the collection and explore each site—thanks for stopping by!</p>
+            <p class="intro-anim">Most projects are in <b>Polish</b>, my native language, but feel free to look around.</p>
+            <p class="intro-anim intro-note" style="color:#ffb347;">
+                ⚠️ <span style="font-weight:bold;">Note:</span> These sites do not include a return link to this homepage.
+            </p>
             <div class="custom-cursor" id="custom-cursor-intro"></div>
         </div>
         <main>
@@ -531,6 +535,27 @@
                     scale: 1,
                     duration: 0.32,
                     ease: "power1.inOut"
+                });
+            });
+        });
+
+        // GSAP animation for intro-box paragraphs on hover: move a bit to the right
+        document.querySelectorAll('.intro-anim').forEach(p => {
+            let tween;
+            p.addEventListener('mouseenter', () => {
+                if (tween) tween.kill();
+                tween = gsap.to(p, {
+                    x: 16,
+                    duration: 0.22,
+                    ease: "power2.out"
+                });
+            });
+            p.addEventListener('mouseleave', () => {
+                if (tween) tween.kill();
+                gsap.to(p, {
+                    x: 0,
+                    duration: 0.18,
+                    ease: "power2.inOut"
                 });
             });
         });

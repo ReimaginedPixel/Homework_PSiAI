@@ -1,0 +1,31 @@
+Wstaw nag³ówek wskazujacy na html5
+Zadbaj aby plik by³ poprawnym domumentem html5.
+
+Dodaj head do dokumentu - wstaw tytul witryny, który pojawi siê na pasku przegl¹darki. 
+
+Ustaw poprawne kodowanie polskich znaków. Zadbaj aby w ca³ym pliku nie by³o "krzaczków" tylko poprawne polskie znaki.
+
+Dolacz plik ze stylem znajduje sie w katalogu style.
+
+Do menu dodaj kolejne strony
+1. Newsy
+2. Pomarañcze
+3. Linki
+4. Inny kolor
+
+Menu ma dzia³aæ i powinno przenosiæ do kolejnych stron. Tylko jedna z pozycji menu ma mieæ klasê "selected"- bêdzie podœwietlona w odpowiedni sposób jako strona aktywna.
+
+Na stronie g³ównej po tekœcie "Wlasnie powstaje niesamowity portal o pomaranczowym kolorze" s³owo "wiêcej" ma przenosiæ na stronê pomarañcze.
+
+Na stronie g³ównej po tekœcie "To zapowiedz najnowszych wiadomosci" s³owo "wiêcej" ma przenosiæ na stronê newsy.
+
+Na stronie 1.newsy wstaw trzy pliki 1.jpg 2.jpg 3.jpg Ka¿dy z nich podpisz nag³ówkiem w dowolnym rozmiarze.
+Pod zdjêciem ma znajdowaæ siê akapit z dowolnym tekstem.
+
+Na stronie 2.pomarañcze - wstaw zdjêcie pomarañczy z pliku zdjêcie.jpg - rozmiar zdjêcia 300 x 300 pikseli.
+
+Na stronie 3.linki -  dodaj listê z piêcioma linkami do dowolnych stron.
+
+Na stronie 4.inny kolor - zmieñ kolorystykê ca³ej strony na dowolnie inn¹.  
+
+Na koñcu strony dodaj stopkê o id=footer, wpisz na œrodku stopki znaczek copyright, oraz swoje imiê i nazwisko

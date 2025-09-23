@@ -1,0 +1,14 @@
+Zmienić strukturę strony na zgodną z html5.
+
+Dodać linki do poszczególnych podstron dokumentu - tworzymy nowe stony - london.html, ... 
+Dodać nową pozycję do menu - nowa strona
+Zmienić rozmiar stopki - większa wysokość
+Zmienić wysokość paska na górze strony 
+Dodać do paska na górze storny dowolne zdjęcie - logo
+Zmienić kolor menu
+Usunąć podkreślenie linków w menu 
+ - a:hover
+ - a:visited
+ - a:link
+ - a:active
+ https://www.w3schools.com/Css/css_link.asp

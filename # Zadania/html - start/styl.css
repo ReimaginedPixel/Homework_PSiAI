@@ -1,0 +1,72 @@
+header {
+    background-color:black;
+    color:black;
+    text-align:center;
+    padding:5px;
+	height:70px;
+}
+#city-small {
+    margin-top: 20px;
+    }
+#logo-small {
+    height: 70px;
+    width: 70px;
+}
+nav {
+    font-family: cursive;
+    line-height:30px;
+    background-color:#eeeeee;
+    height: 500px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+section {
+    font-family: cursive;
+    width:350px;
+    float:left;
+    padding:10px; 
+}
+footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:15px; 
+}
+#outline {
+    font-family: serif;
+    color: cadetblue;
+}
+#back {
+    color: firebrick;
+    
+}
+#next {
+    color: darkturquoise;
+
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: cadetblue;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: cadetblue;
+    text-decoration: underline;
+  }

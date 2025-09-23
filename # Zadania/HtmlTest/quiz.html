@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test wiedzy HTML</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <img src="style/logo.jpg" alt="Logo" style="width:180px;height:100px;">
+    <h1>Test wiedzy HTML</h1>
+    <p>Instrukcja: Każde pytanie warte jest 1 punkt. Maksymalnie możesz zdobyć 10 punktów.</p>
+    
+    <form action="http://localhost/start2t/HtmlTest/wyniki.php" method="post">
+        <p>Pytanie 1: Co oznacza skrót HTML?</p>
+          <input type="radio" id="q1a" name="q1" value="a">
+            <label for="q1a">Home Tool Markup Language</label><br>
+          <input type="radio" id="q1b" name="q1" value="b">
+            <label for="q1b">HyperText Markup Language</label><br>
+          <input type="radio" id="q1c" name="q1" value="c">
+            <label for="q1c">Hyperlinks and Text Markup Language</label><br>
+          <input type="radio" id="q1d" name="q1" value="d">
+            <label for="q1d">High Text Modeling Language</label><br>
+
+        <p>Pytanie 2: Który tag służy do tworzenia nagłówka najwyższego poziomu?</p>
+          <input type="radio" id="q2a" name="q2" value="a">
+            <label for="q2a">&lt;header&gt;</label><br>
+          <input type="radio" id="q2b" name="q2" value="b">
+            <label for="q2b">&lt;h1&gt;</label><br>
+          <input type="radio" id="q2c" name="q2" value="c">
+            <label for="q2c">&lt;title&gt;</label><br>
+          <input type="radio" id="q2d" name="q2" value="d">
+            <label for="q2d">&lt;head&gt;</label><br>
+
+        <p>Pytanie 3: Jak tworzy się link w HTML?</p>
+          <input type="radio" id="q3a" name="q3" value="a">
+            <label for="q3a">&lt;link href="strona.html"&gt;Tekst&lt;/link&gt;</label><br>
+          <input type="radio" id="q3b" name="q3" value="b">
+            <label for="q3b">&lt;a href="strona.html"&gt;Tekst&lt;/a&gt;</label><br>
+          <input type="radio" id="q3c" name="q3" value="c">
+            <label for="q3c">&lt;url="strona.html"&gt;Tekst&lt;/url&gt;</label><br>
+          <input type="radio" id="q3d" name="q3" value="d">
+            <label for="q3d">&lt;href src="strona.html"&gt;Tekst&lt;/href&gt;</label><br>
+
+        <p>Pytanie 4: Który tag służy do wstawiania obrazka?</p>
+          <input type="radio" id="q4a" name="q4" value="a">
+            <label for="q4a">&lt;image&gt;</label><br>
+          <input type="radio" id="q4b" name="q4" value="b">
+            <label for="q4b">&lt;img&gt;</label><br>
+          <input type="radio" id="q4c" name="q4" value="c">
+            <label for="q4c">&lt;picture&gt;</label><br>
+          <input type="radio" id="q4d" name="q4" value="d">
+            <label for="q4d">&lt;src&gt;</label><br>
+
+        <p>Pytanie 5: Co to jest atrybut w HTML?</p>
+          <input type="radio" id="q5a" name="q5" value="a">
+            <label for="q5a">Dodatkowa informacja o elemencie</label><br>
+          <input type="radio" id="q5b" name="q5" value="b">
+            <label for="q5b">Tekst wyświetlany na stronie</label><br>
+          <input type="radio" id="q5c" name="q5" value="c">
+            <label for="q5c">Nazwa pliku HTML</label><br>
+          <input type="radio" id="q5d" name="q5" value="d">
+            <label for="q5d">Skrypt wykonujący akcje</label><br>
+
+        <p>Pytanie 6: Który tag służy do tworzenia listy numerowanej?</p>
+          <input type="radio" id="q6a" name="q6" value="a">
+            <label for="q6a">&lt;ul&gt;</label><br>
+          <input type="radio" id="q6b" name="q6" value="b">
+            <label for="q6b">&lt;ol&gt;</label><br>
+          <input type="radio" id="q6c" name="q6" value="c">
+            <label for="q6c">&lt;list&gt;</label><br>
+          <input type="radio" id="q6d" name="q6" value="d">
+            <label for="q6d">&lt;li&gt;</label><br>
+
+        <p>Pytanie 7: Gdzie umieszcza się tag &lt;title&gt;?</p>
+          <input type="radio" id="q7a" name="q7" value="a">
+            <label for="q7a">W sekcji &lt;body&gt;</label><br>
+          <input type="radio" id="q7b" name="q7" value="b">
+            <label for="q7b">W sekcji &lt;head&gt;</label><br>
+          <input type="radio" id="q7c" name="q7" value="c">
+            <label for="q7c">Na końcu dokumentu</label><br>
+          <input type="radio" id="q7d" name="q7" value="d">
+            <label for="q7d">W sekcji &lt;footer&gt;</label><br>
+
+        <p>Pytanie 8: Który atrybut określa alternatywny tekst dla obrazka?</p>
+          <input type="radio" id="q8a" name="q8" value="a">
+            <label for="q8a">title</label><br>
+          <input type="radio" id="q8b" name="q8" value="b">
+            <label for="q8b">alt</label><br>
+          <input type="radio" id="q8c" name="q8" value="c">
+            <label for="q8c">description</label><br>
+          <input type="radio" id="q8d" name="q8" value="d">
+            <label for="q8d">caption</label><br>
+
+        <p>Pytanie 9: Jak tworzy się tabelę w HTML?</p>
+          <input type="radio" id="q9a" name="q9" value="a">
+            <label for="q9a">&lt;table&gt;</label><br>
+          <input type="radio" id="q9b" name="q9" value="b">
+            <label for="q9b">&lt;tab&gt;</label><br>
+          <input type="radio" id="q9c" name="q9" value="c">
+            <label for="q9c">&lt;grid&gt;</label><br>
+          <input type="radio" id="q9d" name="q9" value="d">
+            <label for="q9d">&lt;data&gt;</label><br>
+
+        <p>Pytanie 10: Który tag służy do tworzenia formularza?</p>
+          <input type="radio" id="q10a" name="q10" value="a">
+            <label for="q10a">&lt;input&gt;</label><br>
+          <input type="radio" id="q10b" name="q10" value="b">
+            <label for="q10b">&lt;form&gt;</label><br>
+          <input type="radio" id="q10c" name="q10" value="c">
+            <label for="q10c">&lt;field&gt;</label><br>
+          <input type="radio" id="q10d" name="q10" value="d">
+            <label for="q10d">&lt;submit&gt;</label><br>
+
+        <br>
+        <button type="submit">Sprawdź odpowiedzi</button>
+        <button type="reset">Wyczyść formularz</button>
+    </form>
+</body>
+</html>

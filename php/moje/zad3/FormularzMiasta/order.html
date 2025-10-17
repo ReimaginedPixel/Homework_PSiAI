@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/styl.css">
+<title>HTML5</title>
+</head>
+
+
+<body>
+
+<header>
+    <a href="index.html"><img id="logo-small" src="style/logo.png" alt="Logo"></a>
+</header>
+
+<nav>
+    <a href="london.html">London</span></a>   <br>
+    <a href="paris.html">Paris</span></a>   <br>
+    <a href="tokyo.html">Tokyo</span></a>   <br>
+    <a href="poland.html">Poland</span></a>   <br>
+    <a href="order.html">Order</span></a>   <br>
+    
+</nav>
+
+<section>
+    <h1>Ordering A Ticket!</h1>
+        <p> Intrested? Calculate a ticket now! </p>
+        <p> Then simply print it and give it to our agency! </p>
+        <p> But.. We need more info: </p>
+        <form action="http://localhost/start2t/FormularzMiasta/order.php" method="post">
+
+        <p>Ordering Person's Name?</p>
+          <input type="search" id="q1a" name="q1" value="" required>
+        
+        <p>Ordering Person's Surname?</p>
+          <input type="search" id="q2a" name="q2" value="" required>
+
+        <p>Gender?</p>
+        <p id="small-p">Man - Woman</p>
+          <input type="range" id="q3a" name="q3" value="" required>
+
+          <p>City?</p>
+        <select name="q4">
+            <option id="q4a" value="LD" > London | cena netto/os. 499,00 zł </option>
+            <option id="q4b" value="TK" > Tokyo | cena netto/os. 389,00 zł</option>
+            <option id="q4c" value="PR" > Paris | cena netto/os. 329,00 zł </option>
+            <option id="q4d" value="PL" > Poland | cena netto/os. 299,00 zł </option>
+        </select>
+
+        <p>Amount Of People</p>
+        <p id="small-p">  Ranges From 1 - 999</p>
+        <input type="search" id="q5a" name="q5" value="" required>
+
+
+          <br></br><br></br>
+          <button type="submit">Order Summary</button>
+
+
+            
+</section>
+
+<footer>
+Copyright - Konrad &copy 
+</footer>
+
+</body>
+
+</html>

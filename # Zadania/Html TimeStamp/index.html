@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FajnySamuhud.pl</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+
+    </header>
+
+    <div id="Powitanie">
+        <p>Witaj Na:</p>
+        <h1>FajnySamohud.pl</h1>
+        <p></p>
+    </div>
+
+    <br></br>
+
+    <div id="Powitanie">
+        <h2>Wyporzycz Samochód Teraz!</h2>
+        <p>Podaj Informacje Tutaj:</p>
+        <form action="php/wyporzycz.php" method="post">
+            <p>Wybierz Samochód:</p>
+
+            <select name="marka" required>
+                <option value="ford ka">ford ka</option>
+                <option value="golf">vw golf</option>
+                <option valude="jeep grand">jeep grand</option>
+                <option value="bus">bus</option>
+                <option value="autobus">autobus</option>
+            </select>
+
+            <p>Wybierz Date Wynajceia:</p>
+
+        <p> od:
+            <input type="number" name="odDD"  min="1" max="31" placeholder="Dzień" required>
+            <input type="number" name="odMM"  min="1" max="12" placeholder="Miesiąc" required>
+            <input type="number" name="odYY"  min="1950" max="2025" placeholder="Rok" required>
+        </p>
+        <p>
+            do: 
+            <input type="number" name="doDD"  min="1" max="31" placeholder="Dzień" required>
+            <input type="number" name="doMM"  min="1" max="12" placeholder="Miesiąc" required>
+            <input type="number" name="doYY"  min="1950" max="2025" placeholder="Rok" required>
+        </p>
+            <p>Wybierz Date Urodzenia:</p>
+
+            <input type="number" name="urDD"  min="1" max="31" placeholder="Dzień" required>
+            <input type="number" name="urMM"  min="1" max="12" placeholder="Miesiąc" required>
+            <input type="number" name="urYY"  min="1950" max="2025" placeholder="Rok" required>
+
+            <p>Wybierz Dodatkowe Akcesoria:</p>
+
+            <p><input type="checkbox" name="radio">Radio Górka </p>
+            <p><input type="checkbox" name="radio">GPS </p>
+            <p><input type="checkbox" name="radio">Fotelik Dla Dziecka </p>
+
+            <button type="submit">Prześlij</button>
+            
+        </form>
+    </div>
+
+    <footer>
+
+    </footer>
+
+</body>
+</html>

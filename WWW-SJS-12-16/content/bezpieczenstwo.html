@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bezpieczeństwo - Poradnik</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔒 Bezpieczeństwo Serwera</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html">Podstawy</a></li>
+                <li><a href="konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="pluginy.html">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html" class="active">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Bezpieczeństwo</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <p>Kompleksowy przewodnik po zabezpieczeniu serwera Minecraft przed atakami i problemami.</p>
+
+            <h2 id="ddos">🛡️ Ochrona przed DDoS</h2>
+            <p>Ataki DDoS mogą sparaliżować serwer. Właściwa ochrona jest kluczowa.</p>
+
+            <h3>Co to jest DDoS?</h3>
+            <p>Distributed Denial of Service - atak polegający na przeciążeniu serwera ogromną ilością zapytań.</p>
+
+            <h3>Metody ochrony</h3>
+
+            <div class="info-box">
+                <h4>1. Proxy (Najlepsza metoda)</h4>
+                <p>TCPShield, Cloudflare Spectrum - ukrywają prawdziwy IP serwera</p>
+                <ul>
+                    <li><strong>TCPShield:</strong> Darmowy, dedykowany dla Minecraft</li>
+                    <li><strong>Cloudflare Spectrum:</strong> Płatny, bardzo skuteczny</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>2. Firewall</h4>
+                <p>iptables (Linux) lub Windows Firewall</p>
+                <div class="code-block">
+# Ogranicz połączenia z jednego IP
+iptables -A INPUT -p tcp --dport 25565 -m connlimit --connlimit-above 3 -j DROP
+
+# Blokuj po 10 połączeniach w 60s
+iptables -A INPUT -p tcp --dport 25565 -m recent --update --seconds 60 --hitcount 10 -j DROP
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>3. Plugin AntiBot</h4>
+                <p>Plugins: AntiBot, EpicGuard, SonarBungee</p>
+            </div>
+
+            <div class="warning-box">
+                <strong>NIGDY nie podawaj prawdziwego IP serwera!</strong> Używaj domenы i proxy.
+            </div>
+
+            <img src="../images/ddos-protection.png" alt="Ochrona DDoS" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <h2 id="griefing">🚫 Zapobieganie Griefingowi</h2>
+            <p>Griefing = niszczenie budowli innych graczy. Zapobiegaj temu od początku!</p>
+
+            <h3>System protekcji</h3>
+            <ul>
+                <li><strong>WorldGuard</strong> - Ochrona spawna, ważnych miejsc</li>
+                <li><strong>GriefPrevention</strong> - Automatyczne działki dla graczy</li>
+                <li><strong>CoreProtect</strong> - Logging + rollback zniszczeń</li>
+            </ul>
+
+            <h3>Podstawowa konfiguracja WorldGuard</h3>
+            <div class="code-block">
+# Stwórz region spawna
+//pos1  (lewy przycisk na bloku)
+//pos2  (prawy przycisk na bloku)
+/rg define spawn
+
+# Ustaw flagi
+/rg flag spawn pvp deny
+/rg flag spawn mob-spawning deny
+/rg flag spawn creeper-explosion deny
+/rg flag spawn build deny
+            </div>
+
+            <h3>Rollback z CoreProtect</h3>
+            <div class="code-block">
+# Cofnij zmiany gracza z ostatnich 24h
+/co rollback u:griefer t:24h r:global
+
+# Przywróć zmiany niewinnego gracza
+/co restore u:player t:1h r:50
+            </div>
+
+            <img src="../images/griefing-prevention.png" alt="Zapobieganie griefingowi" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <h2 id="backup">💾 Systemy Backup</h2>
+            <p>Regularne backupy mogą uratować serwer przed katastrofą!</p>
+
+            <h3>Co backupować?</h3>
+            <ul>
+                <li>✅ Foldery z światami (world, world_nether, world_the_end)</li>
+                <li>✅ Folder plugins/ (konfiguracje)</li>
+                <li>✅ Pliki: server.properties, ops.json, whitelist.json</li>
+                <li>❌ Nie backupuj: logs/, cache/, plików .jar</li>
+            </ul>
+
+            <h3>Automatyczny backup (Linux)</h3>
+            <div class="code-block">
+#!/bin/bash
+# backup.sh
+
+DATE=$(date +%Y-%m-%d_%H-%M-%S)
+BACKUP_DIR="/backups"
+SERVER_DIR="/home/minecraft/server"
+
+# Zapisz świat
+screen -S minecraft -p 0 -X stuff "save-all^M"
+sleep 10
+
+# Utwórz backup
+tar -czf $BACKUP_DIR/backup_$DATE.tar.gz -C $SERVER_DIR world world_nether world_the_end plugins
+
+# Usuń backupy starsze niż 7 dni
+find $BACKUP_DIR -name "backup_*.tar.gz" -mtime +7 -delete
+
+echo "Backup completed: backup_$DATE.tar.gz"
+            </div>
+
+            <h3>Cron job - automatyzacja</h3>
+            <div class="code-block">
+# crontab -e
+# Backup codziennie o 3:00
+0 3 * * * /home/minecraft/backup.sh
+            </div>
+
+            <h3>Plugin Backup</h3>
+            <p><strong>DriveBackupV2</strong> - Automatyczne backupy na Google Drive, Dropbox, FTP</p>
+
+            <div class="tip-box">
+                <strong>Zasada 3-2-1:</strong><br>
+                3 kopie danych<br>
+                2 różne nośniki<br>
+                1 kopia off-site (chmura)
+            </div>
+
+            <img src="../images/backup-system.png" alt="System backup" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <h2 id="exploity">⚠️ Ochrona przed Exploitami</h2>
+            <p>Exploity pozwalają graczom na nieuczciwe działania. Zapobiegaj im!</p>
+
+            <h3>Typowe exploity</h3>
+
+            <h4>1. Dupe glitches (duplikacja itemów)</h4>
+            <p><strong>Rozwiązanie:</strong> Aktualizuj Paper, używaj patch pluginów</p>
+
+            <h4>2. X-Ray (widzenie przez bloki)</h4>
+            <p><strong>Rozwiązanie:</strong> Anti-Xray w Paper</p>
+            <div class="code-block">
+# paper-world-defaults.yml
+anti-xray:
+  enabled: true
+  engine-mode: 2
+  hidden-blocks:
+  - diamond_ore
+  - deepslate_diamond_ore
+  - emerald_ore
+  - gold_ore
+  - iron_ore
+            </div>
+
+            <h4>3. Fly/Speed hacks</h4>
+            <p><strong>Rozwiązanie:</strong> AntiCheat plugin (VulcanAC, Matrix, Spartan)</p>
+
+            <h4>4. Crash exploity</h4>
+            <p><strong>Rozwiązanie:</strong> ExploitFixer plugin</p>
+
+            <h3>Pluginy ochronne</h3>
+            <table>
+                <tr>
+                    <th>Plugin</th>
+                    <th>Chroni przed</th>
+                </tr>
+                <tr>
+                    <td>ExploitFixer</td>
+                    <td>Crash exploity, packet exploity</td>
+                </tr>
+                <tr>
+                    <td>VulcanAntiCheat</td>
+                    <td>Fly, speed, killaura, reach</td>
+                </tr>
+                <tr>
+                    <td>IllegalStack</td>
+                    <td>Nielegalne itemy (enchant 1000+)</td>
+                </tr>
+                <tr>
+                    <td>NoCheatPlus</td>
+                    <td>Uniwersalny anticheat</td>
+                </tr>
+            </table>
+
+            <img src="../images/exploit-protection.png" alt="Ochrona exploity" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <h2 id="uprawnienia">👤 Zarządzanie Uprawnieniami</h2>
+            <p>Właściwe uprawnienia zapobiegają nadużyciom i błędom.</p>
+
+            <h3>Hierarchia rang (przykład)</h3>
+            <div class="code-block">
+Owner (poziom 100) - Pełen dostęp
+├─ Admin (poziom 80) - Komendy admin, banowanie
+├─ Moderator (poziom 60) - Kick, mute, tp do graczy
+├─ Helper (poziom 40) - Podstawowe moderacja
+├─ VIP (poziom 20) - Dodatkowe komendy gracza
+└─ Gracz (poziom 0) - Podstawowe uprawnienia
+            </div>
+
+            <h3>LuckPerms - tworzenie rang</h3>
+            <div class="code-block">
+# Stwórz grupy
+/lp creategroup vip
+/lp creategroup moderator
+/lp creategroup admin
+
+# Nadaj uprawnienia
+/lp group vip permission set essentials.sethome.multiple.3
+/lp group moderator permission set essentials.kick
+/lp group admin permission set *
+
+# Dodaj gracza do grupy
+/lp user gracz parent add vip
+
+# Ustaw prefix
+/lp group vip meta setprefix "&6[VIP] "
+            </div>
+
+            <div class="warning-box">
+                <strong>Nigdy nie dawaj uprawnienia "*" osobom nie będącym właścicielami!</strong> Daje to pełen dostęp do wszystkiego.
+            </div>
+
+            <h3>Bezpieczne uprawnienia dla moderatorów</h3>
+            <ul>
+                <li>✅ essentials.kick</li>
+                <li>✅ essentials.ban</li>
+                <li>✅ essentials.mute</li>
+                <li>✅ essentials.tp</li>
+                <li>✅ coreprotect.inspect</li>
+                <li>✅ coreprotect.rollback</li>
+                <li>❌ essentials.gamemode</li>
+                <li>❌ essentials.give</li>
+                <li>❌ worldedit.* (może crashować serwer)</li>
+            </ul>
+
+            <img src="../images/permissions-system.png" alt="System uprawnień" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <div class="tip-box">
+                <h3>📋 Checklist bezpieczeństwa:</h3>
+                <ul>
+                    <li>✓ Używaj proxy (TCPShield)</li>
+                    <li>✓ Nie udostępniaj prawdziwego IP</li>
+                    <li>✓ Włącz online-mode=true</li>
+                    <li>✓ Zainstaluj CoreProtect</li>
+                    <li>✓ Skonfiguruj protekcję (WorldGuard/GP)</li>
+                    <li>✓ Włącz Anti-Xray w Paper</li>
+                    <li>✓ Regularnebackupy (codziennie!)</li>
+                    <li>✓ AntiCheat plugin</li>
+                    <li>✓ ExploitFixer</li>
+                    <li>✓ Przemyślany system uprawnień</li>
+                    <li>✓ Whitelist dla testów</li>
+                    <li>✓ Silne hasła do paneli</li>
+                </ul>
+            </div>
+
+        </article>
+
+        <div class="page-navigation">
+            <a href="pluginy.html" class="nav-button prev">Pluginy</a>
+            <a href="galeria.html" class="nav-button next">Galeria</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulatory - Poradnik Serwerów Minecraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <style>
+        .calculator {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calc-group label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .calc-group input,
+        .calc-group select {
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .calc-button {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .calc-button:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .calc-result {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 5px solid var(--primary-color);
+            display: none;
+        }
+
+        .calc-result.visible {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-highlight {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🧮 Kalkulatory i Narzędzia</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html">Podstawy</a></li>
+                <li><a href="konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="pluginy.html">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="kalkulatory.html" class="active">Kalkulatory</a></li>
+                <li><a href="skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Kalkulatory</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <p>Narzędzia obliczeniowe pomagające w planowaniu i optymalizacji serwera Minecraft.</p>
+
+            <h2 id="ram-calc">💾 Kalkulator RAM</h2>
+            <p>Oblicz ile pamięci RAM potrzebujesz dla swojego serwera w zależności od liczby graczy, pluginów i innych czynników.</p>
+
+            <div class="calculator">
+                <div class="calc-input">
+                    <div class="calc-group">
+                        <label for="players">Maksymalna liczba graczy:</label>
+                        <input type="number" id="players" min="1" max="1000" value="20">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="plugins">Liczba pluginów:</label>
+                        <input type="number" id="plugins" min="0" max="100" value="10">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="worldSize">Rozmiar świata:</label>
+                        <select id="worldSize">
+                            <option value="1">Mały (border 5000)</option>
+                            <option value="1.3" selected>Średni (border 10000)</option>
+                            <option value="1.6">Duży (border 20000)</option>
+                            <option value="2">Bardzo duży (unlimited)</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="serverType">Typ serwera:</label>
+                        <select id="serverType">
+                            <option value="1">Vanilla</option>
+                            <option value="1.1">Spigot</option>
+                            <option value="1" selected>Paper</option>
+                            <option value="1.5">Modpack (Forge/Fabric)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="calculateRAM()">Oblicz RAM</button>
+
+                <div id="ramResult" class="calc-result">
+                    <h3>Wyniki:</h3>
+                    <div class="result-highlight" id="ramAmount"></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="ramProgress" style="width: 0%"></div>
+                    </div>
+                    <p id="ramDescription"></p>
+                    <div class="tip-box">
+                        <strong>Flagi JVM dla tej ilości RAM:</strong>
+                        <div class="code-block" id="jvmFlags"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="slots-calc">👥 Kalkulator Slotów vs Wydajność</h2>
+            <p>Sprawdź ile graczy może obsłużyć twój serwer przy danej specyfikacji sprzętowej.</p>
+
+            <div class="calculator">
+                <div class="calc-input">
+                    <div class="calc-group">
+                        <label for="cpuGhz">Taktowanie CPU (GHz):</label>
+                        <input type="number" id="cpuGhz" min="1" max="6" step="0.1" value="3.5">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="availableRAM">Dostępna RAM (GB):</label>
+                        <input type="number" id="availableRAM" min="1" max="64" value="8">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="diskType">Typ dysku:</label>
+                        <select id="diskType">
+                            <option value="0.7">HDD</option>
+                            <option value="1" selected>SSD SATA</option>
+                            <option value="1.2">SSD NVMe</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="pluginCount">Liczba pluginów:</label>
+                        <input type="number" id="pluginCount" min="0" max="100" value="15">
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="calculateSlots()">Oblicz maksymalną liczbę graczy</button>
+
+                <div id="slotsResult" class="calc-result">
+                    <h3>Rekomendacje:</h3>
+                    <div class="result-highlight" id="maxPlayers"></div>
+                    <p id="slotsDescription"></p>
+                    <div class="info-box">
+                        <strong>Analiza wąskich gardeł:</strong>
+                        <ul id="bottleneckList"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="chunk-calc">🗺️ Kalkulator Chunków i View Distance</h2>
+            <p>Oblicz obciążenie serwera przy różnych ustawieniach view-distance i simulation-distance.</p>
+
+            <div class="calculator">
+                <div class="calc-input">
+                    <div class="calc-group">
+                        <label for="viewDistance">View Distance:</label>
+                        <input type="number" id="viewDistance" min="2" max="32" value="10">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="simDistance">Simulation Distance:</label>
+                        <input type="number" id="simDistance" min="2" max="32" value="8">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="onlinePlayers">Graczy online:</label>
+                        <input type="number" id="onlinePlayers" min="1" max="1000" value="30">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="worldsCount">Liczba światów:</label>
+                        <input type="number" id="worldsCount" min="1" max="10" value="3">
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="calculateChunks()">Oblicz obciążenie</button>
+
+                <div id="chunkResult" class="calc-result">
+                    <h3>Analiza:</h3>
+                    <div class="result-highlight" id="chunkCount"></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="chunkProgress" style="width: 0%"></div>
+                    </div>
+                    <p id="chunkDescription"></p>
+                    <div class="warning-box">
+                        <strong>Rekomendowane ustawienia:</strong>
+                        <div id="chunkRecommendation"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="koszt-calc">💰 Kalkulator Kosztów Hostingu</h2>
+            <p>Oszacuj miesięczne koszty utrzymania serwera w zależności od wymagań.</p>
+
+            <div class="calculator">
+                <div class="calc-input">
+                    <div class="calc-group">
+                        <label for="hostingRAM">Wymagana RAM (GB):</label>
+                        <input type="number" id="hostingRAM" min="1" max="32" value="4">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="hostingType">Typ hostingu:</label>
+                        <select id="hostingType">
+                            <option value="3">Shared (współdzielony)</option>
+                            <option value="6" selected>VPS</option>
+                            <option value="12">Dedykowany serwer</option>
+                            <option value="0">Własny sprzęt (dom)</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="ddosProtection">Ochrona DDoS:</label>
+                        <select id="ddosProtection">
+                            <option value="0">Brak</option>
+                            <option value="10" selected>Podstawowa</option>
+                            <option value="25">Zaawansowana</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="backup">Automatyczne backup:</label>
+                        <select id="backup">
+                            <option value="0">Brak</option>
+                            <option value="5" selected>Podstawowy</option>
+                            <option value="15">Zaawansowany</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="calculateCost()">Oblicz koszt</button>
+
+                <div id="costResult" class="calc-result">
+                    <h3>Szacunkowe koszty:</h3>
+                    <div class="result-highlight" id="monthlyCost"></div>
+                    <div id="costBreakdown"></div>
+                    <div class="tip-box">
+                        <p id="costTips"></p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="tick-calc">⏱️ Kalkulator Tick Speed i TPS</h2>
+            <p>Zrozum wpływ TPS (Ticks Per Second) na działanie mechanizmów w grze.</p>
+
+            <div class="calculator">
+                <div class="calc-input">
+                    <div class="calc-group">
+                        <label for="currentTPS">Aktualne TPS:</label>
+                        <input type="number" id="currentTPS" min="1" max="20" step="0.1" value="20">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="normalTicks">Czas w tickach (przy 20 TPS):</label>
+                        <input type="number" id="normalTicks" min="1" max="72000" value="100">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="redstoneClock">Częstotliwość zegara (Hz):</label>
+                        <input type="number" id="redstoneClock" min="0.1" max="20" step="0.1" value="10">
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="mobSpawns">Spawny mobów/minutę:</label>
+                        <input type="number" id="mobSpawns" min="1" max="1000" value="50">
+                    </div>
+                </div>
+
+                <button class="calc-button" onclick="calculateTicks()">Oblicz wpływ TPS</button>
+
+                <div id="tickResult" class="calc-result">
+                    <h3>Analiza wydajności:</h3>
+                    <div class="result-highlight" id="tpsStatus"></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="tpsProgress" style="width: 0%"></div>
+                    </div>
+                    <div id="tickAnalysis"></div>
+                    <div class="info-box">
+                        <strong>Wpływ na mechanizmy:</strong>
+                        <ul id="mechanismImpact"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <img src="../images/kalkulatory-ilustracja.png" alt="Kalkulatory" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+        </article>
+
+        <div class="page-navigation">
+            <a href="galeria.html" class="nav-button prev">Galeria</a>
+            <a href="skorowidz.html" class="nav-button next">Skorowidz</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+    <script src="../js/calculators.js"></script>
+</body>
+</html>

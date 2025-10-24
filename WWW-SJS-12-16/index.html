@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poradnik Serwerów Minecraft - Od Podstaw do Eksperta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navigation.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🎮 Kompleksowy Poradnik Serwerów Minecraft</h1>
+            <p class="subtitle">Wszystko czego potrzebujesz aby stworzyć profesjonalny serwer</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">Start</a></li>
+                <li><a href="content/podstawy.html">Podstawy</a></li>
+                <li><a href="content/konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="content/optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="content/pluginy.html">Pluginy</a></li>
+                <li><a href="content/bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="content/galeria.html">Galeria</a></li>
+                <li><a href="content/kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="content/skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Szukaj w poradniku...">
+        <button onclick="searchContent()">Szukaj</button>
+    </div>
+
+    <main class="container">
+        <section class="welcome-section">
+            <h2>Witaj w świecie serwerów Minecraft!</h2>
+            <p>Ten poradnik pomoże Ci w utworzeniu, konfiguracji i optymalizacji własnego serwera Minecraft. Niezależnie od tego czy jesteś początkującym administratorem czy doświadczonym profesjonalistą - znajdziesz tu wartościowe informacje.</p>
+        </section>
+
+        <section class="table-of-contents">
+            <h2>📚 Spis Treści</h2>
+
+            <div class="toc-grid">
+                <div class="toc-item">
+                    <div class="toc-icon">🚀</div>
+                    <h3><a href="content/podstawy.html">1. Podstawy Serwerów Minecraft</a></h3>
+                    <ul>
+                        <li><a href="content/podstawy.html#rodzaje">Rodzaje serwerów</a></li>
+                        <li><a href="content/podstawy.html#wymagania">Wymagania sprzętowe</a></li>
+                        <li><a href="content/podstawy.html#instalacja">Pierwsza instalacja</a></li>
+                        <li><a href="content/podstawy.html#uruchomienie">Uruchomienie serwera</a></li>
+                        <li><a href="content/podstawy.html#pierwszy-log">Pierwsze logowanie</a></li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <div class="toc-icon">⚙️</div>
+                    <h3><a href="content/konfiguracja.html">2. Konfiguracja Serwera</a></h3>
+                    <ul>
+                        <li><a href="content/konfiguracja.html#server-properties">Plik server.properties</a></li>
+                        <li><a href="content/konfiguracja.html#bukkit">Konfiguracja Bukkit.yml</a></li>
+                        <li><a href="content/konfiguracja.html#spigot">Konfiguracja Spigot.yml</a></li>
+                        <li><a href="content/konfiguracja.html#paper">Paper - zaawansowane opcje</a></li>
+                        <li><a href="content/konfiguracja.html#whitelist">Whitelist i operatorzy</a></li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <div class="toc-icon">⚡</div>
+                    <h3><a href="content/optymalizacja.html">3. Optymalizacja Wydajności</a></h3>
+                    <ul>
+                        <li><a href="content/optymalizacja.html#ram">Zarządzanie pamięcią RAM</a></li>
+                        <li><a href="content/optymalizacja.html#jvm">Flagi JVM</a></li>
+                        <li><a href="content/optymalizacja.html#render">Optymalizacja renderowania</a></li>
+                        <li><a href="content/optymalizacja.html#swiaty">Optymalizacja światów</a></li>
+                        <li><a href="content/optymalizacja.html#tps">Monitorowanie TPS</a></li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <div class="toc-icon">🔌</div>
+                    <h3><a href="content/pluginy.html">4. Pluginy i Modyfikacje</a></h3>
+                    <ul>
+                        <li><a href="content/pluginy.html#niezbedne">Niezbędne pluginy</a></li>
+                        <li><a href="content/pluginy.html#instalacja">Instalacja pluginów</a></li>
+                        <li><a href="content/pluginy.html#administracja">Pluginy administracyjne</a></li>
+                        <li><a href="content/pluginy.html#ekonomia">Systemy ekonomiczne</a></li>
+                        <li><a href="content/pluginy.html#ochrona">Ochrona terenu</a></li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <div class="toc-icon">🔒</div>
+                    <h3><a href="content/bezpieczenstwo.html">5. Bezpieczeństwo</a></h3>
+                    <ul>
+                        <li><a href="content/bezpieczenstwo.html#ddos">Ochrona przed DDoS</a></li>
+                        <li><a href="content/bezpieczenstwo.html#griefing">Zapobieganie griefingowi</a></li>
+                        <li><a href="content/bezpieczenstwo.html#backup">Systemy backup</a></li>
+                        <li><a href="content/bezpieczenstwo.html#exploity">Ochrona przed exploitami</a></li>
+                        <li><a href="content/bezpieczenstwo.html#uprawnienia">Zarządzanie uprawnieniami</a></li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <div class="toc-icon">🖼️</div>
+                    <h3><a href="content/galeria.html">6. Galeria Serwerów</a></h3>
+                    <ul>
+                        <li><a href="content/galeria.html#survival">Survival</a></li>
+                        <li><a href="content/galeria.html#creative">Creative</a></li>
+                        <li><a href="content/galeria.html#minigames">Minigry</a></li>
+                        <li><a href="content/galeria.html#rpg">RPG</a></li>
+                        <li><a href="content/galeria.html#skyblock">Skyblock</a></li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <div class="toc-icon">🧮</div>
+                    <h3><a href="content/kalkulatory.html">7. Kalkulatory i Narzędzia</a></h3>
+                    <ul>
+                        <li><a href="content/kalkulatory.html#ram-calc">Kalkulator RAM</a></li>
+                        <li><a href="content/kalkulatory.html#slots-calc">Kalkulator slotów</a></li>
+                        <li><a href="content/kalkulatory.html#chunk-calc">Kalkulator chunków</a></li>
+                        <li><a href="content/kalkulatory.html#koszt-calc">Kalkulator kosztów</a></li>
+                        <li><a href="content/kalkulatory.html#tick-calc">Kalkulator tick speed</a></li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <div class="toc-icon">📖</div>
+                    <h3><a href="content/skorowidz.html">8. Pojęcia i Komendy</a></h3>
+                    <ul>
+                        <li><a href="content/skorowidz.html#pojecia">Pojęcia kluczowe</a></li>
+                        <li><a href="content/skorowidz.html#komendy">Komendy serwera</a></li>
+                        <li><a href="content/skorowidz.html#problemy">Częste problemy</a></li>
+                        <li><a href="content/skorowidz.html#linki">Przydatne linki</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-links">
+            <h2>⚡ Szybki dostęp</h2>
+            <div class="quick-links-grid">
+                <a href="content/kalkulatory.html#ram-calc" class="quick-link">
+                    <span class="icon">💾</span>
+                    <span>Kalkulator RAM</span>
+                </a>
+                <a href="content/galeria.html" class="quick-link">
+                    <span class="icon">🖼️</span>
+                    <span>Galeria</span>
+                </a>
+                <a href="content/optymalizacja.html#jvm" class="quick-link">
+                    <span class="icon">⚡</span>
+                    <span>Flagi JVM</span>
+                </a>
+                <a href="content/pluginy.html#niezbedne" class="quick-link">
+                    <span class="icon">🔌</span>
+                    <span>Top Pluginy</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <h2>📊 Statystyki Poradnika</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="chapterCount">8</div>
+                    <div class="stat-label">Rozdziałów</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="imageCount">50+</div>
+                    <div class="stat-label">Obrazków</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="calcCount">5</div>
+                    <div class="stat-label">Kalkulatorów</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="tipCount">100+</div>
+                    <div class="stat-label">Porad</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+            <p>Projekt edukacyjny - Wszystkie informacje w celach szkoleniowych</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

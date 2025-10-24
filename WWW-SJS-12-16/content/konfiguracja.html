@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfiguracja Serwera - Poradnik</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>⚙️ Konfiguracja Serwera</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html">Podstawy</a></li>
+                <li><a href="konfiguracja.html" class="active">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="pluginy.html">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Konfiguracja Serwera</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <h2 id="server-properties">📄 Plik server.properties</h2>
+            <p>Główny plik konfiguracyjny serwera Minecraft. Zawiera podstawowe ustawienia dotyczące rozgrywki i funkcjonowania serwera.</p>
+
+            <h3>Najważniejsze opcje</h3>
+
+            <table>
+                <tr>
+                    <th>Opcja</th>
+                    <th>Opis</th>
+                    <th>Rekomendacja</th>
+                </tr>
+                <tr>
+                    <td>max-players</td>
+                    <td>Maksymalna liczba graczy</td>
+                    <td>Dopasuj do zasobów RAM</td>
+                </tr>
+                <tr>
+                    <td>view-distance</td>
+                    <td>Zasięg widoczności chunków</td>
+                    <td>6-10 dla wydajności</td>
+                </tr>
+                <tr>
+                    <td>simulation-distance</td>
+                    <td>Zasięg symulacji</td>
+                    <td>4-8 zalecane</td>
+                </tr>
+                <tr>
+                    <td>difficulty</td>
+                    <td>Poziom trudności</td>
+                    <td>easy/normal/hard</td>
+                </tr>
+                <tr>
+                    <td>gamemode</td>
+                    <td>Domyślny tryb gry</td>
+                    <td>survival/creative</td>
+                </tr>
+                <tr>
+                    <td>pvp</td>
+                    <td>Walki między graczami</td>
+                    <td>true/false</td>
+                </tr>
+                <tr>
+                    <td>spawn-protection</td>
+                    <td>Rozmiar ochrony spawna</td>
+                    <td>16 blokówomyślnie</td>
+                </tr>
+                <tr>
+                    <td>online-mode</td>
+                    <td>Weryfikacja kont premium</td>
+                    <td>true (zawsze!)</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <strong>Uwaga!</strong> Nigdy nie ustawiaj online-mode=false na publicznym serwerze! To pozwala na wchodzenie crackowanym kontom i jest niezgodne z regulaminem Mojang.
+            </div>
+
+            <h3>Przykładowa konfiguracja</h3>
+            <div class="code-block">
+# Podstawowe ustawienia
+max-players=50
+view-distance=8
+simulation-distance=6
+difficulty=hard
+gamemode=survival
+
+# Bezpieczeństwo
+online-mode=true
+enable-command-block=false
+spawn-protection=16
+
+# Wydajność
+network-compression-threshold=256
+entity-broadcast-range-percentage=100
+            </div>
+
+            <img src="../images/server-properties.png" alt="server.properties" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="bukkit">📝 Konfiguracja Bukkit.yml</h2>
+            <p>Plik bukkit.yml zawiera ustawienia specyficzne dla serwerów opartych na Bukkit/Spigot/Paper.</p>
+
+            <h3>Kluczowe sekcje</h3>
+
+            <h4>Ustawienia spawnu mobów</h4>
+            <div class="code-block">
+spawn-limits:
+  monsters: 70
+  animals: 10
+  water-animals: 5
+  water-ambient: 20
+  ambient: 15
+            </div>
+
+            <div class="tip-box">
+                Zmniejszenie tych wartości może znacząco poprawić wydajność, szczególnie na serwerach z wieloma graczami.
+            </div>
+
+            <h4>Chunk ticking</h4>
+            <div class="code-block">
+chunk-gc:
+  period-in-ticks: 600
+  load-threshold: 0
+
+ticks-per:
+  animal-spawns: 400
+  monster-spawns: 1
+  water-spawns: 1
+  water-ambient-spawns: 1
+  ambient-spawns: 1
+            </div>
+
+            <img src="../images/bukkit-yml.png" alt="bukkit.yml" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="spigot">🔧 Konfiguracja Spigot.yml</h2>
+            <p>Spigot.yml oferuje dodatkowe opcje optymalizacyjne i funkcjonalne.</p>
+
+            <h3>Optymalizacje wydajności</h3>
+
+            <div class="code-block">
+world-settings:
+  default:
+    # Merge radius dla itemów
+    merge-radius:
+      item: 2.5
+      exp: 3.0
+
+    # Entity activation range
+    entity-activation-range:
+      animals: 32
+      monsters: 32
+      raiders: 48
+      misc: 16
+      water: 16
+      villagers: 32
+      flying-monsters: 32
+
+    # Tick rates
+    mob-spawn-range: 6
+    entity-tracking-range:
+      players: 48
+      animals: 48
+      monsters: 48
+      misc: 32
+      other: 64
+            </div>
+
+            <div class="tip-box">
+                <strong>Pro tip:</strong> Zmniejszenie entity-activation-range może znacznie poprawić TPS na dużych serwerach.
+            </div>
+
+            <h3>Ustawienia gracza</h3>
+            <div class="code-block">
+players:
+  disable-saving: false
+
+settings:
+  save-user-cache-on-stop-only: false
+  sample-count: 12
+  bungeecord: false
+  player-shuffle: 0
+  user-cache-size: 1000
+  moved-wrongly-threshold: 0.0625
+  moved-too-quickly-multiplier: 10.0
+  timeout-time: 60
+  restart-on-crash: true
+  restart-script: ./start.sh
+            </div>
+
+            <img src="../images/spigot-yml.png" alt="spigot.yml" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="paper">📜 Paper - Zaawansowane Opcje</h2>
+            <p>Paper oferuje najbardziej zaawansowane opcje konfiguracyjne poprzez plik paper-world-defaults.yml (Paper 1.19+) lub paper.yml (starsze wersje).</p>
+
+            <h3>Antycheat i antyeksploity</h3>
+            <div class="code-block">
+anti-xray:
+  enabled: true
+  engine-mode: 2
+  max-block-height: 64
+  update-radius: 2
+  lava-obscures: false
+  use-permission: false
+  hidden-blocks:
+  - copper_ore
+  - deepslate_copper_ore
+  - gold_ore
+  - deepslate_gold_ore
+  - iron_ore
+  - deepslate_iron_ore
+  - coal_ore
+  - deepslate_coal_ore
+  - lapis_ore
+  - deepslate_lapis_ore
+  - mossy_cobblestone
+  - obsidian
+  - chest
+  - diamond_ore
+  - deepslate_diamond_ore
+  - redstone_ore
+  - deepslate_redstone_ore
+  - clay
+  - emerald_ore
+  - deepslate_emerald_ore
+  - ender_chest
+            </div>
+
+            <div class="info-box">
+                <strong>Anti-Xray:</strong> Engine-mode 2 jest najbardziej efektywny, ale może minimalnie obciążyć serwer.
+            </div>
+
+            <h3>Optymalizacje redstone</h3>
+            <div class="code-block">
+redstone-implementation: ALTERNATE_CURRENT
+fix-climbing-bypassing-cramming-rule: true
+fix-curing-zombie-villager-discount-exploit: true
+            </div>
+
+            <h3>Chunk loading</h3>
+            <div class="code-block">
+max-auto-save-chunks-per-tick: 24
+prevent-moving-into-unloaded-chunks: true
+delay-chunk-unloads-by: 10s
+            </div>
+
+            <img src="../images/paper-yml.png" alt="paper.yml" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="whitelist">👥 Whitelist i Operatorzy</h2>
+            <p>Zarządzanie dostępem do serwera i uprawnieniami administratorów.</p>
+
+            <h3>Włączanie whitelisty</h3>
+            <p>W server.properties ustaw:</p>
+            <div class="code-block">
+white-list=true
+            </div>
+
+            <h3>Komendy whitelisty</h3>
+            <table>
+                <tr>
+                    <th>Komenda</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>/whitelist add &lt;gracz&gt;</td>
+                    <td>Dodaje gracza do whitelisty</td>
+                </tr>
+                <tr>
+                    <td>/whitelist remove &lt;gracz&gt;</td>
+                    <td>Usuwa gracza z whitelisty</td>
+                </tr>
+                <tr>
+                    <td>/whitelist list</td>
+                    <td>Pokazuje listę graczy</td>
+                </tr>
+                <tr>
+                    <td>/whitelist on</td>
+                    <td>Włącza whitelistę</td>
+                </tr>
+                <tr>
+                    <td>/whitelist off</td>
+                    <td>Wyłącza whitelistę</td>
+                </tr>
+                <tr>
+                    <td>/whitelist reload</td>
+                    <td>Przeładowuje whitelistę</td>
+                </tr>
+            </table>
+
+            <h3>System operatorów</h3>
+            <p>Operatorzy mają pełne uprawnienia administratorskie. Nadawaj je ostrożnie!</p>
+
+            <div class="code-block">
+# Nadanie uprawnień operatora
+/op &lt;nick&gt;
+
+# Sprawdzenie poziomu OP (0-4)
+# Poziom 4 = pełne uprawnienia
+            </div>
+
+            <div class="warning-box">
+                <strong>Bezpieczeństwo:</strong> Nigdy nie nadawaj OP osobom, którym nie ufasz w 100%. Operatorzy mogą wykonać dowolne komendy, w tym niszczące!
+            </div>
+
+            <h3>Plik ops.json</h3>
+            <p>Operatorzy są zapisywani w pliku ops.json:</p>
+            <div class="code-block">
+[
+  {
+    "uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
+    "name": "Notch",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]
+            </div>
+
+            <img src="../images/whitelist-ops.png" alt="Whitelist i OPs" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <div class="tip-box">
+                <strong>Następny krok:</strong> Po skonfigurowaniu podstawowych ustawień, przejdź do rozdziału <a href="optymalizacja.html">Optymalizacja</a> aby maksymalnie wykorzystać potencjał serwera!
+            </div>
+
+        </article>
+
+        <div class="page-navigation">
+            <a href="podstawy.html" class="nav-button prev">Podstawy</a>
+            <a href="optymalizacja.html" class="nav-button next">Optymalizacja</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

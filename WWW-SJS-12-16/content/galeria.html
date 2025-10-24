@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Serwerów - Poradnik</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: white;
+        }
+
+        .gallery-caption h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .gallery-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+        }
+
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            padding: 1rem;
+            background: rgba(0,0,0,0.5);
+            border-radius: 5px;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .category-section {
+            margin: 3rem 0;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🖼️ Galeria Serwerów Minecraft</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html">Podstawy</a></li>
+                <li><a href="konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="pluginy.html">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html" class="active">Galeria</a></li>
+                <li><a href="kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Galeria</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <p>Przegląd różnych typów serwerów Minecraft z przykładowymi budowlami, konfiguracjami i inspiracjami dla administratorów.</p>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterGallery('all')">Wszystkie</button>
+                <button class="filter-btn" onclick="filterGallery('survival')">Survival</button>
+                <button class="filter-btn" onclick="filterGallery('creative')">Creative</button>
+                <button class="filter-btn" onclick="filterGallery('minigames')">Minigry</button>
+                <button class="filter-btn" onclick="filterGallery('rpg')">RPG</button>
+                <button class="filter-btn" onclick="filterGallery('skyblock')">Skyblock</button>
+            </div>
+
+            <section id="survival" class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">⛏️</span>
+                    <h2>Serwery Survival</h2>
+                </div>
+                <p>Klasyczne serwery przetrwania z dodatkowymi mechanikami i funkcjami.</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="survival" onclick="openLightbox(0)">
+                        <img src="../images/survival-spawn.png" alt="Spawn survival">
+                        <div class="gallery-caption">
+                            <h3>Spawn Survival</h3>
+                            <p>Przykład profesjonalnego spawna na serwerze survival z systemem protekcji i warpami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Survival</span>
+                                <span class="tag">Spawn</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="survival" onclick="openLightbox(1)">
+                        <img src="../images/survival-shop.png" alt="Sklep survival">
+                        <div class="gallery-caption">
+                            <h3>Admin Shop</h3>
+                            <p>Przykładowy sklep administracyjny z systemem ekonomicznym.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Survival</span>
+                                <span class="tag">Ekonomia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="survival" onclick="openLightbox(2)">
+                        <img src="../images/survival-miasto.png" alt="Miasto graczy">
+                        <div class="gallery-caption">
+                            <h3>Miasto Graczy</h3>
+                            <p>Rozbudowane miasto stworzone przez społeczność serwera.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Survival</span>
+                                <span class="tag">Budowle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="survival" onclick="openLightbox(3)">
+                        <img src="../images/survival-farm.png" alt="Farma automatyczna">
+                        <div class="gallery-caption">
+                            <h3>Automatyczne Farmy</h3>
+                            <p>Zaawansowane systemy farmienia na serwerze z dozwolonymi farmami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Survival</span>
+                                <span class="tag">Redstone</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="survival" onclick="openLightbox(4)">
+                        <img src="../images/survival-protection.png" alt="System ochrony">
+                        <div class="gallery-caption">
+                            <h3>System Ochrony Działek</h3>
+                            <p>Wizualizacja systemu protekcji działek graczy.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Survival</span>
+                                <span class="tag">Protekcja</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="creative" class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">🎨</span>
+                    <h2>Serwery Creative</h2>
+                </div>
+                <p>Serwery kreatywne z systemami działek i konkursami budowlanymi.</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="creative" onclick="openLightbox(5)">
+                        <img src="../images/creative-plots.png" alt="System działek">
+                        <div class="gallery-caption">
+                            <h3>System Działek</h3>
+                            <p>Automatyczny system przydzielania działek dla graczy.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Creative</span>
+                                <span class="tag">Działki</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="creative" onclick="openLightbox(6)">
+                        <img src="../images/creative-megabuild.png" alt="Mega budowla">
+                        <div class="gallery-caption">
+                            <h3>Mega Budowle</h3>
+                            <p>Monumentalne konstrukcje stworzone przez graczy.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Creative</span>
+                                <span class="tag">Budowle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="creative" onclick="openLightbox(7)">
+                        <img src="../images/creative-worldedit.png" alt="WorldEdit">
+                        <div class="gallery-caption">
+                            <h3>WorldEdit w Akcji</h3>
+                            <p>Przykłady użycia WorldEdit do tworzenia terenów.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Creative</span>
+                                <span class="tag">WorldEdit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="creative" onclick="openLightbox(8)">
+                        <img src="../images/creative-competition.png" alt="Konkurs budowlany">
+                        <div class="gallery-caption">
+                            <h3>Konkursy Budowlane</h3>
+                            <p>Organizacja i efekty konkursów dla graczy.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Creative</span>
+                                <span class="tag">Event</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="minigames" class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">🎮</span>
+                    <h2>Serwery Minigier</h2>
+                </div>
+                <p>Różnorodne minigry i systemy rankingowe.</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="minigames" onclick="openLightbox(9)">
+                        <img src="../images/minigames-lobby.png" alt="Lobby minigier">
+                        <div class="gallery-caption">
+                            <h3>Lobby Minigier</h3>
+                            <p>Centralne lobby z portalami do różnych minigier.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Minigry</span>
+                                <span class="tag">Lobby</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="minigames" onclick="openLightbox(10)">
+                        <img src="../images/minigames-bedwars.png" alt="BedWars arena">
+                        <div class="gallery-caption">
+                            <h3>Arena BedWars</h3>
+                            <p>Profesjonalna mapa BedWars z 8 drużynami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Minigry</span>
+                                <span class="tag">BedWars</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="minigames" onclick="openLightbox(11)">
+                        <img src="../images/minigames-skywars.png" alt="SkyWars">
+                        <div class="gallery-caption">
+                            <h3>SkyWars</h3>
+                            <p>Klasyczna mapa SkyWars z unikalnymi wyspami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Minigry</span>
+                                <span class="tag">SkyWars</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="minigames" onclick="openLightbox(12)">
+                        <img src="../images/minigames-parkour.png" alt="Parkour">
+                        <div class="gallery-caption">
+                            <h3>Parkour Extreme</h3>
+                            <p>Zaawansowane trasy parkour z systemem czasowym.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Minigry</span>
+                                <span class="tag">Parkour</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="minigames" onclick="openLightbox(13)">
+                        <img src="../images/minigames-pvp.png" alt="Arena PvP">
+                        <div class="gallery-caption">
+                            <h3>Arena PvP</h3>
+                            <p>Dedykowana arena do walk 1v1 z rankingiem.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Minigry</span>
+                                <span class="tag">PvP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="rpg" class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">⚔️</span>
+                    <h2>Serwery RPG</h2>
+                </div>
+                <p>Serwery z elementami RPG, questami i systemami klas.</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="rpg" onclick="openLightbox(14)">
+                        <img src="../images/rpg-miasto.png" alt="RPG miasto">
+                        <div class="gallery-caption">
+                            <h3>Miasto RPG</h3>
+                            <p>Główne miasto z NPCami i questami dla graczy.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">RPG</span>
+                                <span class="tag">Questy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="rpg" onclick="openLightbox(15)">
+                        <img src="../images/rpg-dungeon.png" alt="Dungeon">
+                        <div class="gallery-caption">
+                            <h3>Lochy i Dungeony</h3>
+                            <p>Niebezpieczne dungeony z bossami i nagrodami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">RPG</span>
+                                <span class="tag">Dungeon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="rpg" onclick="openLightbox(16)">
+                        <img src="../images/rpg-klasy.png" alt="System klas">
+                        <div class="gallery-caption">
+                            <h3>System Klas</h3>
+                            <p>Interfejs wyboru i rozwoju postaci.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">RPG</span>
+                                <span class="tag">Klasy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="rpg" onclick="openLightbox(17)">
+                        <img src="../images/rpg-boss.png" alt="Boss fight">
+                        <div class="gallery-caption">
+                            <h3>Walka z Bossem</h3>
+                            <p>Epickie walki z customowymi bossami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">RPG</span>
+                                <span class="tag">Boss</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="rpg" onclick="openLightbox(18)">
+                        <img src="../images/rpg-sklepy.png" alt="Sklepy NPC">
+                        <div class="gallery-caption">
+                            <h3>Sklepy i NPCe</h3>
+                            <p>Interaktywne NPCe ze sklepami i dialogami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">RPG</span>
+                                <span class="tag">NPC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skyblock" class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">☁️</span>
+                    <h2>Serwery Skyblock</h2>
+                </div>
+                <p>Popularna tryb rozgrywki na wyspach z customowym contentem.</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="skyblock" onclick="openLightbox(19)">
+                        <img src="../images/skyblock-spawn.png" alt="Skyblock spawn">
+                        <div class="gallery-caption">
+                            <h3>Hub Skyblock</h3>
+                            <p>Główny hub z portalami na wyspy graczy.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Skyblock</span>
+                                <span class="tag">Hub</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="skyblock" onclick="openLightbox(20)">
+                        <img src="../images/skyblock-wyspa.png" alt="Wyspa gracza">
+                        <div class="gallery-caption">
+                            <h3>Rozbudowana Wyspa</h3>
+                            <p>Przykład zaawansowanej wyspy gracza.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Skyblock</span>
+                                <span class="tag">Wyspa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="skyblock" onclick="openLightbox(21)">
+                        <img src="../images/skyblock-farmy.png" alt="Farmy skyblock">
+                        <div class="gallery-caption">
+                            <h3>Automatyczne Farmy</h3>
+                            <p>Efektywne systemy farmienia na wyspie.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Skyblock</span>
+                                <span class="tag">Farmy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="skyblock" onclick="openLightbox(22)">
+                        <img src="../images/skyblock-wyzwania.png" alt="System wyzwań">
+                        <div class="gallery-caption">
+                            <h3>System Wyzwań</h3>
+                            <p>Interfejs questów i wyzwań dla graczy.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Skyblock</span>
+                                <span class="tag">Questy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="skyblock" onclick="openLightbox(23)">
+                        <img src="../images/skyblock-customitemy.png" alt="Custom itemy">
+                        <div class="gallery-caption">
+                            <h3>Custom Itemy</h3>
+                            <p>Unikalne przedmioty i narzędzia.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Skyblock</span>
+                                <span class="tag">Items</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">📊</span>
+                    <h2>Interfejsy i Panele</h2>
+                </div>
+                <p>Przykłady interfejsów administracyjnych i paneli gracza.</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="all" onclick="openLightbox(24)">
+                        <img src="../images/panel-admin.png" alt="Panel admina">
+                        <div class="gallery-caption">
+                            <h3>Panel Administracyjny</h3>
+                            <p>GUI do zarządzania serwerem in-game.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Admin</span>
+                                <span class="tag">GUI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="all" onclick="openLightbox(25)">
+                        <img src="../images/panel-gracza.png" alt="Panel gracza">
+                        <div class="gallery-caption">
+                            <h3>Menu Gracza</h3>
+                            <p>Personalizowane menu z statystykami i opcjami.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Player</span>
+                                <span class="tag">GUI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="all" onclick="openLightbox(26)">
+                        <img src="../images/scoreboard.png" alt="Scoreboard">
+                        <div class="gallery-caption">
+                            <h3>Custom Scoreboard</h3>
+                            <p>Dostosowany scoreboard z informacjami serwera.</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Interface</span>
+                                <span class="tag">HUD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="all" onclick="openLightbox(27)">
+                        <img src="../images/tab-lista.png" alt="Tab lista">
+                        <div class="gallery-caption">
+                            <h3>Custom Tab List</h3>
+                            <p>Spersonalizowana lista graczy (TAB).</p>
+                            <div class="gallery-tags">
+                                <span class="tag">Interface</span>
+                                <span class="tag">TAB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1, event)">&#10094;</span>
+        <span class="lightbox-nav lightbox-next" onclick="changeLightbox(1, event)">&#10095;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+    <script src="../js/gallery.js"></script>
+</body>
+</html>

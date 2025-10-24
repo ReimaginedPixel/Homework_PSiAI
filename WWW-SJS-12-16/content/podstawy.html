@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podstawy Serwerów Minecraft - Poradnik</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🎮 Podstawy Serwerów Minecraft</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html" class="active">Podstawy</a></li>
+                <li><a href="konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="pluginy.html">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Podstawy Serwerów Minecraft</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <h2 id="rodzaje">🔧 Rodzaje Serwerów</h2>
+            <p>Istnieje wiele typów serwerów Minecraft, każdy z unikalnymi cechami i zastosowaniami. Wybór odpowiedniego typu serwera jest kluczowy dla sukcesu twojego projektu.</p>
+
+            <h3>Vanilla Server</h3>
+            <p>Oficjalny serwer Minecraft od Mojang. Jest to najprostsza forma serwera, oferująca czystą rozgrywkę bez modyfikacji.</p>
+            <div class="tip-box">
+                <strong>Zalety:</strong> Stabilny, oficjalnie wspierany, brak problemów z kompatybilnością
+            </div>
+            <div class="warning-box">
+                <strong>Wady:</strong> Brak możliwości instalacji pluginów, ograniczone opcje konfiguracyjne
+            </div>
+
+            <h3>Bukkit/Spigot</h3>
+            <p>Spigot to zmodyfikowana wersja serwera, która umożliwia instalację pluginów i oferuje lepszą wydajność niż vanilla.</p>
+            <div class="tip-box">
+                <strong>Zalety:</strong> Wsparcie dla pluginów, lepsza wydajność, duża społeczność
+            </div>
+
+            <h3>Paper</h3>
+            <p>Paper to fork Spigota z dodatkowymi optymalizacjami i możliwościami konfiguracyjnymi. Jest to obecnie najpopularniejszy wybór dla większości serwerów.</p>
+            <div class="tip-box">
+                <strong>Zalety:</strong> Najlepsza wydajność, zaawansowane opcje, aktywny rozwój, kompatybilność z pluginami Spigot
+            </div>
+
+            <h3>Forge/Fabric</h3>
+            <p>Platformy do serwerów z modami. Wymagają od graczy instalacji tych samych modów na kliencie.</p>
+
+            <img src="../images/rodzaje-serwerow.png" alt="Porównanie typów serwerów" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="wymagania">💻 Wymagania Sprzętowe</h2>
+            <p>Dobór odpowiedniego sprzętu to fundament działającego serwera. Zbyt słaby sprzęt spowoduje lagi i problemy z wydajnością.</p>
+
+            <h3>Procesor (CPU)</h3>
+            <p>Minecraft jest grą zależną od pojedynczego wątku procesora. Lepiej wybrać CPU z wysokim taktowaniem niż z dużą liczbą rdzeni.</p>
+            <div class="info-box">
+                <strong>Rekomendacja:</strong> Minimum 2.5 GHz, optymalne 3.5+ GHz na rdzeń
+            </div>
+
+            <h3>Pamięć RAM</h3>
+            <p>Ilość potrzebnej pamięci RAM zależy od liczby graczy i zainstalowanych pluginów.</p>
+
+            <table>
+                <tr>
+                    <th>Liczba graczy</th>
+                    <th>Minimalna RAM</th>
+                    <th>Zalecana RAM</th>
+                </tr>
+                <tr>
+                    <td>1-5</td>
+                    <td>1 GB</td>
+                    <td>2 GB</td>
+                </tr>
+                <tr>
+                    <td>5-10</td>
+                    <td>2 GB</td>
+                    <td>3-4 GB</td>
+                </tr>
+                <tr>
+                    <td>10-20</td>
+                    <td>3 GB</td>
+                    <td>4-6 GB</td>
+                </tr>
+                <tr>
+                    <td>20-50</td>
+                    <td>4 GB</td>
+                    <td>6-8 GB</td>
+                </tr>
+                <tr>
+                    <td>50-100</td>
+                    <td>6 GB</td>
+                    <td>8-12 GB</td>
+                </tr>
+                <tr>
+                    <td>100+</td>
+                    <td>8+ GB</td>
+                    <td>16+ GB</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <strong>Wskazówka:</strong> Użyj <a href="kalkulatory.html#ram-calc">kalkulatora RAM</a> aby dokładnie obliczyć potrzeby twojego serwera!
+            </div>
+
+            <h3>Dysk</h3>
+            <p>SSD jest niemal niezbędny dla płynnego działania serwera. HDD spowoduje znaczne spowolnienia podczas ładowania chunków.</p>
+            <div class="info-box">
+                <strong>Minimalna przestrzeń:</strong> 5 GB dla małego serwera, 20+ GB dla większych projektów
+            </div>
+
+            <img src="../images/wymagania-sprzet.png" alt="Wymagania sprzętowe" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="instalacja">📦 Pierwsza Instalacja</h2>
+            <p>Instalacja serwera Minecraft jest procesem prostym, ale wymaga wykonania kilku kroków w odpowiedniej kolejności.</p>
+
+            <h3>Krok 1: Instalacja Java</h3>
+            <p>Minecraft wymaga środowiska Java. Dla wersji 1.17+ wymagana jest Java 17 lub nowsza, dla starszych wersji Java 8.</p>
+
+            <div class="code-block">
+# Sprawdzenie wersji Java
+java -version
+
+# Powinno wyświetlić coś podobnego:
+# openjdk version "17.0.1" 2021-10-19
+            </div>
+
+            <div class="info-box">
+                <strong>Pobierz Java:</strong> Zalecamy OpenJDK z <a href="#linki">oficjalnej strony</a>
+            </div>
+
+            <h3>Krok 2: Pobranie pliku serwera</h3>
+            <p>W zależności od wybranego typu serwera, pobierz odpowiedni plik .jar:</p>
+            <ul>
+                <li><strong>Paper:</strong> papermc.io/downloads (zalecane)</li>
+                <li><strong>Spigot:</strong> getbukkit.org/download/spigot</li>
+                <li><strong>Vanilla:</strong> minecraft.net/download/server</li>
+            </ul>
+
+            <img src="../images/pobieranie-serwera.png" alt="Pobieranie serwera Paper" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h3>Krok 3: Utworzenie folderu serwera</h3>
+            <p>Utwórz dedykowany folder dla serwera i umieść w nim pobrany plik .jar</p>
+
+            <div class="code-block">
+mkdir minecraft-server
+cd minecraft-server
+# Skopiuj tutaj pobrany plik server.jar
+            </div>
+
+            <h3>Krok 4: Pierwsze uruchomienie</h3>
+            <p>Uruchom serwer po raz pierwszy, aby wygenerować pliki konfiguracyjne:</p>
+
+            <div class="code-block">
+java -Xmx2G -Xms2G -jar server.jar nogui
+            </div>
+
+            <p>Pierwsze uruchomienie zakończy się błędem - to normalne! Musisz zaakceptować EULA.</p>
+
+            <h3>Krok 5: Akceptacja EULA</h3>
+            <p>Otwórz plik eula.txt i zmień wartość false na true:</p>
+
+            <div class="code-block">
+eula=true
+            </div>
+
+            <div class="warning-box">
+                <strong>Ważne:</strong> Akceptując EULA, zgadzasz się na warunki licencji Minecraft
+            </div>
+
+            <img src="../images/eula-accept.png" alt="Akceptacja EULA" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="uruchomienie">🚀 Uruchomienie Serwera</h2>
+            <p>Po zaakceptowaniu EULA, możesz uruchomić serwer ponownie. Tym razem wszystko powinno działać poprawnie.</p>
+
+            <h3>Podstawowy skrypt startowy</h3>
+            <p>Utwórz plik start.bat (Windows) lub start.sh (Linux) z następującą zawartością:</p>
+
+            <div class="code-block">
+@echo off
+java -Xmx4G -Xms4G -jar server.jar nogui
+pause
+            </div>
+
+            <h3>Zaawansowany skrypt z flagami Aikar</h3>
+            <p>Dla lepszej wydajności, użyj optymalizowanych flag JVM:</p>
+
+            <div class="code-block">
+java -Xms4G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -jar server.jar nogui
+            </div>
+
+            <div class="tip-box">
+                <strong>Wskazówka:</strong> Więcej o flagach JVM znajdziesz w rozdziale <a href="optymalizacja.html#jvm">Optymalizacja</a>
+            </div>
+
+            <img src="../images/serwer-uruchomiony.png" alt="Działający serwer" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="pierwszy-log">🎮 Pierwsze Logowanie</h2>
+            <p>Po uruchomieniu serwera, możesz się zalogować używając adresu localhost lub IP serwera.</p>
+
+            <h3>Logowanie lokalne</h3>
+            <p>W Minecraft, wybierz Multiplayer → Add Server i wpisz:</p>
+            <div class="info-box">
+                <strong>Adres serwera:</strong> localhost
+            </div>
+
+            <h3>Nadawanie uprawnień administratora</h3>
+            <p>W konsoli serwera wpisz:</p>
+            <div class="code-block">
+op TwojaNazwa
+            </div>
+
+            <h3>Podstawowe komendy serwera</h3>
+            <table>
+                <tr>
+                    <th>Komenda</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>/stop</td>
+                    <td>Zatrzymuje serwer</td>
+                </tr>
+                <tr>
+                    <td>/whitelist add [gracz]</td>
+                    <td>Dodaje gracza do whitelisty</td>
+                </tr>
+                <tr>
+                    <td>/op [gracz]</td>
+                    <td>Nadaje uprawnienia administratora</td>
+                </tr>
+                <tr>
+                    <td>/gamemode [tryb] [gracz]</td>
+                    <td>Zmienia tryb gry</td>
+                </tr>
+                <tr>
+                    <td>/tp [gracz] [cel]</td>
+                    <td>Teleportuje gracza</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <strong>Pro tip:</strong> Pełną listę komend znajdziesz w <a href="skorowidz.html#komendy">skorowidzu</a>
+            </div>
+
+            <img src="../images/pierwsze-logowanie.png" alt="Pierwsze logowanie na serwer" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <div class="info-box">
+                <strong>Gratulacje!</strong> Właśnie uruchomiłeś swój pierwszy serwer Minecraft. Teraz możesz przejść do <a href="konfiguracja.html">konfiguracji</a> aby dostosować serwer do swoich potrzeb.
+            </div>
+        </article>
+
+        <div class="page-navigation">
+            <a href="../index.html" class="nav-button prev">Strona główna</a>
+            <a href="konfiguracja.html" class="nav-button next">Konfiguracja Serwera</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

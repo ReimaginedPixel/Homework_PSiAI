@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluginy - Poradnik Serwerów Minecraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔌 Pluginy i Modyfikacje</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html">Podstawy</a></li>
+                <li><a href="konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="pluginy.html" class="active">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Pluginy</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <p>Przewodnik po najważniejszych pluginach dla serwera Minecraft.</p>
+
+            <h2 id="niezbedne">⭐ Niezbędne Pluginy</h2>
+            <p>Te pluginy powinien mieć każdy serwer publiczny.</p>
+
+            <div class="plugin-list">
+                <div class="info-box">
+                    <h3>EssentialsX</h3>
+                    <p><strong>Kategoria:</strong> Core / Podstawy</p>
+                    <p>Fundamentalny plugin dodający ponad 100 komend i funkcji: /home, /tpa, /warp, /kit, ekonomia i wiele więcej.</p>
+                    <p><strong>Link:</strong> essentialsx.net</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>LuckPerms</h3>
+                    <p><strong>Kategoria:</strong> Uprawnienia</p>
+                    <p>Najlepszy system zarządzania uprawnieniami i rangami. Webowy edytor, MySQL support.</p>
+                    <p><strong>Link:</strong> luckperms.net</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>WorldEdit + WorldGuard</h3>
+                    <p><strong>Kategoria:</strong> Edycja świata / Ochrona</p>
+                    <p>WorldEdit = narzędzia budowlane. WorldGuard = ochrona regionów i spawn.</p>
+                    <p><strong>Link:</strong> enginehub.org</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Vault</h3>
+                    <p><strong>Kategoria:</strong> API</p>
+                    <p>Most między pluginami - zarządza ekonomią, uprawnieniami i chatami. Wymagany przez większość pluginów.</p>
+                    <p><strong>Link:</strong> dev.bukkit.org</p>
+                </div>
+            </div>
+
+            <img src="../images/essential-plugins.png" alt="Niezbędne pluginy" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <h2 id="instalacja">📥 Instalacja Pluginów</h2>
+            <p>Proces instalacji pluginów jest prosty, ale wymaga uwagi.</p>
+
+            <h3>Krok po kroku</h3>
+            <ol>
+                <li><strong>Pobierz plugin</strong> - Upewnij się że wersja pluginu pasuje do wersji serwera</li>
+                <li><strong>Umieść w folderze plugins/</strong> - Skopiuj plik .jar do folderu plugins</li>
+                <li><strong>Restart serwera</strong> - Pełny restart (nie reload!)</li>
+                <li><strong>Konfiguracja</strong> - Edytuj pliki w plugins/NazwaPluginu/</li>
+                <li><strong>Reload pluginu</strong> - /pluginname reload (jeśli obsługiwane)</li>
+            </ol>
+
+            <div class="code-block">
+# Struktura folderów
+server/
+├── plugins/
+│   ├── EssentialsX.jar
+│   ├── LuckPerms.jar
+│   ├── WorldEdit.jar
+│   ├── WorldGuard.jar
+│   └── EssentialsX/
+│       └── config.yml
+└── server.jar
+            </div>
+
+            <div class="warning-box">
+                <strong>Uwaga:</strong> Nigdy nie używaj /reload! Może powodować memory leaki i błędy. Zawsze restartuj serwer.
+            </div>
+
+            <h2 id="administracja">🛠️ Pluginy Administracyjne</h2>
+
+            <h3>CoreProtect</h3>
+            <p>Logging wszystkich akcji graczy - bloki, kontenery, interakcje.</p>
+            <div class="code-block">
+/co lookup u:gracz t:7d r:10
+/co rollback u:gracz t:1h r:50
+/co inspect
+            </div>
+
+            <h3>DiscordSRV</h3>
+            <p>Integracja Minecraft ↔ Discord. Chat sync, komendy, eventy.</p>
+
+            <h3>PlaceholderAPI</h3>
+            <p>System placeholderów używanych przez inne pluginy (%player_name%, %server_tps%, etc.).</p>
+
+            <img src="../images/admin-plugins.png" alt="Pluginy administracyjne" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <h2 id="ekonomia">💰 Systemy Ekonomiczne</h2>
+
+            <h3>Shop Pluginy</h3>
+            <ul>
+                <li><strong>ChestShop</strong> - Sklepy na znakach + skrzyniach</li>
+                <li><strong>QuickShop</strong> - Nowoczesna alternatywa</li>
+                <li><strong>ShopGUIPlus</strong> - Admin shop w GUI</li>
+            </ul>
+
+            <h3>Aukcje i Rynek</h3>
+            <ul>
+                <li><strong>AuctionHouse</strong> - System aukcji jak w MMORPG</li>
+                <li><strong>EconomyShopGUI</strong> - Customowe GUI sklepy</li>
+            </ul>
+
+            <img src="../images/economy-plugins.png" alt="Ekonomia" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+            <h2 id="ochrona">🛡️ Ochrona Terenu</h2>
+
+            <h3>Porównanie pluginów protekcji</h3>
+            <table>
+                <tr>
+                    <th>Plugin</th>
+                    <th>Typ</th>
+                    <th>Dla kogo</th>
+                </tr>
+                <tr>
+                    <td>WorldGuard</td>
+                    <td>Regiony admin</td>
+                    <td>Protekcja spawna, event areny</td>
+                </tr>
+                <tr>
+                    <td>GriefPrevention</td>
+                    <td>Automatyczna działka</td>
+                    <td>Survival - proste w użyciu</td>
+                </tr>
+                <tr>
+                    <td>Lands</td>
+                    <td>System krajów</td>
+                    <td>Zaawansowane serwery survival</td>
+                </tr>
+                <tr>
+                    <td>Towny</td>
+                    <td>Miasta i narody</td>
+                    <td>RP serwery, ekonomia</td>
+                </tr>
+                <tr>
+                    <td>PlotSquared</td>
+                    <td>Działki creative</td>
+                    <td>Serwery creative/plots</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <strong>Rekomendacja:</strong> WorldGuard (admin) + GriefPrevention (gracze) = idealne połączenie
+            </div>
+
+            <img src="../images/protection-plugins.png" alt="Ochrona" style="max-width: 100%; height: auto; border-radius: 8px; margin: 2rem 0;">
+
+        </article>
+
+        <div class="page-navigation">
+            <a href="optymalizacja.html" class="nav-button prev">Optymalizacja</a>
+            <a href="bezpieczenstwo.html" class="nav-button next">Bezpieczeństwo</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

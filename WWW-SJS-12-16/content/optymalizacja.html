@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optymalizacja - Poradnik Serwerów Minecraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>⚡ Optymalizacja Wydajności</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html">Podstawy</a></li>
+                <li><a href="konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html" class="active">Optymalizacja</a></li>
+                <li><a href="pluginy.html">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="skorowidz.html">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Optymalizacja Wydajności</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <p>Kompleksowy przewodnik po optymalizacji serwera Minecraft dla maksymalnej wydajności.</p>
+
+            <h2 id="ram">💾 Zarządzanie Pamięcią RAM</h2>
+            <p>Właściwa alokacja i zarządzanie pamięcią RAM to podstawa wydajnego serwera.</p>
+
+            <h3>Ile RAM przydzielić?</h3>
+            <p>Zbyt mało RAM = lagi i crashe. Zbyt dużo RAM = marnowanie zasobów i dłuższe garbage collection.</p>
+
+            <div class="tip-box">
+                <strong>Złota zasada:</strong> Przydziel tylko tyle RAM ile potrzebujesz + 1-2 GB bufora. Użyj <a href="kalkulatory.html#ram-calc">kalkulatora RAM</a>!
+            </div>
+
+            <table>
+                <tr>
+                    <th>Typ serwera</th>
+                    <th>Gracze</th>
+                    <th>Zalecana RAM</th>
+                </tr>
+                <tr>
+                    <td>Vanilla/Paper Survival</td>
+                    <td>1-10</td>
+                    <td>2-3 GB</td>
+                </tr>
+                <tr>
+                    <td>Paper + pluginy</td>
+                    <td>10-30</td>
+                    <td>4-6 GB</td>
+                </tr>
+                <tr>
+                    <td>Duży serwer minigier</td>
+                    <td>30-100</td>
+                    <td>8-12 GB</td>
+                </tr>
+                <tr>
+                    <td>Modpack (Forge)</td>
+                    <td>5-20</td>
+                    <td>6-10 GB</td>
+                </tr>
+            </table>
+
+            <h3>Podstawowa alokacja</h3>
+            <div class="code-block">
+java -Xms4G -Xmx4G -jar server.jar nogui
+            </div>
+
+            <p><strong>-Xms</strong> = minimalna RAM (start)<br>
+            <strong>-Xmx</strong> = maksymalna RAM</p>
+
+            <div class="info-box">
+                <strong>Tip:</strong> Ustaw Xms i Xmx na tę samą wartość aby zapobiec dynamicznej alokacji pamięci, która może powodować lagi.
+            </div>
+
+            <img src="../images/ram-usage.png" alt="Użycie RAM" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="jvm">🚀 Flagi JVM (Aikar's Flags)</h2>
+            <p>Zaawansowane flagi JVM znacząco poprawiają wydajność poprzez optymalizację garbage collectora.</p>
+
+            <h3>Flagi Aikar - Standard przemysłowy</h3>
+            <p>Te flagi są powszechnie uważane za najlepsze dla serwerów Minecraft:</p>
+
+            <div class="code-block">
+java -Xms10G -Xmx10G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar server.jar nogui
+            </div>
+
+            <h3>Wyjaśnienie kluczowych flag</h3>
+
+            <table>
+                <tr>
+                    <th>Flaga</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>-XX:+UseG1GC</td>
+                    <td>Używa garbage collectora G1 (najlepszy dla Minecraft)</td>
+                </tr>
+                <tr>
+                    <td>-XX:MaxGCPauseMillis=200</td>
+                    <td>Maksymalny czas pauzy GC = 200ms</td>
+                </tr>
+                <tr>
+                    <td>-XX:+AlwaysPreTouch</td>
+                    <td>Inicjalizuje pamięć przy starcie (szybsze działanie)</td>
+                </tr>
+                <tr>
+                    <td>-XX:G1HeapRegionSize=8M</td>
+                    <td>Rozmiar regionu heapa (optymalne dla MC)</td>
+                </tr>
+                <tr>
+                    <td>-XX:+DisableExplicitGC</td>
+                    <td>Wyłącza manualne wywołania GC</td>
+                </tr>
+            </table>
+
+            <h3>Flagi dla różnych ilości RAM</h3>
+
+            <h4>Dla 2-4 GB RAM:</h4>
+            <div class="code-block">
+java -Xms3G -Xmx3G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar nogui
+            </div>
+
+            <h4>Dla 6-10 GB RAM (zalecane pełne flagi Aikar)</h4>
+            <div class="code-block">
+java -Xms8G -Xmx8G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -jar server.jar nogui
+            </div>
+
+            <h4>Dla 12+ GB RAM:</h4>
+            <div class="code-block">
+java -Xms12G -Xmx12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent=50 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=15 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=20 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -jar server.jar nogui
+            </div>
+
+            <img src="../images/jvm-flags.png" alt="JVM Flags" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="render">🎨 Optymalizacja Renderowania</h2>
+            <p>Zmniejszenie obciążenia związanego z renderowaniem i przesyłaniem danych.</p>
+
+            <h3>View Distance vs Simulation Distance</h3>
+
+            <div class="code-block">
+# server.properties
+view-distance=8
+simulation-distance=6
+            </div>
+
+            <p><strong>View distance:</strong> Jak daleko gracze widzą chunki<br>
+            <strong>Simulation distance:</strong> Jak daleko działają mechanizmy (moby, redstone)</p>
+
+            <div class="info-box">
+                <strong>Optymalne ustawienia:</strong><br>
+                View: 6-10 (zależnie od RAM)<br>
+                Simulation: 4-6 (zawsze mniejsze od view)
+            </div>
+
+            <h3>Entity Distance (Spigot)</h3>
+            <div class="code-block">
+# spigot.yml
+entity-tracking-range:
+  players: 48
+  animals: 48
+  monsters: 48
+  misc: 32
+  other: 64
+            </div>
+
+            <p>Zmniejszenie tych wartości redukuje obciążenie sieci i CPU.</p>
+
+            <img src="../images/view-distance.png" alt="View distance" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="swiaty">🌍 Optymalizacja Światów</h2>
+            <p>Zarządzanie i optymalizacja generacji oraz działania światów.</p>
+
+            <h3>Ograniczenie rozmiaru świata</h3>
+            <p>World border zapobiega nieskończonemu rozrastaniu się świata:</p>
+
+            <div class="code-block">
+/worldborder set 10000
+/worldborder center 0 0
+            </div>
+
+            <div class="tip-box">
+                <strong>Zalecane rozmiary:</strong><br>
+                Mały serwer: 5000-10000 bloków<br>
+                Średni serwer: 10000-20000 bloków<br>
+                Duży serwer: 20000+ bloków
+            </div>
+
+            <h3>Pregeneracja chunków</h3>
+            <p>Wygeneruj świat przed otwarciem serwera aby uniknąć lagów podczas eksploracji:</p>
+
+            <div class="code-block">
+# Używając pluginu Chunky
+/chunky world world
+/chunky radius 5000
+/chunky start
+            </div>
+
+            <h3>Czyszczenie nieużywanych chunków</h3>
+            <p>Plugin jak WorldBorder pozwala usunąć chunki poza określonym obszarem:</p>
+
+            <div class="code-block">
+/wb world trim 10000 208h
+            </div>
+
+            <h3>Optymalizacja spawn mobów</h3>
+            <div class="code-block">
+# bukkit.yml
+spawn-limits:
+  monsters: 50
+  animals: 8
+  water-animals: 5
+  water-ambient: 10
+  ambient: 5
+
+ticks-per:
+  animal-spawns: 400
+  monster-spawns: 10
+  water-spawns: 400
+  water-ambient-spawns: 400
+  ambient-spawns: 400
+            </div>
+
+            <img src="../images/world-optimization.png" alt="Optymalizacja świata" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <h2 id="tps">📊 Monitorowanie TPS</h2>
+            <p>TPS (Ticks Per Second) to najważniejszy wskaźnik wydajności serwera. Idealnie = 20 TPS.</p>
+
+            <h3>Sprawdzanie TPS</h3>
+            <div class="code-block">
+/tps
+
+# Przykładowy output:
+# TPS from last 1m, 5m, 15m: 20.0, 19.8, 19.5
+# Current Memory Usage: 4096/8192 MB
+            </div>
+
+            <h3>Interpretacja wyników</h3>
+            <table>
+                <tr>
+                    <th>TPS</th>
+                    <th>Status</th>
+                    <th>Działanie</th>
+                </tr>
+                <tr>
+                    <td>19.5-20.0</td>
+                    <td>✅ Doskonały</td>
+                    <td>Brak problemu</td>
+                </tr>
+                <tr>
+                    <td>18.0-19.5</td>
+                    <td>⚠️ Dobry</td>
+                    <td>Minimalne lagi, monitoruj</td>
+                </tr>
+                <tr>
+                    <td>15.0-18.0</td>
+                    <td>⚠️ Słaby</td>
+                    <td>Wyraźne lagi, optymalizuj</td>
+                </tr>
+                <tr>
+                    <td>&lt;15.0</td>
+                    <td>❌ Krytyczny</td>
+                    <td>Natychmiast optymalizuj!</td>
+                </tr>
+            </table>
+
+            <h3>Narzędzia diagnostyczne</h3>
+
+            <h4>Spark Profiler</h4>
+            <p>Najlepszy plugin do profilowania wydajności:</p>
+            <div class="code-block">
+/spark tps
+/spark profiler start
+# Poczekaj 2-5 minut
+/spark profiler stop
+            </div>
+
+            <h4>Timings (Spigot/Paper)</h4>
+            <div class="code-block">
+/timings on
+# Poczekaj 10-15 minut
+/timings paste
+            </div>
+
+            <div class="warning-box">
+                <strong>Uwaga:</strong> Timings w Paper jest deprecated. Używaj Spark!
+            </div>
+
+            <h3>Typowe przyczyny niskiego TPS</h3>
+            <ul>
+                <li>Za dużo mobów (farmy, spawner)</li>
+                <li>Zbyt wiele załadowanych chunków</li>
+                <li>Źle napisane pluginy</li>
+                <li>Nadmierna aktywność redstone</li>
+                <li>Za mało RAM lub słaby CPU</li>
+                <li>Generacja nowych chunków</li>
+                <li>Nieoptymalne flagi JVM</li>
+            </ul>
+
+            <img src="../images/tps-monitoring.png" alt="Monitorowanie TPS" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+            <div class="tip-box">
+                <strong>Checklist optymalizacji:</strong>
+                <ul>
+                    <li>✓ Używaj Paper zamiast Spigot</li>
+                    <li>✓ Zastosuj flagi Aikar</li>
+                    <li>✓ Ustaw odpowiedni view-distance (6-10)</li>
+                    <li>✓ Ogranicz world border</li>
+                    <li>✓ Pregeneruj chunki</li>
+                    <li>✓ Zredukuj limity spawn mobów</li>
+                    <li>✓ Regularnie monitoruj TPS</li>
+                    <li>✓ Używaj pluginów optymalizacyjnych (ClearLag, FarmControl)</li>
+                </ul>
+            </div>
+
+        </article>
+
+        <div class="page-navigation">
+            <a href="konfiguracja.html" class="nav-button prev">Konfiguracja</a>
+            <a href="pluginy.html" class="nav-button next">Pluginy</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

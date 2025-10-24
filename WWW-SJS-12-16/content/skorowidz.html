@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skorowidz - Poradnik</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>📖 Pojęcia i Komendy</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Start</a></li>
+                <li><a href="podstawy.html">Podstawy</a></li>
+                <li><a href="konfiguracja.html">Konfiguracja</a></li>
+                <li><a href="optymalizacja.html">Optymalizacja</a></li>
+                <li><a href="pluginy.html">Pluginy</a></li>
+                <li><a href="bezpieczenstwo.html">Bezpieczeństwo</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="kalkulatory.html">Kalkulatory</a></li>
+                <li><a href="skorowidz.html" class="active">Pojęcia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumb container">
+        <a href="../index.html">Start</a> <span>/</span> <span>Pojęcia i Komendy</span>
+    </div>
+
+    <main class="container">
+        <article class="content-page">
+            <p>Szybki dostęp do najważniejszych informacji, pojęć i komend.</p>
+
+            <h2 id="pojecia">📚 Pojęcia Kluczowe</h2>
+
+            <div class="glossary">
+                <div class="tip-box">
+                    <h3>API</h3>
+                    <p>Application Programming Interface - interfejs programistyczny pozwalający pluginom komunikować się ze sobą.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Chunk</h3>
+                    <p>Podstawowa jednostka świata, 16x16 bloków powierzchni, 384 bloki wysokości (1.18+). Świat ładuje się w chunkach.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Fork</h3>
+                    <p>Zmodyfikowana wersja innego oprogramowania. Paper jest forkiem Spigota, Spigot forkiem Bukkita.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>GC (Garbage Collector)</h3>
+                    <p>System w Javie czyszczący nieużywaną pamięć. Złe ustawienia GC = lagi.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Griefing</h3>
+                    <p>Celowe niszczenie budowli innych graczy, kraodzież, trolling.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>JVM (Java Virtual Machine)</h3>
+                    <p>Maszyna wirtualna Java - środowisko uruchomieniowe dla serwera Minecraft.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Paper</h3>
+                    <p>Najpopularniejsze oprogramowanie serwera - fork Spigota z optymalizacjami i dodatkowymi API.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Plugin</h3>
+                    <p>Dodatek do serwera napisany w Javie, dodający nowe funkcje. Działa na Bukkit/Spigot/Paper.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Spigot</h3>
+                    <p>Popularne oprogramowanie serwera - fork Bukkita z lepszą wydajnością i wsparciem dla pluginów.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>TPS (Ticks Per Second)</h3>
+                    <p>Tiki na sekundę - główny wskaźnik wydajności. Idealnie = 20 TPS. Gra działa w cyklu 20 tików/sekundę.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Vanilla</h3>
+                    <p>Czysty, niezmodyfikowany serwer Minecraft od Mojang. Brak wsparcia dla pluginów.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>View Distance</h3>
+                    <p>Zasięg widoczności chunków dla gracza. Wyższy = więcej chunków = gorsze TPS.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Whitelist</h3>
+                    <p>Lista dozwolonych graczy. Jeśli włączona, tylko gracze z listy mogą wejść na serwer.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h3>WorldBorder</h3>
+                    <p>Niewidzialna bariera ograniczająca rozmiar świata. Zapobiega nieskończonemu rozrastaniu.</p>
+                </div>
+            </div>
+
+            <h2 id="komendy">⌨️ Komendy Serwera</h2>
+
+            <h3>Podstawowe komendy</h3>
+            <table>
+                <tr>
+                    <th>Komenda</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>/stop</td>
+                    <td>Zatrzymuje serwer bezpiecznie</td>
+                </tr>
+                <tr>
+                    <td>/save-all</td>
+                    <td>Zapisuje wszystkie światy</td>
+                </tr>
+                <tr>
+                    <td>/tps</td>
+                    <td>Pokazuje aktualne TPS serwera</td>
+                </tr>
+                <tr>
+                    <td>/plugins</td>
+                    <td>Lista zainstalowanych pluginów</td>
+                </tr>
+                <tr>
+                    <td>/version</td>
+                    <td>Wersja serwera i Minecraft</td>
+                </tr>
+            </table>
+
+            <h3>Zarządzanie graczami</h3>
+            <table>
+                <tr>
+                    <th>Komenda</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>/op &lt;gracz&gt;</td>
+                    <td>Nadaje uprawnienia operatora</td>
+                </tr>
+                <tr>
+                    <td>/deop &lt;gracz&gt;</td>
+                    <td>Odbiera uprawnienia operatora</td>
+                </tr>
+                <tr>
+                    <td>/kick &lt;gracz&gt; [powód]</td>
+                    <td>Wyrzuca gracza z serwera</td>
+                </tr>
+                <tr>
+                    <td>/ban &lt;gracz&gt; [powód]</td>
+                    <td>Banuje gracza permanentnie</td>
+                </tr>
+                <tr>
+                    <td>/pardon &lt;gracz&gt;</td>
+                    <td>Odbanowuje gracza</td>
+                </tr>
+                <tr>
+                    <td>/ban-ip &lt;ip&gt;</td>
+                    <td>Banuje adres IP</td>
+                </tr>
+            </table>
+
+            <h3>Whitelist</h3>
+            <table>
+                <tr>
+                    <th>Komenda</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>/whitelist add &lt;gracz&gt;</td>
+                    <td>Dodaje gracza do whitelisty</td>
+                </tr>
+                <tr>
+                    <td>/whitelist remove &lt;gracz&gt;</td>
+                    <td>Usuwa gracza z whitelisty</td>
+                </tr>
+                <tr>
+                    <td>/whitelist on</td>
+                    <td>Włącza whitelistę</td>
+                </tr>
+                <tr>
+                    <td>/whitelist off</td>
+                    <td>Wyłącza whitelistę</td>
+                </tr>
+                <tr>
+                    <td>/whitelist list</td>
+                    <td>Pokazuje whitelistę</td>
+                </tr>
+            </table>
+
+            <h3>Świat i rozgrywka</h3>
+            <table>
+                <tr>
+                    <th>Komenda</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>/gamemode &lt;tryb&gt; [gracz]</td>
+                    <td>Zmienia tryb gry (survival/creative/adventure/spectator)</td>
+                </tr>
+                <tr>
+                    <td>/difficulty &lt;poziom&gt;</td>
+                    <td>Zmienia trudność (peaceful/easy/normal/hard)</td>
+                </tr>
+                <tr>
+                    <td>/weather &lt;typ&gt; [czas]</td>
+                    <td>Zmienia pogodę (clear/rain/thunder)</td>
+                </tr>
+                <tr>
+                    <td>/time set &lt;czas&gt;</td>
+                    <td>Ustawia czas (day/night/0-24000)</td>
+                </tr>
+                <tr>
+                    <td>/gamerule &lt;regula&gt; &lt;wartość&gt;</td>
+                    <td>Zmienia zasady gry</td>
+                </tr>
+                <tr>
+                    <td>/worldborder set &lt;rozmiar&gt;</td>
+                    <td>Ustawia world border</td>
+                </tr>
+            </table>
+
+            <h3>Komendy EssentialsX</h3>
+            <table>
+                <tr>
+                    <th>Komenda</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>/home [nazwa]</td>
+                    <td>Teleportuje do domu</td>
+                </tr>
+                <tr>
+                    <td>/sethome [nazwa]</td>
+                    <td>Ustawia dom</td>
+                </tr>
+                <tr>
+                    <td>/tpa &lt;gracz&gt;</td>
+                    <td>Prosi o teleport do gracza</td>
+                </tr>
+                <tr>
+                    <td>/tpaccept</td>
+                    <td>Akceptuje prośbę o teleport</td>
+                </tr>
+                <tr>
+                    <td>/spawn</td>
+                    <td>Teleportuje na spawn</td>
+                </tr>
+                <tr>
+                    <td>/warp &lt;nazwa&gt;</td>
+                    <td>Teleportuje do warpa</td>
+                </tr>
+                <tr>
+                    <td>/balance</td>
+                    <td>Sprawdza pieniądze</td>
+                </tr>
+                <tr>
+                    <td>/pay &lt;gracz&gt; &lt;kwota&gt;</td>
+                    <td>Wysyła pieniądze</td>
+                </tr>
+            </table>
+
+            <h2 id="problemy">❓ Częste Problemy</h2>
+
+            <div class="faq">
+                <div class="warning-box">
+                    <h3>Problem: Niskie TPS (poniżej 18)</h3>
+                    <p><strong>Rozwiązanie:</strong></p>
+                    <ul>
+                        <li>Sprawdź /timings lub /spark profiler</li>
+                        <li>Zmniejsz view-distance i simulation-distance</li>
+                        <li>Ogranicz spawn mobów w bukkit.yml</li>
+                        <li>Użyj flag JVM Aikar</li>
+                        <li>Zainstaluj ClearLag do czyszczenia itemów</li>
+                        <li>Sprawdź czy któryś plugin nie spowalnia</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Problem: Out of Memory Error</h3>
+                    <p><strong>Rozwiązanie:</strong></p>
+                    <ul>
+                        <li>Zwiększ przydzieloną RAM (-Xmx)</li>
+                        <li>Sprawdź memory leak używając /spark heapsummary</li>
+                        <li>Zmniejsz view-distance</li>
+                        <li>Ogranicz preloaded chunks</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Problem: Gracze nie mogą się połączyć</h3>
+                    <p><strong>Rozwiązanie:</strong></p>
+                    <ul>
+                        <li>Sprawdź czy port 25565 jest otwarty (firewall)</li>
+                        <li>Port forwarding w routerze</li>
+                        <li>Sprawdź whitelist (/whitelist off)</li>
+                        <li>Sprawdź czy serwer działa (/status w konsoli)</li>
+                        <li>Sprawdź IP i port w server.properties</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Problem: Plugin nie działa</h3>
+                    <p><strong>Rozwiązanie:</strong></p>
+                    <ul>
+                        <li>Sprawdź wersję pluginu vs wersję serwera</li>
+                        <li>Sprawdź logi w logs/latest.log</li>
+                        <li>Zainstaluj dependencies (np. Vault, PlaceholderAPI)</li>
+                        <li>Pełny restart serwera (nie /reload!)</li>
+                        <li>Sprawdź permissions (LuckPerms)</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Problem: Crash przy starcie</h3>
+                    <p><strong>Rozwiązanie:</strong></p>
+                    <ul>
+                        <li>Sprawdź logs/latest.log dla błędów</li>
+                        <li>Sprawdź czy Java jest odpowiedniej wersji (17+ dla 1.17+)</li>
+                        <li>Usuń uszkodzone pliki pluginów</li>
+                        <li>Sprawdź EULA (musi być true)</li>
+                        <li>Sprawdź czy masz wystarczająco RAM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="linki">🔗 Przydatne Linki</h2>
+
+            <h3>Pobieranie oprogramowania</h3>
+            <ul>
+                <li><strong>Paper:</strong> papermc.io/downloads</li>
+                <li><strong>Spigot:</strong> getbukkit.org/download/spigot</li>
+                <li><strong>Vanilla:</strong> minecraft.net/download/server</li>
+                <li><strong>Java OpenJDK:</strong> adoptium.net</li>
+            </ul>
+
+            <h3>Pluginy</h3>
+            <ul>
+                <li><strong>SpigotMC:</strong> spigotmc.org/resources</li>
+                <li><strong>Bukkit:</strong> dev.bukkit.org/bukkit-plugins</li>
+                <li><strong>Hangar (Paper):</strong> hangar.papermc.io</li>
+                <li><strong>Modrinth:</strong> modrinth.com</li>
+            </ul>
+
+            <h3>Dokumentacja</h3>
+            <ul>
+                <li><strong>Paper Docs:</strong> docs.papermc.io</li>
+                <li><strong>Spigot Wiki:</strong> spigotmc.org/wiki</li>
+                <li><strong>Minecraft Wiki:</strong> minecraft.wiki</li>
+                <li><strong>Aikar's Flags:</strong> aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft</li>
+            </ul>
+
+            <h3>Społeczność i pomoc</h3>
+            <ul>
+                <li><strong>Paper Discord:</strong> discord.gg/papermc</li>
+                <li><strong>Spigot Forum:</strong> spigotmc.org</li>
+                <li><strong>Reddit r/admincraft:</strong> reddit.com/r/admincraft</li>
+            </ul>
+
+            <h3>Narzędzia</h3>
+            <ul>
+                <li><strong>TCPShield:</strong> tcpshield.com (DDoS protection)</li>
+                <li><strong>MCSrvStat:</strong> mcsrvstat.us (status check)</li>
+                <li><strong>NameMC:</strong> namemc.com (sprawdzanie nicków)</li>
+            </ul>
+
+        </article>
+
+        <div class="page-navigation">
+            <a href="kalkulatory.html" class="nav-button prev">Kalkulatory</a>
+            <a href="../index.html" class="nav-button next">Strona główna</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Poradnik Serwerów Minecraft | Autorzy: Uczniowie 12, 16</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

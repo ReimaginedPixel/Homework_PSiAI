@@ -1,0 +1,108 @@
+* {
+    font-family: "Trebuchet MS", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #303F9F;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+aside {
+    background-color: #C5CAE9;
+    width: 40%;
+    height: 600px;
+    overflow: auto;
+    padding: 20px;
+}
+
+section {
+    width: 60%;
+    height: 300px;
+    padding: 20px;
+    overflow: auto;
+}
+
+section:nth-of-type(1) {
+    background-color: #9FA8DA;
+}
+
+section:nth-of-type(2) {
+    background-color: #7986CB;
+}
+
+footer {
+    background-color: #283593;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+img {
+    float: left;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+}
+
+h3 {
+    background-color: #7986CB;
+    color: white;
+    font-size: 140%;
+    padding: 10px;
+}
+
+.opona {
+    background-color: #9FA8DA;
+    margin: 40px;
+    border: 2px dotted #283593;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+/* Styl dla listy opon w bloku bocznym */
+.opona-item {
+    background-color: #9FA8DA;
+    border: 2px dotted #283593;
+    border-radius: 30px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.opona-item img {
+    width: 24px;
+    height: 24px;
+    float: none;
+    padding: 0;
+    margin-right: 10px;
+}
+
+/* Dla responsywności – opcjonalnie */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    aside, section {
+        width: 100%;
+    }
+}

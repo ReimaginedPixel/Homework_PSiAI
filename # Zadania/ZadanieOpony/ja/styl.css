@@ -1,0 +1,83 @@
+/* Domyślna czcionka dla wszystkich elementów */
+* {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+/* Blok główny - kontener dla bocznego i sekcji */
+main {
+    display: flex;
+    gap: 0; /* Brak odstępów między blokami */
+}
+
+/* Blok boczny */
+aside {
+    background-color: #C5CAE9;
+    width: 40%;
+    height: 600px;
+    overflow-y: auto; /* Paski przewijania tylko przy przepełnieniu */
+}
+
+/* Kontener dla sekcji - zajmuje 60% szerokości i zawiera sekcje pionowo */
+.sekcje-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column; /* Układ pionowy: sekcja1 nad sekcja2 */
+    gap: 0; /* Brak odstępów między sekcjami */
+}
+
+/* Sekcje */
+section {
+    height: 300px;
+}
+
+/* Kolor tła sekcji 1 */
+#sekcja1 {
+    background-color: #9FA8DA;
+    padding-right: 30px;
+    text-align: right;
+}
+
+/* Kolor tła sekcji 2 */
+#sekcja2 {
+    background-color: #7986CB;
+}
+
+/* Stopka */
+footer {
+    background-color: #283593;
+    color: white;
+    padding: 20px;
+}
+
+/* Klasa .opona (dla przyszłych bloków generowanych przez skrypt) */
+.opona {
+    padding: 20px;
+    background-color: #9FA8DA;
+    margin: 40px;
+    border: 2px dotted #283593;
+    border-radius: 30px;
+    width: 650px;
+}
+
+/* Styl obrazu - opływanie tekstem po prawej */
+img {
+    float: left;
+    padding: 20px;
+}
+.icon {
+    width: 100px;
+}
+
+/* Nagłówek drugiego stopnia */
+h2 {
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+}
+
+/* Nagłówek trzeciego stopnia */
+h3 {
+    background-color: #7986CB;
+    color: white;
+    font-size: 140%;
+}

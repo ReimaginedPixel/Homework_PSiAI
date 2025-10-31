@@ -1,0 +1,111 @@
+/* Domyślne ustawienia dla całej strony */
+* {
+    font-family: "Trebuchet MS", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Blok główny (nagłówek) */
+header {
+    background-color: #f0f0f0;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Główna zawartość: flex layout */
+main {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Blok boczny */
+aside {
+    background-color: #C5CAE9;
+    width: 40%;
+    height: 600px;
+    overflow: auto;
+    padding: 10px;
+}
+
+/* Wspólne style dla obu sekcji */
+section {
+    width: 60%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Indywidualne kolory tła dla sekcji */
+section:nth-of-type(1) {
+    background-color: #9FA8DA;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+section:nth-of-type(2) {
+    background-color: #7986CB;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Klasa CSS 'opona' */
+.opona {
+    background-color: #9FA8DA;
+    margin: 10px;
+    padding: 10px;
+    border: 2px dotted #283593;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.4;
+}
+
+/* Selektor obrazu */
+img {
+    float: left;
+    padding: 20px;
+}
+
+/* Nagłówek drugiego stopnia */
+h2 {
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+    color: white;
+}
+
+/* Nagłówek trzeciego stopnia */
+h3 {
+    background-color: #7986CB;
+    color: white;
+    font-size: 140%;
+    margin: 10px 0;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+/* Blok stopki */
+footer {
+    background-color: #283593;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

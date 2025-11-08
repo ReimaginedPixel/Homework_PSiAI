@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>List ku chwale Bractwa AGF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=IM+Fell+English+SC&family=MedievalSharp&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#1b1a17;
+      --parch:#f3e9d2;
+      --parch-deep:#e7dcc0;
+      --gold:#d4af37;
+      --shadow: rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(0,0,0,.08), transparent 60%),
+        radial-gradient(800px 500px at 80% 100%, rgba(0,0,0,.06), transparent 60%),
+        linear-gradient(180deg, #ede4c9 0%, #e9dfc3 40%, #e4d8ba 100%);
+      font-family:"IM Fell English SC", "MedievalSharp", ui-serif, Georgia, serif;
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+    .wrap{
+      min-height:100%;
+      display:flex;align-items:center;justify-content:center;
+      padding:6rem 1.25rem;
+    }
+    .scroll{
+      position:relative;
+      max-width:900px;
+      width:100%;
+      padding:3.25rem 2rem 2.75rem;
+      background: 
+        radial-gradient(circle at 15% 10%, rgba(0,0,0,.06), transparent 45%),
+        radial-gradient(circle at 85% 90%, rgba(0,0,0,.05), transparent 45%),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0 2px, transparent 2px 6px),
+        var(--parch);
+      border: 2px solid #c9b88f;
+      border-radius: 16px;
+      filter: drop-shadow(0 25px 35px var(--shadow));
+      box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.25),
+        inset 0 0 40px rgba(0,0,0,.12),
+        0 12px 24px rgba(0,0,0,.25);
+      line-height:1.55;
+    }
+    /* wooden rollers */
+    .scroll::before,
+    .scroll::after{
+      content:"";
+      position:absolute;left:50%;transform:translateX(-50%);
+      width:92%;height:20px;
+      background:linear-gradient(90deg,#5a3e2b 0%,#7a523c 30%,#3c261c 60%,#704a34 100%);
+      border-radius:999px;
+      box-shadow: inset 0 0 8px rgba(0,0,0,.35), 0 6px 10px rgba(0,0,0,.25);
+    }
+    .scroll::before{top:-18px}
+    .scroll::after{bottom:-18px}
+
+    h1{
+      font-family:"Cinzel", serif;
+      text-align:center;
+      font-weight:800;
+      font-size:clamp(1.35rem, 3.2vw, 2.2rem);
+      margin:0 0 1.25rem;
+      letter-spacing:.02em;
+      color:#322c1e;
+      text-shadow:0 1px 0 #fff8d2, 0 2px 0 rgba(0,0,0,.09);
+    }
+    .hr{height:1px;background:linear-gradient(90deg,transparent, #7a6233, transparent);margin:1.25rem 0 1.5rem}
+
+    .content{
+      font-size:clamp(1.02rem, 1.35vw, 1.18rem);
+      white-space:pre-wrap;
+    }
+    .content p{margin:.65rem 0}
+    .content .lead::first-letter{
+      float:left; font-size:3.4em; line-height:.9; padding:.05em .08em 0 .02em; margin-right:.12em; 
+      font-family:"Cinzel", serif; color:#3b2f1a; text-shadow:0 1px 0 #fff2be;
+    }
+    .sig{margin-top:1.25rem; font-style:italic}
+
+    .wax{
+      display:inline-flex;align-items:center;gap:.5rem;
+      background: radial-gradient(circle at 30% 30%, #a0162b, #7d0f21 70%);
+      color:#fff; padding:.35rem .75rem; border-radius:999px; font-weight:700; letter-spacing:.04em;
+      box-shadow: inset 0 2px 6px rgba(255,255,255,.4), 0 4px 10px rgba(0,0,0,.25);
+      font-family:"Cinzel", serif; font-size:.95rem;
+    }
+
+    .qr-box{
+      margin-top:1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+      border-top:1px dashed #b19661; padding-top:1rem;
+    }
+    .qr-box figure{margin:0; text-align:center}
+    .qr-box img{width:120px;height:120px; image-rendering:pixelated; border:6px solid #e6d8b7; box-shadow:0 6px 12px rgba(0,0,0,.25)}
+    .qr-box figcaption{font-size:.9rem; opacity:.85}
+
+    .cta-row{display:flex; gap:.5rem; flex-wrap:wrap}
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      background:linear-gradient(180deg, #f1e4bf, #d9c189);
+      border:1px solid #b99c62; border-radius:12px; padding:.55rem .85rem; font-weight:700; color:#3a2f1e;
+      box-shadow:0 3px 0 #a1844b, 0 8px 16px rgba(0,0,0,.2);
+      font-family:"Cinzel", serif; letter-spacing:.02em;
+    }
+    .btn:active{transform:translateY(1px); box-shadow:0 2px 0 #a1844b, 0 6px 12px rgba(0,0,0,.2)}
+
+    footer{margin-top:1.25rem; font-size:.95rem; text-align:center; opacity:.85}
+
+    /* print styles */
+    @media print{
+      body{background:#efe6c9}
+      .wrap{padding:0}
+      .scroll{box-shadow:none; filter:none}
+      .qr-box img{border-color:#cbb886}
+      .cta-row, header .cta-row{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="scroll" aria-label="Pergamin AGF">
+      <header>
+        <h1>📜 List ku chwale Bractwa AGF – Actualy Goated Friends 📜</h1>
+        <div class="hr"></div>
+      </header>
+
+      <section class="content" id="content">
+        <p class="lead">W imię procesora i pamięci RAM, ja, Pixel, niniejszym ogłaszam wszem i wobec:
+że oto bractwo AGF osiągnęło level przyjaźni +∞, a z tej okazji każdy z was otrzymuje Bransoletę Szponu,
+wykute z mocy memów, artefakt nieudanych filmów na yt, klasy epic, zakodowany w języku serca (i trochę w Java).</p>
+
+        <p>Niech ta bransoleta przypomina wam, że choć świat bywa lagujący, a serwery czasem crashują,
+niczym debugger przez spaghetti-kod Java... to nasza przyjaźń nigdy nie ma downtime’u. (99.99%)</p>
+
+        <p>Niech szpont prowadzi was do zwycięstwa – <code>return success;</code>
+a gdy coś się nie uda, zawsze można to namierzwić ponownie, najlepiej tak szybko jak zadanie od Bekiera.
+Bo w końcu…</p>
+
+        <p>„Im not racist however” – jak rzecze mędrzec Mierzwa, będą dane dni, gdy posiądę szybkich pracowników do bazy danych,
+którzy łączą się przez VirtualBoxa niczym rycerze przez magiczne portale,
+a ja będę tylko patrzył i mówił: „chatgpt co to wgl znaczy”</p>
+
+        <p>Niech 3FS błogosławi wasze kompilacje,
+niech serwery ReimaginedCraftu nigdy nie wywalą błędu NullPointerException,
+gdzie próbuje to naprawić Pixel — który z wielkim bólem serca oświadcza, iż wyrzeka się tytułu Femboya,
+mimo iż cały świat i tak krzyczy: “im gay tho” (los bywa okrutny, ale mem trwa wiecznie – tostus prbbly),
+a piksele w Godocie tańczą w rytmie 60 FPS-ów, ku chwale Sportsiego, co z Albionu powrócił,
+i ku przestrodze Olany – posiadaczki Łuku Avy, artefaktu z buffem +100 do stylu,
+posiadającej także passive skill: Miss E x4 (w sercu skill, w celności brąz III),
+biegnie do Tostusa, co króluje na Scripted SMP jak władca na szybko dopisanego dialogu,
+gdy MonkeyMoney zdobywa złoto w Skyrimie i przy okazji serca guardów swoimi tekstami,
+Deenichh maluje pejzaże w Kricie niczym elf z kartą graficzną RTX jak Picasso po RedBullu,
+a Mendard… cóż, Mendard w Fortnite pyta, kiedy w końcu zagramy w repo —
+nigdy, ale mów dalej, zabawne (mimo że repo nie ma nic wspólnego z Fortnite).</p>
+
+        <p>Niechaj więc nasze imiona pozostaną w kodzie wszechświata,
+w folderze /bractwo/agf/legends.yml,
+a każdy commit niech będzie błogosławiony przez GitHubowego ducha współpracy,
+gdzie każdy pull request jest zatwierdzony przez los,
+a code reviews… pominięte z dumą.</p>
+
+        <p class="sig">Podpisano:<br>🪶 Wielki Szpontownik, Namierzwiacz, Architekt ReimaginedCraftu i Skryba w Kodzie – Pixel</p>
+
+        <p><em>drops mic 🎤<br>absolute cinema. 🎬<br>Minecraft Movie – based on a true story. 🧱</em></p>
+      </section>
+
+      <div class="hr"></div>
+
+      <section class="qr-box">
+        <div class="cta-row">
+        </div>
+        <span class="wax" aria-hidden="true">SIGILLUM&nbsp;AGF</span>
+      </section>
+
+      <footer>© AGF — Actualy Goated Friends • Scriptum in codice et animo</footer>
+    </article>
+  </div>
+
+  <script>
+    // Ustal URL do QR: użyj atrybutu data-url na <img id="qr"> albo aktualnego adresu strony.
+    (function(){
+      const img = document.getElementById('qr');
+      const base = 'https://api.qrserver.com/v1/create-qr-code/';
+      const size = '150x150';
+      const url = (img.getAttribute('data-url')||window.location.href).trim();
+      const encoded = encodeURIComponent(url);
+      img.src = `${base}?size=${size}&data=${encoded}`;
+
+      // Kopiowanie linku
+      const copyBtn = document.getElementById('copyLink');
+      copyBtn?.addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(url);
+          copyBtn.textContent = 'Skopiowano!';
+          setTimeout(()=>copyBtn.textContent='Kopiuj link strony', 1200);
+        }catch(e){
+          alert('Nie udało się skopiować linku: '+ e.message);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

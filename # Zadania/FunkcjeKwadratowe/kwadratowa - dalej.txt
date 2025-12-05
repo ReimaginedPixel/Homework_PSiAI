@@ -1,0 +1,11 @@
+Dodatkowo:
+
+- użytkownik podaje a, b, c, x1, x2.
+
+czy_rosnaca_na_przedziale($a, $b, $c, $x1, $x2) – zwraca true/false lub tekst, czy funkcja jest rosnąca na całym [x1, x2],
+czy_malejaca_na_przedziale($a, $b, $c, $x1, $x2) – analogicznie dla malejącej.
+
+- przeciecia_z_prosta($a, $b, $c, $k) – która zwraca informację, czy są 0 / 1 / 2 punkty przecięcia z prostą y = k, i jakie.
+Formularz: użytkownik podaje a, b, c, k.
+
+- skrypt rysujący wykres funkcji - google charts, chart.js ... itp.

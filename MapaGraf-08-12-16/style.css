@@ -1,0 +1,314 @@
+/* =====================================================================
+   Jak Złożyć Komputer — style.css
+   Ciemny, nowoczesny motyw „PC / hardware”.
+   Komentarze po polsku.
+   ===================================================================== */
+
+/* ---- Zmienne motywu ---- */
+:root {
+  --tlo:        #0b0e14;   /* główne tło (prawie czarny granat) */
+  --tlo-2:      #121826;   /* tło paneli */
+  --tlo-3:      #1a2236;   /* jaśniejszy panel / hover */
+  --linia:      #243049;   /* obramowania */
+  --tekst:      #e6edf3;   /* główny tekst */
+  --tekst-2:    #9fb0c3;   /* tekst wyciszony */
+  --akcent:     #00d8ff;   /* cyjan */
+  --akcent-2:   #7c4dff;   /* fiolet */
+  --akcent-3:   #9eff00;   /* limonka (akcenty/autorzy) */
+  --cien:       0 10px 30px rgba(0,0,0,.45);
+  --radius:     14px;
+}
+
+/* ---- Reset / baza ---- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  font-family: "Segoe UI", system-ui, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(124,77,255,.12), transparent 60%),
+    radial-gradient(1000px 500px at -10% 10%, rgba(0,216,255,.10), transparent 55%),
+    var(--tlo);
+  color: var(--tekst);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+a { color: var(--akcent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code {
+  font-family: "Cascadia Code", "Consolas", monospace;
+  background: var(--tlo-3); color: var(--akcent-3);
+  padding: .1em .4em; border-radius: 6px; font-size: .9em;
+}
+
+/* ---- Pasek górny / nawigacja ---- */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  padding: .7rem 1.2rem;
+  background: rgba(11,14,20,.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--linia);
+}
+.logo { display: flex; align-items: center; gap: .55rem; font-weight: 800; color: var(--tekst); letter-spacing: .3px; }
+.logo:hover { text-decoration: none; }
+.logo-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--akcent);
+  box-shadow: 0 0 12px var(--akcent), 0 0 4px #fff inset;
+}
+.nav { display: flex; gap: .3rem; flex-wrap: wrap; }
+.nav a {
+  color: var(--tekst-2); padding: .45rem .8rem; border-radius: 10px;
+  font-weight: 600; font-size: .95rem; transition: .2s;
+}
+.nav a:hover { color: var(--tekst); background: var(--tlo-3); text-decoration: none; }
+.nav a.active { color: var(--tlo); background: var(--akcent); }
+
+/* ---- Układ głównej treści ---- */
+main { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; }
+
+/* ---- Hero ---- */
+.hero { padding: 3rem 0 1.5rem; text-align: center; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1; letter-spacing: -.5px; }
+.grad {
+  background: linear-gradient(90deg, var(--akcent), var(--akcent-2) 60%, var(--akcent-3));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lead { max-width: 760px; margin: 1.1rem auto 0; color: var(--tekst-2); font-size: 1.1rem; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: 1.6rem; }
+.hero-tags span {
+  font-size: .82rem; font-weight: 600; color: var(--tekst-2);
+  border: 1px solid var(--linia); background: var(--tlo-2);
+  padding: .3rem .7rem; border-radius: 999px;
+}
+
+/* ---- Sekcje ---- */
+.sekcja {
+  background: linear-gradient(180deg, var(--tlo-2), rgba(18,24,38,.6));
+  border: 1px solid var(--linia);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.4rem;
+  margin-top: 1.6rem;
+  box-shadow: var(--cien);
+}
+.sekcja h1, .sekcja h2 { display: flex; align-items: center; gap: .7rem; font-size: clamp(1.3rem, 3vw, 1.9rem); }
+.num {
+  display: inline-grid; place-items: center;
+  width: 1.9em; height: 1.9em; font-size: .7em; border-radius: 50%;
+  background: linear-gradient(135deg, var(--akcent), var(--akcent-2));
+  color: var(--tlo); font-weight: 900;
+}
+.opis, .podpis { color: var(--tekst-2); margin-top: .8rem; max-width: 900px; }
+.podpis { font-size: .92rem; margin-top: 1rem; }
+.opis strong { color: var(--tekst); }
+.autorzy { margin-top: 1rem; font-weight: 800; color: var(--akcent-3); }
+
+/* =====================================================================
+   MAPA ODNOŚNIKÓW — obraz + warstwa hotspotów
+   ===================================================================== */
+.mapa-wrap {
+  position: relative;            /* punkt odniesienia dla hotspotów (position:absolute) */
+  margin-top: 1.2rem;
+  border: 1px solid var(--linia);
+  border-radius: var(--radius);
+  overflow: hidden;
+  line-height: 0;
+}
+.mapa-img { width: 100%; height: auto; display: block; }
+
+/* Pojedynczy hotspot — przezroczysty przycisk nad obrazem.
+   Pozycja i rozmiar zadawane są procentowo w atrybucie style (responsywne). */
+.hotspot {
+  position: absolute;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  transition: background .18s, border-color .18s, box-shadow .18s, transform .18s;
+  padding: 0;
+}
+.hotspot:hover, .hotspot:focus-visible {
+  background: rgba(0,216,255,.16);
+  border-color: var(--akcent);
+  box-shadow: 0 0 0 2px rgba(0,216,255,.25), 0 0 26px rgba(0,216,255,.35);
+  outline: none;
+}
+/* Hotspot „nowe okno” podświetla się na fioletowo, by odróżnić tryb */
+.hotspot--window:hover, .hotspot--window:focus-visible {
+  background: rgba(124,77,255,.18);
+  border-color: var(--akcent-2);
+  box-shadow: 0 0 0 2px rgba(124,77,255,.3), 0 0 26px rgba(124,77,255,.4);
+}
+/* Tooltip z nazwą komponentu */
+.hs-tip {
+  position: absolute; left: 50%; top: -8px;
+  transform: translate(-50%, -100%) scale(.96);
+  white-space: nowrap;
+  background: #0a0d14; color: var(--tekst);
+  border: 1px solid var(--linia);
+  padding: .35rem .6rem; border-radius: 8px;
+  font-size: .8rem; line-height: 1; font-weight: 600;
+  opacity: 0; pointer-events: none; transition: .18s;
+  box-shadow: var(--cien);
+}
+.hs-tip::after {
+  content: ""; position: absolute; left: 50%; top: 100%;
+  transform: translateX(-50%);
+  border: 6px solid transparent; border-top-color: var(--linia);
+}
+.hotspot:hover .hs-tip, .hotspot:focus-visible .hs-tip {
+  opacity: 1; transform: translate(-50%, -100%) scale(1);
+}
+
+/* =====================================================================
+   GALERIA MINIATUR + animacja pojawiania (METODA A)
+   ===================================================================== */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+.thumb {
+  background: var(--tlo-2);
+  border: 1px solid var(--linia);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.thumb:hover { transform: translateY(-4px); border-color: var(--akcent); box-shadow: 0 12px 26px rgba(0,0,0,.5); }
+.thumb-btn { display: block; width: 100%; border: 0; padding: 0; background: none; cursor: pointer; }
+.thumb-btn img { width: 100%; height: 130px; object-fit: cover; display: block; }
+.thumb figcaption {
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  padding: .55rem .7rem; font-size: .9rem; font-weight: 600; color: var(--tekst);
+}
+.okno-btn, .okno-ico {
+  border: 1px solid var(--linia); background: var(--tlo-3); color: var(--akcent);
+  width: 26px; height: 26px; border-radius: 7px; cursor: pointer;
+  font-size: .9rem; line-height: 1; display: inline-grid; place-items: center;
+  transition: .18s; flex: 0 0 auto;
+}
+.okno-btn:hover { background: var(--akcent); color: var(--tlo); }
+.okno-ico { cursor: default; }
+
+/* Stan początkowy (ukryty) i docelowy animacji fade-in + slide.
+   Klasę .reveal--show dodaje IntersectionObserver w script.js. */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.reveal--show { opacity: 1; transform: none; }
+
+/* ---- Przycisk CTA ---- */
+.cta {
+  display: inline-block; margin-top: 1.2rem;
+  background: linear-gradient(135deg, var(--akcent), var(--akcent-2));
+  color: var(--tlo); font-weight: 800;
+  padding: .8rem 1.3rem; border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0,216,255,.25);
+  transition: transform .15s, box-shadow .15s;
+}
+.cta:hover { transform: translateY(-2px); text-decoration: none; box-shadow: 0 12px 28px rgba(124,77,255,.4); }
+
+/* =====================================================================
+   LIGHTBOX (METODA A — animacja skali / opacity)
+   ===================================================================== */
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1rem; padding: 2rem;
+  background: rgba(4,6,11,.86); backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden; transition: opacity .28s, visibility .28s;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lb-figure { margin: 0; text-align: center; transform: scale(.85); opacity: .4; transition: transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s; }
+.lightbox.open .lb-figure { transform: scale(1); opacity: 1; }
+.lb-figure img {
+  max-width: min(92vw, 1100px); max-height: 76vh;
+  border-radius: 12px; border: 1px solid var(--linia);
+  box-shadow: var(--cien); background: #000;
+}
+.lb-figure figcaption { margin-top: .7rem; color: var(--tekst); font-weight: 700; }
+.lb-close {
+  position: absolute; top: 1rem; right: 1.2rem;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--tlo-2); color: var(--tekst); border: 1px solid var(--linia);
+  font-size: 1.6rem; line-height: 1; cursor: pointer; transition: .18s;
+}
+.lb-close:hover { background: #e23b3b; border-color: #e23b3b; color: #fff; }
+.lb-window {
+  border: 1px solid var(--linia); background: var(--tlo-2); color: var(--akcent);
+  padding: .55rem 1rem; border-radius: 10px; cursor: pointer; font-weight: 700; transition: .18s;
+}
+.lb-window:hover { background: var(--akcent); color: var(--tlo); }
+
+/* =====================================================================
+   PODSTRONA: WIELKI SCHEMAT (METODA C — przewijanie + zoom)
+   ===================================================================== */
+.powrot { display: inline-block; margin-bottom: .8rem; font-weight: 600; }
+.zoom-pasek {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .6rem;
+  margin: 1.2rem 0 .8rem;
+  background: var(--tlo-2); border: 1px solid var(--linia);
+  border-radius: 12px; padding: .6rem .8rem;
+}
+.zoom-btn {
+  min-width: 44px; height: 40px; padding: 0 .9rem;
+  background: var(--tlo-3); color: var(--tekst); border: 1px solid var(--linia);
+  border-radius: 10px; font-size: 1.2rem; font-weight: 800; cursor: pointer; transition: .15s;
+}
+.zoom-btn:hover { background: var(--akcent); color: var(--tlo); border-color: var(--akcent); }
+.zoom-btn--reset, .zoom-btn--okno { font-size: .95rem; }
+.zoom-pokaz { min-width: 64px; text-align: center; font-weight: 800; color: var(--akcent-3); }
+.zoom-info { color: var(--tekst-2); font-size: .88rem; margin-left: auto; }
+
+/* Kontener z przewijaniem — tu powstają paski przewijania, bo obraz jest większy. */
+.schemat-viewport {
+  width: 100%;
+  height: 70vh; min-height: 360px;
+  overflow: auto;                /* KLUCZ: przewijanie poziome i pionowe */
+  border: 1px solid var(--linia);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(45deg, #0c1120 25%, transparent 25%) -10px 0/24px 24px,
+    linear-gradient(-45deg, #0c1120 25%, transparent 25%) -10px 0/24px 24px,
+    #0a0e16;
+  box-shadow: inset 0 0 40px rgba(0,0,0,.5);
+}
+/* Szerokość obrazu sterowana zmienną --zoom (ustawianą w script.js).
+   Baza 1500px przy 100% — obraz i tak jest większy niż okno, więc wymaga
+   przewijania w poziomie i pionie. Plik źródłowy ma 3000px, więc pozostaje
+   ostry także po powiększeniu. */
+.schemat-img {
+  --zoom: 1;
+  width: calc(1500px * var(--zoom));
+  height: auto; display: block;
+  image-rendering: auto;
+}
+/* Ładny, ciemny pasek przewijania */
+.schemat-viewport::-webkit-scrollbar { width: 14px; height: 14px; }
+.schemat-viewport::-webkit-scrollbar-track { background: #0a0e16; }
+.schemat-viewport::-webkit-scrollbar-thumb { background: var(--linia); border-radius: 8px; border: 3px solid #0a0e16; }
+.schemat-viewport::-webkit-scrollbar-thumb:hover { background: var(--akcent); }
+
+/* ---- Stopka ---- */
+.stopka {
+  border-top: 1px solid var(--linia);
+  text-align: center; padding: 2rem 1rem;
+  color: var(--tekst-2);
+}
+.stopka .muted { font-size: .9rem; opacity: .8; margin-top: .3rem; }
+
+/* ---- Responsywność ---- */
+@media (max-width: 640px) {
+  .nav { width: 100%; justify-content: center; }
+  .thumb-btn img { height: 110px; }
+  .schemat-viewport { height: 60vh; }
+  .zoom-info { width: 100%; margin: .2rem 0 0; }
+}
+
+/* ---- Szacunek dla ustawień „mniej animacji” ---- */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .lb-figure { transition: none; }
+}

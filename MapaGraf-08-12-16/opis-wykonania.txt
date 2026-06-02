@@ -1,0 +1,164 @@
+===============================================================================
+            OPIS WYKONANIA PROJEKTU — „JAK ZŁOŻYĆ KOMPUTER”
+                        Paczka: MapaGraf-08-12-16
+===============================================================================
+
+WYKONAWCY: Veronika (nr 8), Konrad (nr 12), Sebastian (nr 16)
+
+
+1. TEMAT
+-------------------------------------------------------------------------------
+Statyczna strona WWW o tym, jak złożyć komputer (zidentyfikować i zamontować
+podzespoły: CPU, RAM, GPU, płyta główna, zasilacz, dysk, chłodzenie, obudowa).
+Strona główna prezentuje WNĘTRZE komputera / płytę główną jako interaktywną
+MAPĘ ODNOŚNIKÓW oraz pokazuje TRZY różne sposoby wyświetlania grafiki przez
+JavaScript.
+
+
+2. UŻYTE TECHNOLOGIE
+-------------------------------------------------------------------------------
+- HTML5 (semantyczna struktura: header, nav, main, section, figure, footer).
+- CSS3 (ciemny motyw „PC/hardware”, gradienty, CSS Grid, animacje/transitions,
+  zmienne CSS, responsywność, prefers-reduced-motion, własny pasek przewijania).
+- Czysty (vanilla) JavaScript — BEZ żadnych frameworków ani bibliotek:
+  IntersectionObserver API, window.open(), zdarzenia DOM, zmienne CSS sterowane
+  z JS, obsługa klawiatury (Escape) i dostępność (aria-*).
+- Grafiki: pliki .jpg w folderze img/. Obecnie są to wygenerowane PLACEHOLDERY
+  (kolorowe obrazy z nazwą komponentu). Można je podmienić na własne zdjęcia
+  o TYCH SAMYCH nazwach plików — strona zacznie ich używać bez zmian w kodzie.
+
+UWAGA o placeholderach: zgodnie z poleceniem placeholdery miały być „kolorowe
+z napisem nazwy komponentu”. Zapisano je jako prawdziwe pliki .jpg (a nie SVG),
+ponieważ docelowe nazwy plików to .jpg — dzięki temu placeholder i przyszłe
+zdjęcie mają identyczny format i nazwę, renderują się w każdej przeglądarce
+(także przy otwieraniu z dysku, file://) i podmiana jest natychmiastowa.
+
+
+3. STRUKTURA PLIKÓW
+-------------------------------------------------------------------------------
+MapaGraf-08-12-16/
+  index.html          - strona główna (mapa odnośników, galeria, lightbox)
+  schemat.html        - PODSTRONA: bardzo duży schemat z przewijaniem i zoomem
+  style.css           - wspólne style (ciemny motyw)
+  script.js           - cała logika (wspólna dla obu podstron)
+  opis-wykonania.txt  - ten plik
+  img/                - grafiki (placeholdery .jpg do podmiany):
+      mapa-glowna.jpg, cpu.jpg, ram.jpg, gpu.jpg, mobo.jpg,
+      psu.jpg, storage.jpg, cooler.jpg, case.jpg, schemat-duzy.jpg
+
+
+4. JAK DZIAŁA MAPA ODNOŚNIKÓW (HOTSPOTY)
+-------------------------------------------------------------------------------
+Zamiast przestarzałych znaczników <map>/<area> użyto nowoczesnej techniki
+NAKŁADKI hotspotów:
+- W index.html jest kontener .mapa-wrap z position:relative, a w nim duży obraz
+  img/mapa-glowna.jpg (width:100%, responsywny).
+- Nad obrazem leżą przyciski <button class="hotspot"> z position:absolute.
+  Ich położenie i rozmiar podane są PROCENTOWO (left/top/width/height w %),
+  dzięki czemu hotspoty skalują się razem z obrazem (responsywność).
+- Współrzędne hotspotów odpowiadają regionom narysowanym na placeholderze
+  mapa-glowna.jpg (CPU, RAM, GPU, płyta główna, zasilacz, dysk, chłodzenie,
+  obudowa), więc od razu „pasują” do obrazu.
+- Każdy hotspot:
+    * podświetla się przy najechaniu/focusie (CSS: .hotspot:hover — poświata,
+      ramka, tło),
+    * pokazuje TOOLTIP z nazwą komponentu (element .hs-tip animowany w CSS),
+    * po kliknięciu wykonuje akcję zależną od atrybutu data-mode.
+- Obsługa w JavaScript:
+    * initHotspoty()  — podpina zdarzenie click do każdego .hotspot,
+    * obsluzHotspot() — czyta data-img / data-label / data-mode i decyduje:
+         data-mode="window"   -> otwórz w nowym oknie (metoda B),
+         data-mode="lightbox" -> otwórz w lightboxie (metoda A, domyślnie).
+  Ponieważ hotspoty to <button>, działają też z klawiatury (Tab + Enter/Spacja).
+
+
+5. TRZY SPOSOBY WYŚWIETLANIA GRAFIKI
+-------------------------------------------------------------------------------
+
+(A) ANIMOWANE POJAWIANIE SIĘ + LIGHTBOX
+    Gdzie: sekcja „Galeria miniatur” na stronie głównej (index.html).
+    Na czym polega:
+      - Miniatury (figure.thumb.reveal) są początkowo niewidoczne i przesunięte
+        w dół (CSS: .reveal { opacity:0; transform:translateY(28px) }).
+      - Podczas PRZEWIJANIA strony, gdy miniatura wejdzie w widok, dodawana jest
+        klasa .reveal--show i miniatura pojawia się z animacją FADE-IN + SLIDE.
+      - Otwarcie miniatury uruchamia LIGHTBOX z animacją SKALI i PRZEZROCZYSTOŚCI
+        (CSS: .lightbox.open + .lb-figure { transform: scale(1); opacity:1 }).
+    Funkcje w script.js:
+      - initObserwator()  — tworzy IntersectionObserver (threshold 0.15) i dodaje
+        klasę .reveal--show, gdy element jest widoczny; animuje każdy element raz
+        (unobserve). Zawiera też fallback, gdy brak IntersectionObserver.
+      - initGaleria()     — klik w miniaturę wywołuje otworzLightbox().
+      - initLightbox()    — obsługa zamykania (przycisk X, kliknięcie w tło,
+        klawisz Escape) oraz przycisku „otwórz w nowym oknie”.
+      - otworzLightbox(src, label) — ustawia obraz/podpis, dodaje klasę .open
+        (animacja wejścia przez requestAnimationFrame), blokuje przewijanie tła.
+      - zamknijLightbox() — zamyka i odblokowuje przewijanie.
+
+(B) GRAFIKA W NOWYM OKNIE (window.open z określonymi wymiarami)
+    Gdzie:
+      - HOTSPOT „Obudowa” na mapie ma data-mode="window" (data-w="900",
+        data-h="650") — kliknięcie otwiera case.jpg w nowym oknie.
+      - W KAŻDEJ miniaturze galerii ikona ↗ (.okno-btn) otwiera dane zdjęcie
+        w nowym oknie.
+      - Przycisk „Otwórz w nowym oknie ↗” w lightboxie oraz na podstronie
+        schemat.html (dla wielkiego schematu).
+    Funkcja w script.js:
+      - otworzWNowymOknie(src, label, w, h) — buduje adres bezwzględny (new URL),
+        WYŚRODKOWUJE okno na ekranie i wywołuje window.open() z cechami:
+        "width=..,height=..,left=..,top=..,menubar=no,toolbar=no,location=no,
+         status=no,scrollbars=yes,resizable=yes".
+        Gdy okno zostanie zablokowane, awaryjnie otwiera obraz w nowej karcie.
+
+(C) GRAFIKA TAK DUŻA, ŻE WYMAGA PRZEWIJANIA (osobna PODSTRONA + zoom)
+    Gdzie: podstrona schemat.html (link z menu i z sekcji 3 strony głównej).
+    Na czym polega:
+      - Bardzo duży obraz img/schemat-duzy.jpg (3000 x 2000 px) umieszczono
+        w kontenerze .schemat-viewport z overflow:auto i ograniczoną wysokością
+        (height:70vh). Obraz jest większy niż okno, więc pojawiają się POZIOME
+        i PIONOWE paski przewijania.
+      - Pasek narzędzi zawiera przyciski ZOOM: „−”, „+”, „Reset”, podgląd
+        procentów oraz „Otwórz w nowym oknie”.
+      - Powiększenie zmienia szerokość obrazu przez zmienną CSS --zoom
+        (CSS: .schemat-img { width: calc(1500px * var(--zoom)) }), co przy
+        większym zoomie wymusza jeszcze więcej przewijania.
+    Funkcje w script.js:
+      - initSchemat() — podpina przyciski +/−/Reset, obsługuje też zoom kółkiem
+        myszy z wciśniętym Ctrl; ustawia stan początkowy.
+      - ustawZoom(nowy) — ogranicza poziom do zakresu 60%–300%, ustawia zmienną
+        --zoom na obrazie i aktualizuje etykietę z procentami.
+
+
+6. STYL I DOSTĘPNOŚĆ
+-------------------------------------------------------------------------------
+- Ciemny, nowoczesny motyw (granat/czerń + akcenty cyjan/fiolet/limonka)
+  pasujący do tematu PC/hardware; zmienne CSS w :root ułatwiają zmianę kolorów.
+- Layout responsywny (CSS Grid w galerii, elastyczne menu, media queries).
+- Dostępność: hotspoty i akcje to elementy <button> (obsługa klawiatury),
+  lightbox zamykany Escape, atrybuty aria-*, obsługa prefers-reduced-motion
+  (wyłączenie animacji dla osób preferujących mniej ruchu).
+- Komentarze w kodzie (HTML/CSS/JS) napisane po polsku.
+
+
+7. JAK URUCHOMIĆ
+-------------------------------------------------------------------------------
+Wystarczy otworzyć plik index.html w przeglądarce (dwuklik) — strona jest w
+pełni statyczna i nie wymaga serwera. Podstrona „Wielki schemat” dostępna jest
+z menu lub z sekcji 3 strony głównej (plik schemat.html).
+
+(Opcjonalnie, dla wygody, można uruchomić lokalny serwer, np.:
+   python -m http.server
+ i wejść na http://localhost:8000 )
+
+
+8. PODMIANA GRAFIK NA WŁASNE
+-------------------------------------------------------------------------------
+Wystarczy podmienić pliki w folderze img/ na własne zdjęcia, ZACHOWUJĄC te same
+nazwy: mapa-glowna.jpg, cpu.jpg, ram.jpg, gpu.jpg, mobo.jpg, psu.jpg,
+storage.jpg, cooler.jpg, case.jpg, schemat-duzy.jpg.
+Po podmianie zdjęcia płyty głównej (mapa-glowna.jpg) warto dopasować położenie
+hotspotów — w index.html w stylach każdego .hotspot (left/top/width/height w %).
+
+===============================================================================
+            Wykonawcy: Veronika (nr 8), Konrad (nr 12), Sebastian (nr 16)
+===============================================================================

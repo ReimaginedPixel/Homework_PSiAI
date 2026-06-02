@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wielki schemat montażu — Jak Złożyć Komputer</title>
+  <meta name="description" content="Bardzo duży schemat montażu komputera (3000×2000 px) z przewijaniem i przyciskami zoom.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="podstrona">
+  <!-- ====== NAGŁÓWEK + NAWIGACJA ====== -->
+  <header class="topbar">
+    <a class="logo" href="index.html">
+      <span class="logo-dot"></span> Jak Złożyć Komputer
+    </a>
+    <nav class="nav">
+      <a href="index.html#mapa">Mapa podzespołów</a>
+      <a href="index.html#galeria">Galeria</a>
+      <a href="schemat.html" class="active">Wielki schemat</a>
+      <a href="index.html#opis">O projekcie</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sekcja">
+      <a class="powrot" href="index.html">← Powrót na stronę główną</a>
+      <h1><span class="num">3</span> Wielki schemat montażu</h1>
+      <p class="opis">
+        Poniżej znajduje się <strong>bardzo duży obraz</strong> (3000 × 2000 px) umieszczony
+        w kontenerze z <code>overflow:auto</code>. Obraz jest większy niż okno, więc trzeba go
+        <strong>przewijać poziomo i pionowo</strong>. Użyj przycisków <strong>zoom</strong>,
+        aby powiększyć/pomniejszyć — przy większym powiększeniu przewijanie jest konieczne.
+      </p>
+
+      <!-- ====== PASEK NARZĘDZI ZOOM (METODA C) ====== -->
+      <div class="zoom-pasek">
+        <button id="zoomOut" class="zoom-btn" aria-label="Pomniejsz">−</button>
+        <span id="zoomPokaz" class="zoom-pokaz">100%</span>
+        <button id="zoomIn" class="zoom-btn" aria-label="Powiększ">+</button>
+        <button id="zoomReset" class="zoom-btn zoom-btn--reset">Reset</button>
+        <button id="zoomOkno" class="zoom-btn zoom-btn--okno">Otwórz w nowym oknie ↗</button>
+        <span class="zoom-info">Przeciągnij suwaki, aby przewijać schemat.</span>
+      </div>
+
+      <!-- Kontener z przewijaniem. Obraz skalowany szerokością przez zmienną --zoom. -->
+      <div class="schemat-viewport" id="schematViewport">
+        <img src="img/schemat-duzy.jpg" alt="Wielki schemat montażu komputera 3000 na 2000 pikseli"
+             class="schemat-img" id="schematImg">
+      </div>
+
+      <p class="podpis">
+        Plik źródłowy: <code>img/schemat-duzy.jpg</code> — podmień na własny duży schemat
+        o tej samej nazwie (zalecane ~3000 × 2000 px).
+      </p>
+    </section>
+  </main>
+
+  <footer class="stopka">
+    <p>Projekt edukacyjny „Jak Złożyć Komputer” — MapaGraf-08-12-16</p>
+    <p class="muted">Wykonawcy: Veronika (nr 8), Konrad (nr 12), Sebastian (nr 16) · © <span id="rok"></span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jak Złożyć Komputer — Mapa odnośników</title>
+  <meta name="description" content="Interaktywny przewodnik składania komputera: mapa odnośników po podzespołach, galeria i wielki schemat montażu.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ====== NAGŁÓWEK + NAWIGACJA ====== -->
+  <header class="topbar">
+    <a class="logo" href="index.html">
+      <span class="logo-dot"></span> Jak Złożyć Komputer
+    </a>
+    <nav class="nav">
+      <a href="#mapa">Mapa podzespołów</a>
+      <a href="#galeria">Galeria</a>
+      <a href="schemat.html">Wielki schemat ↗</a>
+      <a href="#opis">O projekcie</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+      <h1>Złóż swój komputer — <span class="grad">krok po kroku</span></h1>
+      <p class="lead">
+        Najedź i kliknij komponent na płycie głównej, aby zobaczyć jego zdjęcie.
+        Niżej znajdziesz animowaną galerię oraz <a href="schemat.html">wielki schemat montażu</a>
+        wymagający przewijania.
+      </p>
+      <div class="hero-tags">
+        <span>CPU</span><span>RAM</span><span>GPU</span><span>Płyta główna</span>
+        <span>Zasilacz</span><span>Dysk</span><span>Chłodzenie</span><span>Obudowa</span>
+      </div>
+    </section>
+
+    <!-- ====== SEKCJA 1: MAPA ODNOŚNIKÓW (hotspoty nad obrazem) ====== -->
+    <section id="mapa" class="sekcja">
+      <h2><span class="num">1</span> Mapa odnośników podzespołów</h2>
+      <p class="opis">
+        Duże zdjęcie poniżej działa jako <strong>mapa odnośników</strong>. Każdy prostokąt to
+        responsywny <em>hotspot</em> (nakładka <code>&lt;div&gt;/&lt;button&gt;</code> pozycjonowana
+        procentowo nad obrazem) — podświetla się przy najechaniu i pokazuje etykietę.
+        Większość hotspotów otwiera zdjęcie w <strong>lightboxie</strong>, a
+        <strong>Obudowa</strong> otwiera obrazek w <strong>nowym oknie</strong>.
+      </p>
+
+      <!-- Kontener mapy: obraz + warstwa hotspotów. Współrzędne hotspotów (w %)
+           pokrywają się z regionami narysowanymi na placeholderze mapa-glowna.jpg. -->
+      <div class="mapa-wrap" id="mapaWrap">
+        <img src="img/mapa-glowna.jpg" alt="Płyta główna z zaznaczonymi podzespołami" class="mapa-img">
+
+        <!-- Każdy hotspot: data-img (zdjęcie), data-label (nazwa), data-mode (lightbox|window) -->
+        <button class="hotspot" style="left:30%;top:6%;width:30%;height:12%"
+                data-img="img/cooler.jpg" data-label="Chłodzenie (Cooler)" data-mode="lightbox">
+          <span class="hs-tip">Chłodzenie (Cooler)</span>
+        </button>
+        <button class="hotspot" style="left:37%;top:20%;width:16%;height:18%"
+                data-img="img/cpu.jpg" data-label="Procesor (CPU)" data-mode="lightbox">
+          <span class="hs-tip">Procesor (CPU)</span>
+        </button>
+        <button class="hotspot" style="left:60%;top:14%;width:12%;height:34%"
+                data-img="img/ram.jpg" data-label="Pamięć RAM" data-mode="lightbox">
+          <span class="hs-tip">Pamięć RAM</span>
+        </button>
+        <button class="hotspot" style="left:6%;top:20%;width:22%;height:30%"
+                data-img="img/mobo.jpg" data-label="Płyta główna" data-mode="lightbox">
+          <span class="hs-tip">Płyta główna</span>
+        </button>
+        <button class="hotspot" style="left:30%;top:42%;width:22%;height:10%"
+                data-img="img/storage.jpg" data-label="Dysk / Storage" data-mode="lightbox">
+          <span class="hs-tip">Dysk / Storage</span>
+        </button>
+        <button class="hotspot" style="left:18%;top:56%;width:50%;height:14%"
+                data-img="img/gpu.jpg" data-label="Karta graficzna (GPU)" data-mode="lightbox">
+          <span class="hs-tip">Karta graficzna (GPU)</span>
+        </button>
+        <button class="hotspot" style="left:6%;top:78%;width:60%;height:16%"
+                data-img="img/psu.jpg" data-label="Zasilacz (PSU)" data-mode="lightbox">
+          <span class="hs-tip">Zasilacz (PSU)</span>
+        </button>
+        <!-- Ten hotspot demonstruje METODĘ B: otwarcie w nowym oknie window.open() -->
+        <button class="hotspot hotspot--window" style="left:78%;top:56%;width:16%;height:38%"
+                data-img="img/case.jpg" data-label="Obudowa (Case) — nowe okno"
+                data-mode="window" data-w="900" data-h="650">
+          <span class="hs-tip">Obudowa — otwórz w nowym oknie ↗</span>
+        </button>
+      </div>
+
+      <p class="podpis">
+        Wskazówka: kliknij <strong>Obudowę</strong> (prawa strona), aby zobaczyć metodę
+        „grafika w nowym oknie”. Pozostałe komponenty otwierają się w lightboxie.
+      </p>
+    </section>
+
+    <!-- ====== SEKCJA 2: GALERIA (METODA A — animowane pojawianie + lightbox) ====== -->
+    <section id="galeria" class="sekcja">
+      <h2><span class="num">2</span> Galeria miniatur — animowane pojawianie</h2>
+      <p class="opis">
+        Miniatury pojawiają się z animacją <strong>fade-in + slide</strong> podczas przewijania
+        (mechanizm <code>IntersectionObserver</code>). Kliknięcie miniatury otwiera
+        <strong>lightbox</strong> z animacją skali i przezroczystości. Ikoną
+        <span class="okno-ico">↗</span> otworzysz dane zdjęcie w nowym oknie.
+      </p>
+
+      <div class="galeria">
+        <!-- Każda miniatura ma klasę .reveal — obserwator dodaje .reveal--show -->
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/cpu.jpg" data-label="Procesor (CPU)">
+            <img src="img/cpu.jpg" alt="Procesor (CPU)" loading="lazy">
+          </button>
+          <figcaption>Procesor (CPU)
+            <button class="okno-btn" data-img="img/cpu.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/ram.jpg" data-label="Pamięć RAM">
+            <img src="img/ram.jpg" alt="Pamięć RAM" loading="lazy">
+          </button>
+          <figcaption>Pamięć RAM
+            <button class="okno-btn" data-img="img/ram.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/gpu.jpg" data-label="Karta graficzna (GPU)">
+            <img src="img/gpu.jpg" alt="Karta graficzna (GPU)" loading="lazy">
+          </button>
+          <figcaption>Karta graficzna (GPU)
+            <button class="okno-btn" data-img="img/gpu.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/mobo.jpg" data-label="Płyta główna">
+            <img src="img/mobo.jpg" alt="Płyta główna" loading="lazy">
+          </button>
+          <figcaption>Płyta główna
+            <button class="okno-btn" data-img="img/mobo.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/psu.jpg" data-label="Zasilacz (PSU)">
+            <img src="img/psu.jpg" alt="Zasilacz (PSU)" loading="lazy">
+          </button>
+          <figcaption>Zasilacz (PSU)
+            <button class="okno-btn" data-img="img/psu.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/storage.jpg" data-label="Dysk / Storage">
+            <img src="img/storage.jpg" alt="Dysk / Storage" loading="lazy">
+          </button>
+          <figcaption>Dysk / Storage
+            <button class="okno-btn" data-img="img/storage.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/cooler.jpg" data-label="Chłodzenie (Cooler)">
+            <img src="img/cooler.jpg" alt="Chłodzenie (Cooler)" loading="lazy">
+          </button>
+          <figcaption>Chłodzenie (Cooler)
+            <button class="okno-btn" data-img="img/cooler.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+        <figure class="thumb reveal">
+          <button class="thumb-btn" data-img="img/case.jpg" data-label="Obudowa (Case)">
+            <img src="img/case.jpg" alt="Obudowa (Case)" loading="lazy">
+          </button>
+          <figcaption>Obudowa (Case)
+            <button class="okno-btn" data-img="img/case.jpg" title="Otwórz w nowym oknie">↗</button>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ====== SEKCJA 3: ZAPOWIEDŹ WIELKIEGO SCHEMATU (METODA C na podstronie) ====== -->
+    <section id="duzy-schemat" class="sekcja">
+      <h2><span class="num">3</span> Wielki schemat montażu — wymaga przewijania</h2>
+      <p class="opis">
+        Trzeci sposób wyświetlania grafiki znajduje się na <strong>osobnej podstronie</strong>:
+        bardzo duży obraz (3000 × 2000 px) w kontenerze z <code>overflow:auto</code> oraz własnymi
+        przyciskami <strong>zoom (+ / −)</strong>. Obraz jest tak duży, że trzeba go przewijać
+        w poziomie i pionie.
+      </p>
+      <a class="cta" href="schemat.html">Otwórz wielki schemat (podstrona) ↗</a>
+    </section>
+
+    <!-- ====== O PROJEKCIE ====== -->
+    <section id="opis" class="sekcja">
+      <h2>O projekcie</h2>
+      <p class="opis">
+        Statyczna strona (HTML + CSS + czysty JavaScript, bez frameworków) prezentująca trzy
+        sposoby wyświetlania grafiki: <strong>(a)</strong> animowane pojawianie się + lightbox,
+        <strong>(b)</strong> grafika w nowym oknie, <strong>(c)</strong> bardzo duży obraz
+        wymagający przewijania. Szczegóły techniczne opisano w pliku <code>opis-wykonania.txt</code>.
+      </p>
+      <p class="autorzy">Wykonawcy: Veronika (nr 8), Konrad (nr 12), Sebastian (nr 16)</p>
+    </section>
+  </main>
+
+  <!-- ====== LIGHTBOX (METODA A — animacja skali/opacity) ====== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia">
+    <button class="lb-close" id="lbClose" aria-label="Zamknij podgląd">×</button>
+    <figure class="lb-figure">
+      <img id="lbImg" src="" alt="">
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
+    <button class="lb-window" id="lbWindow">Otwórz w nowym oknie ↗</button>
+  </div>
+
+  <footer class="stopka">
+    <p>Projekt edukacyjny „Jak Złożyć Komputer” — MapaGraf-08-12-16</p>
+    <p class="muted">Wykonawcy: Veronika (nr 8), Konrad (nr 12), Sebastian (nr 16) · © <span id="rok"></span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
